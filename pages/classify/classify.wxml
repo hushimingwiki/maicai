@@ -1,0 +1,63 @@
+<!-- 顶部区域 -->
+<view class="level search-box" style="height: {{useHeight*0.08}}px;">
+  <!-- 中间搜索框 -->
+  <view class="level input-box">
+    <icon class="input-icon" type="search" size="16"></icon>
+    <input placeholder="平价蔬菜"/>
+    <view class="button-box">
+      <view>搜索</view>
+    </view>
+  </view>
+</view>
+<!-- 内容区域 -->
+<view class="level">
+  <!-- 左边 -->
+  <view class="left-box">
+    <scroll-view scroll-y="true" style="height: {{useHeight*0.91}}px;">
+      <block wx:for="{{leftList}}" wx:key="item">
+        <view 
+        bindtap="bindSelectLeft" 
+        data-id="{{item.id}}" 
+        class="left-text {{current==item.id?'yes':'no'}}">{{item.text}}</view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 右边 -->
+  <view class="right-box" style="height: {{useHeight*0.91}}px;">
+    <view class="all-fl">
+      <view wx:for="{{rightFl}}" wx:key="item" wx:if="{{index<3}}" class="fl-x">{{item.text}}</view>
+      <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="../../image/arrow-up-s-line.png" mode=""/>
+      <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="../../image/arrow-up-s-line-d.png" mode=""/>
+    </view>
+    <view class="fl-all-fl" wx:if="{{flAllOpen == 0}}" style="height: {{useHeight*0.95}}px;">
+      <view class="fl-all-fl-box">
+        <view class="fl-all-fl-for" wx:for="{{rightFl}}" wx:key="item" class="fl-xx">{{item.text}}</view>
+      </view>
+    </view>
+    <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.91}}px;" class="fl-content">
+      <view wx:if="{{rightList.length>0}}">
+        <view wx:for="{{rightList}}" wx:key="item" class="fl-for-list">
+          <image src="{{item.img}}" mode=""/>
+          <view class="fl-details">
+            <view class="fl-text">{{item.text}}</view>
+            <view>
+              <text class="fl-tj">特价</text>
+              <text class="fl-fh">24H发货</text>
+            </view>
+            <view class="fl-qian-box">
+              <text class="fl-qian">￥</text><text class="fl-price">{{item.price}}</text><text class="fl-feng">/份</text>
+              <view class="gwc-image">
+                <image src="../../image/gwc-green.png" mode=""/>
+                <!-- <view class="hongdian">1</view> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 无数据显示 -->
+      <view class="not-data" wx:else>
+        <text>暂无数据！</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,123 @@
+<!--index.wxml-->
+<view class="taptitle" style="height: {{headerHeight + 40}}px;">
+  <view></view>
+  <input class="search" placeholder="买菜就上买菜小程序{{headerHeight}}" />
+</view>
+<scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
+  <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
+    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{banner}}" wx:key="index">
+      <image src='{{item.picture}}?{{random}}'></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="fenlei">
+    <view class="flss">
+      <image src="../../image/dh-1.jpg" mode="" />
+      <view>粮油副食</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-2.jpg" mode="" />
+      <view>肉禽海产</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-3.jpg" mode="" />
+      <view>粮油调味</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-4.jpg" mode="" />
+      <view>乳品烘焙</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-5.jpg" mode="" />
+      <view>休闲零食</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-6.jpg" mode="" />
+      <view>中外美酒</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-7.jpg" mode="" />
+      <view>水饮冲调</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-8.jpg" mode="" />
+      <view>母婴用品</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-9.jpg" mode="" />
+      <view>纸品清洁</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-10.jpg" mode="" />
+      <view>方便速食</view>
+    </view>
+  </view>
+
+  <view class="sale">
+    <view class="sale-title">
+      <view>今日疯抢</view>
+      <view class="sale-title-two">爆款好货 低价天天抢></view>
+    </view>
+    <scroll-view scroll-x="true" >
+      <view class="sale-list">
+        <view class="sale-info">
+          <image src="../../image/banner1.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner2.jpg" mode="" />
+          <view class="vip-price">￥25.8<view>抢</view></view>
+          <view class="org-price">￥55.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner1.jpg" mode="" />
+          <view class="vip-price">￥74.8<view>抢</view></view>
+          <view class="org-price">￥66.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner2.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner1.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner2.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner1.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner2.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+        <view class="sale-info">
+          <image src="../../image/banner1.jpg" mode="" />
+          <view class="vip-price">￥19.8<view>抢</view></view>
+          <view class="org-price">￥32.8</view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+
+  <scroll-view scroll-y class="pubu" type="custom">
+      <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="24rpx" main-axis-gap="24rpx">
+        <view wx:for="{{dataList}}" wx:key="index" class="pubu-info">
+          <image src="{{item.image}}" mode="widthFix"/>
+          <view class="jieshao">{{item.title}}</view>
+          <view class="biaoqian">{{item.biaoqiao}}</view>
+          <view class="price">{{item.jiage}}<text>/份</text></view>
+        </view>
+      </grid-view>
+  </scroll-view>
+</scroll-view>

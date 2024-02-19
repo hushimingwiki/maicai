@@ -1,0 +1,138 @@
+.taptitle {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(175deg, #56ab2f, #f9fff3);
+  z-index: 999;
+}
+.scrollarea {
+  background-color: rgb(250, 244, 244);
+}
+.search{
+  width: 678rpx;
+  margin-left: 24rpx;
+  border: 1px solid #e4e4e4;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 0 0 10px;
+  border-radius: 70rpx;
+  color: #f5f3f3;
+  background-color: #fff;
+  position: absolute;
+  bottom: 5px;
+}
+.swiper{
+  width: 702rpx;
+  height: 330rpx;
+  margin: 24rpx 0 0 24rpx;
+  border-radius: 100rpx;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.swiper image{
+  width: 702rpx;
+  height: 330rpx;
+  border-radius: 20rpx;
+  background-size: cover;
+  background-position: center;
+}
+.fenlei{
+  width: 702rpx;
+  margin: 24rpx 0 0 24rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.flss {
+  border-radius: 36rpx;
+  text-align: center;
+}
+.flss image{
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 36rpx;
+}
+.sale {
+  width: 702rpx;
+  margin: 24rpx 0 0 24rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+}
+.sale-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 10rpx;
+  border-radius: 10rpx 10rpx 0 0 ;
+  background: linear-gradient(180deg, #ecc9cc, #f9fff3);
+}
+.sale-title-two {
+  color: #6b6b6b;
+}
+.sale-list {
+  display: flex;
+  width: 100%;
+}
+.sale-info {
+  width: 150rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 0 24rpx;
+}
+.sale-info image{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 14rpx 0;
+}
+.vip-price {
+  color: red;
+  font-size: 28rpx;
+  background: #f3eaeb;
+  border-radius: 50rpx;
+  display: flex;
+}
+.vip-price view{
+  background: red;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 0 50rpx 50rpx 0;
+  padding: 0 5rpx;
+  height: 100%;
+  line-height: 175%;
+}
+.org-price{
+  text-decoration: line-through;
+  color: #6b6b6b;
+  font-size: 24rpx;
+}
+.pubu {
+  width: 702rpx;
+  margin: 24rpx 0 0 24rpx;
+}
+.pubu-info{
+  background-color: #fff;
+  border-radius: 15rpx;
+}
+.pubu-info image{
+  width: 100%;
+  border-radius: 15rpx;
+}
+.jieshao{
+  font-weight: bold;
+  margin: 0 10rpx;
+}
+.biaoqian {
+  color: #918e8e;
+  font-size: 24rpx;
+  margin: 10rpx;
+}
+.price{
+  margin: 0 10rpx 20rpx 10rpx;
+  color: red;
+
+}
+.price text{
+  color: #918e8e;
+}
