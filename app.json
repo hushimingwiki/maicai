@@ -5,7 +5,9 @@
     "pages/vip/vip",
     "pages/shopCart/shopCart",
     "pages/my/my",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/shopDetails/shopDetails",
+    "pages/order/order"
   ],
   "window": {
     "navigationBarTextStyle": "black",

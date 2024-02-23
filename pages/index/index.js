@@ -29,6 +29,9 @@ Page({
   console.log('index',app.globalData.titleHeight)
     
   },
+  goDetails(){
+    wx.navigateTo({url:'../shopDetails/shopDetails'})
+  },
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'

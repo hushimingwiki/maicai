@@ -1,0 +1,85 @@
+.box {
+  background-color: rgb(247, 247, 247);
+  padding-top: 24rpx;
+}
+.shopchat {
+  background-color: #ffffff;
+  max-width: 702rpx;
+  margin-left: 24rpx;
+  border-radius: 14rpx;
+  .shop{
+    display: flex;
+    align-items: center;
+    padding: 24rpx 0;
+    .xuanz {
+      width: 40rpx;
+      height: 40rpx;
+      margin: 0 24rpx;
+    }
+    .shopimage {
+      width: 150rpx;
+      height: 150rpx;
+    }
+    .shopinfo{
+      // height: 150rpx;
+      margin: 0 24rpx;
+      width: 416rpx;
+      max-height: 150rpx;
+      .shopname{
+        font-weight: 600;
+      }
+      .shopflag{
+        display: flex;
+        font-size: 24rpx;
+        margin-top: 10rpx;
+        
+        .flag1{
+          padding: 4rpx 10rpx;
+          border-radius: 6rpx;
+          border: 1rpx solid #F55726;
+          color: #F55726;
+          margin-right: 10rpx;
+        }
+        .flag2{
+          padding: 4rpx 10rpx;
+          border-radius: 6rpx;
+          border: 1rpx solid #40AE36;
+          color: #40AE36;
+        }
+      }
+      .shopprice{
+        margin-top: 10rpx;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+          font-size: 24rpx;
+          color: #EA0000;
+          .qian{
+            font-size: 32rpx;
+          }
+          .fen{
+            color: #888888;
+          }
+        }
+        .right{
+          // width: 200rpx;
+          border: 1rpx solid #e4e4e4;
+          border-radius: 50rpx;
+          display: flex;
+          padding: 4rpx 15rpx;
+          .jian{
+            
+          }
+          input {
+            width: 50rpx;
+            text-align: center;
+          }
+          .jia{
+
+          }
+        }
+      }
+    }
+  }
+}

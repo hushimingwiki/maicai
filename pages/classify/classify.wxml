@@ -36,7 +36,7 @@
     </view>
     <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.91}}px;" class="fl-content">
       <view wx:if="{{rightList.length>0}}">
-        <view wx:for="{{rightList}}" wx:key="item" class="fl-for-list">
+        <view wx:for="{{rightList}}" wx:key="item" class="fl-for-list" bindtap="goDetails">
           <image src="{{item.img}}" mode=""/>
           <view class="fl-details">
             <view class="fl-text">{{item.text}}</view>
@@ -46,7 +46,7 @@
             </view>
             <view class="fl-qian-box">
               <text class="fl-qian">￥</text><text class="fl-price">{{item.price}}</text><text class="fl-feng">/份</text>
-              <view class="gwc-image">
+              <view class="gwc-image" catchtap="addShopCart">
                 <image src="../../image/gwc-green.png" mode=""/>
                 <!-- <view class="hongdian">1</view> -->
               </view>

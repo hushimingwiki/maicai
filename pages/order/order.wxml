@@ -1,0 +1,22 @@
+<view class="box">
+  <view class="address">
+    <view class="adr-info">
+      <image src="../../image/dingwei.png" class="dingwei" mode=""/>
+      <view class="fh-adr">
+        <view class="dz">广东省韶关市曲江区江畔花园2期23栋广东省韶关市曲江区江畔花园2期23栋</view>
+        <view class="name">CHRISbin 13302345678</view>
+      </view>
+      <image src="../../image/arrow-up-s-line-d.png" class="jiantou" mode=""/>
+    </view>
+    <view class="complete-time">
+      <view class="name">预计送达时间</view>
+      <view class="time">1月14日 16:00</view>
+    </view>
+  </view>
+  <view class="shoplist">
+    <view class="title">
+      <view class="name">生鲜快递发货</view>
+      <view class="acc">上架24H发货，第三方物流配送</view>
+    </view>
+  </view>
+</view>

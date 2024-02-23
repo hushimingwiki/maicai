@@ -12,44 +12,44 @@
 
   <view class="fenlei">
     <view class="flss">
-      <image src="../../image/dh-1.jpg" mode="" />
-      <view>粮油副食</view>
+      <image src="../../image/dh-1.png" mode="" />
+      <view>蔬菜豆菇</view>
     </view>
     <view class="flss">
-      <image src="../../image/dh-2.jpg" mode="" />
-      <view>肉禽海产</view>
+      <image src="../../image/dh-2.png" mode="" />
+      <view>新鲜水果</view>
     </view>
     <view class="flss">
-      <image src="../../image/dh-3.jpg" mode="" />
-      <view>粮油调味</view>
+      <image src="../../image/dh-3.png" mode="" />
+      <view>鲜肉蛋禽</view>
     </view>
     <view class="flss">
-      <image src="../../image/dh-4.jpg" mode="" />
+      <image src="../../image/dh-4.png" mode="" />
+      <view>水产海鲜</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-5.png" mode="" />
       <view>乳品烘焙</view>
     </view>
     <view class="flss">
-      <image src="../../image/dh-5.jpg" mode="" />
-      <view>休闲零食</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-6.jpg" mode="" />
-      <view>中外美酒</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-7.jpg" mode="" />
-      <view>水饮冲调</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-8.jpg" mode="" />
-      <view>母婴用品</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-9.jpg" mode="" />
-      <view>纸品清洁</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-10.jpg" mode="" />
+      <image src="../../image/dh-6.png" mode="" />
       <view>方便速食</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-7.png" mode="" />
+      <view>粮油调味</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-8.png" mode="" />
+      <view>零食酒水</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-9.png" mode="" />
+      <view>生活超市</view>
+    </view>
+    <view class="flss">
+      <image src="../../image/dh-10.png" mode="" />
+      <view>火锅到家</view>
     </view>
   </view>
 
@@ -61,22 +61,22 @@
     <scroll-view scroll-x="true" >
       <view class="sale-list">
         <view class="sale-info">
-          <image src="../../image/banner1.jpg" mode="" />
+          <image src="../../image/dh-10.png" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="../../image/banner2.jpg" mode="" />
+          <image src="../../image/dh-1.png" mode="" />
           <view class="vip-price">￥25.8<view>抢</view></view>
           <view class="org-price">￥55.8</view>
         </view>
         <view class="sale-info">
-          <image src="../../image/banner1.jpg" mode="" />
+          <image src="../../image/dh-10.png" mode="" />
           <view class="vip-price">￥74.8<view>抢</view></view>
           <view class="org-price">￥66.8</view>
         </view>
         <view class="sale-info">
-          <image src="../../image/banner2.jpg" mode="" />
+          <image src="../../image/dh-1.png" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
@@ -112,7 +112,7 @@
 
   <scroll-view scroll-y class="pubu" type="custom">
       <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="24rpx" main-axis-gap="24rpx">
-        <view wx:for="{{dataList}}" wx:key="index" class="pubu-info">
+        <view wx:for="{{dataList}}" wx:key="index" class="pubu-info" bindtap="goDetails">
           <image src="{{item.image}}" mode="widthFix"/>
           <view class="jieshao">{{item.title}}</view>
           <view class="biaoqian">{{item.biaoqiao}}</view>

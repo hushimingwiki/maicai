@@ -1,0 +1,91 @@
+<view class="box">
+  <view class="swiper-box">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper-item wx:for="{{background}}" wx:key="index">
+        <view>
+          <image src="{{item.image}}" mode="aspectFit" />
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="det-box">
+    <view class="one">
+      <view class="price">￥19<text>/份</text></view>
+      <view class="wz"><image src="../../image/dingwei.png"></image>原产地浙江省丽水市</view>
+    </view>
+    <view class="two">
+      [本地鲜] 高山刺黄瓜500g/份
+    </view>
+    <view class="three">
+      <view class="flag">产地量贩</view>
+      <view class="flag">好吃不腻</view>
+      <view class="flag">脆嫩清香</view>
+    </view>
+    <view class="four">700米高山生长，肉脆嫩水分足，适合凉拌或炒食</view>
+  </view>
+  <view class="server-box">
+    <view class="server"><text>配送</text>上架24H发货，第三方物流配送，免运费</view>
+    <view class="server"><text>服务</text>品质保证，生鲜不支持7天无理由退货</view>
+    <view class="server"><text>优惠</text>特价商品每人限购2份</view>
+  </view>
+  <view class="evaluate">
+    <view class="one">
+      <view class="eva-title"><text>用户评价</text>(1680)</view>
+      <view class="see-all">查看全部 ></view>
+    </view>
+    <view class="two">
+      <view class="user-info">
+        <view class="info">
+          <image src="../../image/dh-5.png" mode=""/>
+          <view class="info-name">
+            <text>CHRIS**in</text>
+            <view class="xx">
+              <image src="../../image/xx-1.png" mode=""/>
+              <image src="../../image/xx-1.png" mode=""/>
+              <image src="../../image/xx-1.png" mode=""/>
+              <image src="../../image/xx-1.png" mode=""/>
+              <image src="../../image/xx-2.png" mode=""/>
+            </view>
+           
+          </view>
+        </view>
+        <view class="time">2024.01.05</view>
+      </view>
+    </view>
+    <view class="three">
+      黄瓜很新鲜入手很多，活动力度很大必须囤起来，水分足，没有酸感，大小很合适。
+    </view>
+    <view class="four">
+      <image src="../../image/sc4.jpg" mode=""/>
+    </view>
+    
+  </view>
+  <view class="specs">
+    <view class="specs-title">规格信息</view>
+    <view class="specs-list">
+      <view class="list">
+        <view class="list-title">产地</view>浙江丽水
+      </view>
+      <view class="list">
+        <view class="list-title">规格</view>500g/份
+      </view>
+      <view class="list">
+        <view class="list-title">保质期</view>保质期
+      </view>
+      <view class="list">
+        <view class="list-title">储存方式</view>冷藏
+      </view>
+      
+    </view>
+  </view>
+  <view class="big-xq">
+    <image src="../../image/xq-1.png" mode="widthFix"/>
+  </view>
+  <view class="shopcart">
+    <view class="caozuo">
+      <view class="cz"><image src="../../image/tab-gwc-h.png" mode=""/><text>购物车</text></view>
+      <view class="cz"><image src="../../image/tab-like-h.png" mode=""/><text>收藏</text></view>
+    </view>
+    <view class="gwc">加入购物车</view>
+  </view>
+</view>

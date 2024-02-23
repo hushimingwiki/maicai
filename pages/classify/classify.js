@@ -23,10 +23,15 @@ Page({
     flAllOpen:1
   },
   changeAllOpen(e){
-    console.log(e.currentTarget.dataset.ao,'event')
     this.setData({
       flAllOpen : e.currentTarget.dataset.ao
     })
+  },
+  addShopCart(){
+    console.log('maopao')
+  },
+  goDetails(){
+    wx.navigateTo({url:'../shopDetails/shopDetails'})
   },
   /**
    * 选择搜索类型

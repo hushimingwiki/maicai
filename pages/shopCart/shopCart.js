@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    chatList:[
+      {image:'../../image/ca1.jpg',name:'彩食鲜菠菜 270g/份',price:'6.8',num:"1"},
+      {image:'../../image/ca2.jpg',name:'云南昆明 有机水果胡萝卜 1.5kg/份',price:'6.8',num:'2'},
+    ]
   },
 
   /**

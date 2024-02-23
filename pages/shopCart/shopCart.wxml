@@ -1,2 +1,27 @@
-<!--pages/shopCart/shopCart.wxml-->
-<text>pages/shopCart/shopCart.wxml</text>
+<view class="box">
+  <view class="shopchat">
+    <block wx:if="{{chatList.length>1}}">
+      <view class="shop" wx:for="{{chatList}}" wx:key="index">
+        <image src="../../image/gou.png" mode="" class="xuanz"/>
+        <image src="{{item.image}}" mode="" class="shopimage"/>
+        <view class="shopinfo">
+          <view class="shopname">彩食鲜菠菜 270g/份</view>
+          <view class="shopflag">
+            <view class="flag1">特价</view>
+            <view class="flag2">24H发货</view>
+          </view>
+          <view class="shopprice">
+            <view class="left">￥<text class="qian">{{item.price}}</text><text class="fen">/份</text></view>
+            <view class="right">
+              <view class="jian">-</view>
+              <input type="number" value="{{item.num}}"/>
+              <view class="jia">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <text wx:else>暂无数据！</text>
+  </view>
+  
+</view>

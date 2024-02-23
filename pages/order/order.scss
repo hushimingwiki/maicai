@@ -1,0 +1,59 @@
+.box {
+  height: 1000rpx;
+  width: 750rpx;
+  max-width: 750rpx;
+  background-color: rgb(247, 247, 247);
+  padding-top: 1rpx;
+}
+@mixin adr() {
+  width: 654rpx;
+  background-color: #ffffff;
+  margin: 24rpx 0 0 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+}
+.address {
+  @include adr;
+  .adr-info{
+    display: flex;
+    align-items: center;
+    .dingwei {
+      width: 30rpx;
+      height: 36rpx;
+      margin-right: 24rpx;
+    }
+    .fh-adr{
+      width: 548rpx;
+      .dz{}
+      .name{
+        color: #888888;
+      }
+    }
+    .jiantou {
+      margin-left:24rpx;
+      width: 36rpx;
+      height: 36rpx;
+    }
+  }
+  .complete-time{
+    border-top: 1rpx solid #e4e4e4;
+    margin-top: 24rpx;
+    padding: 24rpx 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    .time{
+      color: #40AE36;
+    }
+  }
+
+}
+.shoplist {
+  @include adr;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    .acc{
+      color: #40AE36;
+    }
+  }
+}
