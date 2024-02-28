@@ -1,2 +1,92 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="con">
+  <image src="../../image/wod.png" mode="" class="background"/>
+  <view class="box" style="top:{{headerHeight + 12}}px">
+    <view class="user-info">
+      <view class="left">
+        <image src="../../image/ca1.jpg" mode=""/>
+        <view class="info">
+          <view class="name">喜德盛</view>
+          <view>133****1761</view>
+        </view>
+      </view>
+      <view class="right">
+        <image src="../../image/ld.png" mode=""/>
+        <image src="../../image/sz.png" mode=""/>
+      </view>
+    </view>
+    <view class="property">
+      <view class="one">
+        <view class="value">0</view>
+        <view>优惠券</view>
+      </view>
+      <view class="two">
+        <view class="value">0</view>
+        <view>积分</view>
+      </view>
+      <view class="three">
+        <view class="value">0.00</view>
+        <view>余额充值(元)</view>
+      </view>
+    </view>
+    <view class="order">
+      <view class="title">
+        <view class="name">我的订单</view>
+        <view class="all">全部订单<image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+      </view>
+      <view class="order-zt">
+        <view class="zt">
+          <view class="cs">
+            <image src="../../image/dd-dfk.png" mode=""/>
+            <view class="name">待付款</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/dd-dfh.png" mode=""/>
+            <view class="name">待发货</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/dd-dsh.png" mode=""/>
+            <view class="name">待收获</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/dd-dpj.png" mode=""/>
+            <view class="name">待评价</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/dd-dfk.png" mode=""/>
+            <view class="name">退款/售后</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="order">
+      <view class="title">
+        <view class="name">我的服务</view>
+        <!-- <view class="all">全部订单<image src="../../image/arrow-up-s-line-d.png" mode=""/></view> -->
+      </view>
+      <view class="order-zt">
+        <view class="zt">
+          <view class="cs">
+            <image src="../../image/fw-shdz.png" mode=""/>
+            <view class="name">收货地址</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/fw-zj.png" mode=""/>
+            <view class="name">足迹</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/fw-sc.png" mode=""/>
+            <view class="name">我的收藏</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/fw-fwzx.png" mode=""/>
+            <view class="name">服务中心</view>
+          </view>
+          <view class="cs">
+            <image src="../../image/fw-zxkf.png" mode=""/>
+            <view class="name">在线客服</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

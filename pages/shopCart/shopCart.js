@@ -1,4 +1,5 @@
 // pages/shopCart/shopCart.js
+const app = getApp()
 Page({
 
   /**
@@ -15,9 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      tabbarHeight:app.globalData.tabbarHeight
+    })
   },
-
+  goOrder(){
+    wx.navigateTo({url:'../order/order'})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

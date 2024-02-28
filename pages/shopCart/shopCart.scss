@@ -1,6 +1,7 @@
 .box {
   background-color: rgb(247, 247, 247);
   padding-top: 24rpx;
+  height: 1750rpx;
 }
 .shopchat {
   background-color: #ffffff;
@@ -80,6 +81,52 @@
           }
         }
       }
+    }
+  }
+}
+.jiesuan {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100rpx;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  .left {
+    display: flex;
+    align-items: center;
+    .quan{
+      width: 36rpx;
+      height: 36rpx;
+      border: 2rpx solid #e4e4e4;
+      border-radius: 36rpx;
+      margin-right: 24rpx;
+    }
+    .delete{
+      margin-left: 24rpx;
+      color: #EA0000;
+    }
+  }
+  .right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 24rpx;
+    .price{
+      margin: 0 12rpx;
+      color: #EA0000;
+      font-size: 36rpx;
+    }
+    .qjs{
+      width: 150rpx;
+      background-color: #40AE36;
+      color: #ffffff;
+      padding: 16rpx 30rpx;
+      text-align: center;
+      border-radius: 50rpx;
+      margin-right: 24rpx;
     }
   }
 }

@@ -1,5 +1,5 @@
 .box {
-  height: 1000rpx;
+  height: 1750rpx;
   width: 750rpx;
   max-width: 750rpx;
   background-color: rgb(247, 247, 247);
@@ -24,7 +24,7 @@
     }
     .fh-adr{
       width: 548rpx;
-      .dz{}
+     
       .name{
         color: #888888;
       }
@@ -33,6 +33,7 @@
       margin-left:24rpx;
       width: 36rpx;
       height: 36rpx;
+      transform: rotate(270deg);
     }
   }
   .complete-time{
@@ -55,5 +56,88 @@
     .acc{
       color: #40AE36;
     }
+  }
+  .list {
+    margin-top: 24rpx;
+    .list-item {
+      display: flex;
+      
+      .item-image{
+        width: 150rpx;
+        height: 150rpx;
+      }
+      .item-info{
+        margin-left: 24rpx;
+        width: 500rpx;
+        line-height: 48rpx;
+        .name {
+          display: flex;
+          justify-content: space-between;
+        }
+        .guige {
+          color: #888888;
+          font-size: 26rpx;
+        }
+        .num {
+          color: #888888;
+          font-size: 26rpx;
+        }
+      }
+    }
+  }
+}
+.qita {
+  @include adr;
+  .yhq{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .quan{
+      display: flex;
+      align-items: center;
+      text{
+        color: #BBBBBB;
+      }
+      image{
+        width: 36rpx;
+        height: 36rpx;
+        transform: rotate(270deg);
+      }
+    }
+  }
+  .paytype{
+    margin-top: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1rpx solid #e4e4e4;
+    padding: 24rpx 0 0 0;
+  }
+}
+.jiesuan {
+  position: fixed;
+  background-color: #ffffff;
+  border-top: 1rpx solid #e4e4e4;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .price {
+    text{
+      margin: 0 24rpx;
+      color: #EA0000;
+      font-size: 36rpx;
+    }
+  }
+  .qjs {
+    width: 150rpx;
+    background-color: #40AE36;
+    color: #ffffff;
+    padding: 24rpx 50rpx;
+    text-align: center;
+    border-radius: 50rpx;
+    margin-right: 24rpx;
   }
 }

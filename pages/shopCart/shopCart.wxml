@@ -23,5 +23,16 @@
     </block>
     <text wx:else>暂无数据！</text>
   </view>
-  
+  <view class="jiesuan">
+    <view class="left">
+     <view class="quan"></view>
+     <view>全选</view>
+     <view class="delete">删除</view>
+    </view>
+    <view class="right">
+      <view>合计:</view>
+      <view class="price">￥19</view>
+      <view class="qjs" bindtap="goOrder">去结算</view>
+    </view>
+  </view>
 </view>
