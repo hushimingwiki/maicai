@@ -1,23 +1,13 @@
 // index.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp()
-
+import {
+  bannerList, shopList,
+} from '../../request/api.js'
 Page({
   data: {
-    banner:[
-      {picture:'../../image/banner1.jpg'},
-      {picture:'../../image/banner2.jpg'},
-    ],
-    dataList:[
-      {image:'../../image/sc1.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc2.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc3.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc4.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc1.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc2.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc3.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-      {image:'../../image/sc4.jpg',title:'【霜打菜】崇民松花菜500g一份',biaoqiao:'松脆鲜嫩|适合清炒|可做干锅',jiage:'￥7.5一份'},
-    ],
+    bannerList:[],
+    shopList:[],
     headerHeight:''
   },
   onLoad: function () {
@@ -27,10 +17,28 @@ Page({
     console.log(this.data.headerHeight)
   console.log('index',app.globalData.capsuleObj)
   console.log('index',app.globalData.titleHeight)
-    
+    this.getBannerList()
+    this.getShopList()
   },
-  goDetails(){
-    wx.navigateTo({url:'../shopDetails/shopDetails'})
+  getBannerList(){
+    bannerList().then( res => {
+      console.log(res,'轮播图列表')
+      this.setData({
+        bannerList:res.data,
+      })
+    })
+  },
+  getShopList(){
+    shopList().then( res => {
+      console.log(res,'商品列表')
+      this.setData({
+        shopList:res.data,
+      })
+    })   
+  },
+  goDetails(e){
+    var xxxx = e.currentTarget.dataset.details
+    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
   },
   bindViewTap() {
     wx.navigateTo({

@@ -1,24 +1,32 @@
 <!-- 顶部区域 -->
-<view class="level search-box" style="height: {{useHeight*0.08}}px;">
+<view class="level search-box" style="padding-top: {{capsuleObj.top}}px;">
   <!-- 中间搜索框 -->
-  <view class="level input-box">
+  <view class="level input-box" style="height: {{capsuleObj.height}}px;width: {{702 - capsuleObj.width * 2}}rpx;">
     <icon class="input-icon" type="search" size="16"></icon>
     <input placeholder="平价蔬菜"/>
-    <view class="button-box">
-      <view>搜索</view>
-    </view>
   </view>
 </view>
+
+<scroll-view scroll-x="true">
+  <view class="yijifenlei">
+    <view class="fenleixq" wx:for="{{categoryList}}" wx:key="item" bindtap="selectFlOne" data-index="{{index}}" data-id="{{item.category_id}}">
+      <image src="{{item.picture}}" mode="" class="{{isCheck == index?'image1':'image'}}"/>
+      <view class="name">{{item.name}}</view>
+    </view>
+  </view>
+</scroll-view>
+
 <!-- 内容区域 -->
 <view class="level">
   <!-- 左边 -->
   <view class="left-box">
     <scroll-view scroll-y="true" style="height: {{useHeight*0.91}}px;">
-      <block wx:for="{{leftList}}" wx:key="item">
+      <block wx:for="{{twoCategoryList}}" wx:key="item">
         <view 
         bindtap="bindSelectLeft" 
-        data-id="{{item.id}}" 
-        class="left-text {{current==item.id?'yes':'no'}}">{{item.text}}</view>
+        data-index="{{index}}" 
+        data-id="{{item.category_id}}"
+        class="left-text {{isCheckTwo==index?'yes':'no'}}">{{item.name}}</view>
       </block>
     </scroll-view>
   </view>

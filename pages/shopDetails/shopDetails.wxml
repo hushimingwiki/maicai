@@ -1,9 +1,9 @@
 <view class="box">
   <view class="swiper-box">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <swiper-item wx:for="{{background}}" wx:key="index">
+      <swiper-item wx:for="{{shopDetails.pictures}}" wx:key="index">
         <view>
-          <image src="{{item.image}}" mode="aspectFit" />
+          <image src="{{item}}" mode="aspectFill" />
         </view>
       </swiper-item>
     </swiper>
@@ -14,14 +14,14 @@
       <view class="wz"><image src="../../image/dingwei.png"></image>原产地浙江省丽水市</view>
     </view>
     <view class="two">
-      [本地鲜] 高山刺黄瓜500g/份
+      {{shopDetails.name}}
     </view>
     <view class="three">
       <view class="flag">产地量贩</view>
       <view class="flag">好吃不腻</view>
       <view class="flag">脆嫩清香</view>
     </view>
-    <view class="four">700米高山生长，肉脆嫩水分足，适合凉拌或炒食</view>
+    <view class="four">{{shopDetails.description}}</view>
   </view>
   <view class="server-box">
     <view class="server"><text>配送</text>上架24H发货，第三方物流配送，免运费</view>
@@ -83,8 +83,8 @@
   </view>
   <view class="shopcart">
     <view class="caozuo">
-      <view class="cz"><image src="../../image/tab-gwc-h.png" mode=""/><text>购物车</text></view>
-      <view class="cz"><image src="../../image/tab-like-h.png" mode=""/><text>收藏</text></view>
+      <view class="cz"><image src="../../image/gouwuche.png" mode=""/><text>购物车</text></view>
+      <view class="cz"><image src="../../image/shoucang-h.png" mode=""/><text>收藏</text></view>
     </view>
     <view class="gwc">加入购物车</view>
   </view>

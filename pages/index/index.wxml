@@ -1,12 +1,12 @@
 <!--index.wxml-->
 <view class="taptitle" style="height: {{headerHeight + 40}}px;">
   <view></view>
-  <input class="search" placeholder="买菜就上买菜小程序{{headerHeight}}" />
+  <input class="search" placeholder="买菜就上买菜小程序" />
 </view>
 <scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
   <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
-    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{banner}}" wx:key="index">
-      <image src='{{item.picture}}?{{random}}'></image>
+    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index">
+      <image src='{{item.picture}}'></image>
     </swiper-item>
   </swiper>
 
@@ -112,10 +112,10 @@
 
   <scroll-view scroll-y class="pubu" type="custom">
       <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="24rpx" main-axis-gap="24rpx">
-        <view wx:for="{{dataList}}" wx:key="index" class="pubu-info" bindtap="goDetails">
-          <image src="{{item.image}}" mode="widthFix"/>
-          <view class="jieshao">{{item.title}}</view>
-          <view class="biaoqian">{{item.biaoqiao}}</view>
+        <view wx:for="{{shopList}}" wx:key="index" class="pubu-info" bindtap="goDetails" data-details="{{item}}">
+          <image src="{{item.picture}}" mode="widthFix"/>
+          <view class="jieshao">{{item.name}}</view>
+          <view class="biaoqian">{{item.base_attribute}}</view>
           <view class="price">{{item.jiage}}<text>/份</text></view>
         </view>
       </grid-view>

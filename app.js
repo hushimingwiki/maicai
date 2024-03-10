@@ -14,9 +14,11 @@ App({
           console.log(res,'res')
           var statusBarHeight = res.statusBarHeight; //顶部状态栏高度
           const tabbarHeight = ( res.screenHeight - res.windowHeight - res.statusBarHeight ) * res.pixelRatio
+  
           this.globalData.tabbarHeight = tabbarHeight
           this.globalData.capsuleObj = capsuleObj;
           this.globalData.titleHeight = statusBarHeight + capsuleObj.height + (capsuleObj.top - statusBarHeight) * 2;
+          this.globalData.statusBarHeight = statusBarHeight
       },
       failure() {
       }
@@ -32,6 +34,7 @@ App({
     userInfo: null,
     capsuleObj:'',
     titleHeight:'',
-    tabbarHeight:''
+    tabbarHeight:'',
+    statusBarHeight:'',
   }
 })

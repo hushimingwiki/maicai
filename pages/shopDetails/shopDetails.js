@@ -17,14 +17,20 @@ Page({
     vertical: false,
     autoplay: false,
     interval: 2000,
-    duration: 500
+    duration: 500,
+    shopDetails:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let xxxx = JSON.parse(options.details) // 先decode再把字符串转数组
+    
+    console.log(xxxx,'xxxx')
+    this.setData({
+      shopDetails: xxxx
+    })
   },
 
   /**

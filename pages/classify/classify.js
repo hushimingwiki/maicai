@@ -1,3 +1,7 @@
+const app = getApp()
+import {
+  categoryList
+} from '../../request/api.js'
 Page({
 
   /**
@@ -20,8 +24,15 @@ Page({
       {id:'3',text:'茄子'},{id:'4',text:'玉米'},{id:'5',text:'黄牙白'},
     ],
     rightList:[],
-    flAllOpen:1
+    flAllOpen:1,
+    categoryList:[],
+    twoCategoryList:[],
+    threeCategoryList:[],
+    headerHeight:'',
+    isCheck:'0',
+    isCheckTwo:'0'
   },
+
   changeAllOpen(e){
     this.setData({
       flAllOpen : e.currentTarget.dataset.ao
@@ -41,16 +52,7 @@ Page({
       index:e.detail.value
     })
   },
-  /**
-   * 左侧点击事件
-  */
-  bindSelectLeft(e){
-    let index = e.currentTarget.dataset.id;
-    this.setData({
-      current:index
-    })
-    this.getDataList(index);
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -63,44 +65,67 @@ Page({
         })
       }
     })
-    this.getDataList(0);
-
+    console.log(app.globalData.capsuleObj,'app.globalData.capsuleObj')
+    this.setData({
+      headerHeight:app.globalData.titleHeight,
+      statusBarHeight:app.globalData.statusBarHeight,
+      capsuleObj:app.globalData.capsuleObj,
+    })
+    this.getCategoryList()
   },
-  // 数据初始化
-  getDataList(e){
-    let list1 = [
-      {code:'0',text:'彩食鲜菠菜 270g/份',img:'../../image/ca1.jpg',price:'10.0'},
-      {code:'0',text:'云南昆明 有机水果胡萝卜 1.5kg/份',img:'../../image/ca2.jpg',price:'10.0'},
-      {code:'0',text:'彩食鲜菠菜 270g/份',img:'../../image/ca1.jpg',price:'10.0'},
-      {code:'0',text:'云南昆明 有机水果胡萝卜 1.5kg/份',img:'../../image/ca2.jpg',price:'10.0'},
-      {code:'0',text:'彩食鲜菠菜 270g/份',img:'../../image/ca1.jpg',price:'10.0'},
-      {code:'0',text:'云南昆明 有机水果胡萝卜 1.5kg/份',img:'../../image/ca2.jpg',price:'10.0'},
-      {code:'0',text:'彩食鲜菠菜 270g/份',img:'../../image/ca1.jpg',price:'10.0'},
-      {code:'0',text:'云南昆明 有机水果胡萝卜 1.5kg/份',img:'../../image/ca2.jpg',price:'10.0'},
-      {code:'0',text:'彩食鲜菠菜 270g/份',img:'../../image/ca1.jpg',price:'10.0'},
-    ];
-    let list2 = [
-      {code:'3',text:'夫妻肺片'},{code:'4',text:'夫妻肺片'},{code:'5',text:'夫妻肺片'},
-      {code:'0',text:'夫妻肺片'},{code:'1',text:'夫妻肺片'},{code:'2',text:'夫妻肺片'},
-      {code:'3',text:'夫妻肺片'},{code:'4',text:'夫妻肺片'},{code:'5',text:'夫妻肺片'}
-    ]
-    if(e==0){
+  // 获取一级分类列表
+  getCategoryList(){
+    categoryList(
+      {parent_id:0}
+    ).then( res => {
+      console.log(res,'分类列表')
       this.setData({
-        rightList:list1,
-        scroll:true
+        categoryList:res.data,
       })
-    }else if(e==2){
-      this.setData({
-        rightList:list2,
-        scroll:true
-      })
-    }else{
-      this.setData({
-        rightList:[],
-        scroll:false
-      })
-    }
+      this.getTwoCategoryList(res.data[0].category_id)
+    })  
   },
+  // 选择一级分类事件
+  selectFlOne(e){
+    var ind = e.currentTarget.dataset.index
+    var id = e.currentTarget.dataset.id
+    this.setData({
+      isCheck : ind
+    })
+    this.getTwoCategoryList(id)
+  },
+  // 获取二级分类列表
+  getTwoCategoryList(e){
+    categoryList(
+      {parent_id:e}
+    ).then( res => {
+      console.log(res,'二级分类列表')
+      this.setData({
+        twoCategoryList:res.data,
+      })
+      this.getThreeCategoryList(res.data[0].category_id)
+    })  
+  },
+  // 选择二级分类列表
+ bindSelectLeft(e){
+  console.log(e)
+  let index = e.currentTarget.dataset.index;
+  let id = e.currentTarget.dataset.id;
+  this.setData({
+    isCheckTwo:index
+  })
+  this.getThreeCategoryList(id)
+ },
+ getThreeCategoryList(e){
+  categoryList(
+    {parent_id:e}
+  ).then( res => {
+    console.log(res,'三级分类列表')
+    this.setData({
+      threeCategoryList:res.data,
+    })
+  })  
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

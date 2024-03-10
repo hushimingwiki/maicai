@@ -33,7 +33,9 @@ Page({
       tabbarHeight:app.globalData.tabbarHeight
     })
   },
-
+  goCheckAdr(){
+    wx.navigateTo({url:'../checkAdr/checkAdr'})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

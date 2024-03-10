@@ -1,6 +1,6 @@
 <view class="box">
   <view class="address">
-    <view class="adr-info">
+    <view class="adr-info" bindtap="goCheckAdr">
       <image src="../../image/dingwei.png" class="dingwei" mode=""/>
       <view class="fh-adr">
         <view class="dz">广东省韶关市曲江区江畔花园2期23栋</view>

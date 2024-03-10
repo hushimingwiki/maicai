@@ -1,6 +1,36 @@
 page{
   background-color: white;
 }
+.yijifenlei {
+  height: 180rpx;
+  background-color: #c8f5d6;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 16rpx 0;
+  .fenleixq{
+    text-align: center;
+    margin-left: 25rpx;
+    .image{
+      border-radius: 30rpx;
+      width: 80rpx;
+      height: 80rpx;
+      border: 5rpx #ffffff solid;
+    }
+    .image1{
+      border-radius: 40rpx;
+      width: 100rpx;
+      height: 100rpx;
+      border: 5rpx #28b14a solid;
+    }
+    .name {
+      color: #ffffff;
+      background-color: #28b14a;
+      border-radius: 25rpx;
+      font-size: 24rpx;
+      padding: 2rpx 0;
+    }
+  }
+}
 /* 水平居中摆放（行内元素） */
 .level{
   display: flex;
@@ -10,26 +40,24 @@ page{
 }
 /* 搜索 */
 .search-box{
- width: 702rpx;
- margin-left: 24rpx;
-border-bottom: 1rpx solid #f1f1f1;
+  padding-left: 24rpx;
+  background-color: #c8f5d6;
 }
 .down-box{
   width: 15%;
   border: 1rpx solid #f1f1f1;
   border-radius: 10rpx;
   font-size: 32rpx;
-  padding: 10rpx 15rpx;
   color: gray;
 }
 .input-box{
-  width: 702rpx;
+  
   font-size: 30rpx;
   background-color: #f1f1f1;
   
   border-radius: 50rpx;
   position: relative;
-  padding: 10rpx 0;
+  // padding: 10rpx 0;
 }
 .input-icon{
   padding: 0 5rpx;
@@ -115,7 +143,7 @@ border-bottom: 1rpx solid #f1f1f1;
 .all-fl{
   width: 100%;
   position: absolute;
-  top: -1rpx;
+  top: 12rpx;
   background-color: #ffffff;
   display: flex;
   z-index: 999;
