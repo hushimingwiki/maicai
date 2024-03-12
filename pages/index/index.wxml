@@ -115,8 +115,22 @@
         <view wx:for="{{shopList}}" wx:key="index" class="pubu-info" bindtap="goDetails" data-details="{{item}}">
           <image src="{{item.picture}}" mode="widthFix"/>
           <view class="jieshao">{{item.name}}</view>
-          <view class="biaoqian">{{item.base_attribute}}</view>
-          <view class="price">{{item.jiage}}<text>/份</text></view>
+          <view class="biaoqian-list">
+            <!-- <view class="biaoqian" wx:for="{{item.base_attribute[0].value}}" wx:key="index">{{item}}</view> -->
+            <!-- <view class="biaoqian one" wx:if="{{item.base_attribute}}"></view> -->
+            <!-- <view class="biaoqian two"></view> -->
+          </view>
+          <view class="biaoqian">{{item.description}}</view>
+          <view class="price">
+            <view class="left">
+              <text class="yang">￥</text>{{item.start_price}}
+              <text class="feng">/份</text>
+            </view>
+            <view class="right" catchtap="jrShopCart" data-details="{{item.shop_id}}">
+              <image src="../../image/gwc-lv.png" ></image>
+              <!-- <view class="hongdian">1</view> -->
+            </view>
+          </view>
         </view>
       </grid-view>
   </scroll-view>

@@ -1,5 +1,7 @@
 // app.js
-
+import {
+  userLogin,
+} from '/request/api.js'
 const app = getApp()
 App({
   onLaunch() {
@@ -23,14 +25,86 @@ App({
       failure() {
       }
     })
-    // 登录
-    wx.login({
+    if(!wx.getStorageSync('token')){
+       this.getCode()
+    }else{
+      // await this.getCode()
+      // await this.getUserInfo()
+    }
+  },
+  getCode() {
+    return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '登录中',
+      })
+          wx.login({
+            success: login => {
+              console.log(login,'login')
+              userLogin({
+                type:1,
+                parent_id:0,
+                identification:login.code,
+                sms_code:'',
+                appid: 'wx9662daace8be7f13',
+              }).then(async res => {
+                console.log(res,'res.code')
+                if(res.code==200){
+                  wx.setStorageSync('token',res.data)
+                  // wx.setStorageSync('userId', res.userId)
+                  this.globalData.token = res.data
+                  // this.globalData.userId = res.userId
+                  
+                  wx.hideLoading()
+                }else{
+                  console.log('登入失败',res)
+                }
+                resolve()
+              })
+            }
+          })
+    })
+  },
+  //成功
+  success(msg) {
+    wx.showToast({
+      title: msg,
+      duration: 2000,
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        setTimeout(() => {
+          wx.hideToast()
+          wx.hideLoading()
+        }, 2000)
+      }
+    })
+  }, 
+  error(msg) {
+    wx.showToast({
+      title: msg,
+      image: 'https://www.dnfc888.com/assets/close.png',
+      duration: 2000,
+      success: res => {
+        setTimeout(() => {
+          wx.hideToast()
+          wx.hideLoading()
+        }, 2000)
       }
     })
   },
+  toast(msg) {
+    wx.showToast({
+      title: msg,
+      icon: 'none',
+      duration: 2000,
+      success: res => {
+        setTimeout(() => {
+          wx.hideToast()
+          wx.hideLoading()
+        }, 2000)
+      }
+    })
+  }, 
   globalData: {
+    token:'',
     userInfo: null,
     capsuleObj:'',
     titleHeight:'',

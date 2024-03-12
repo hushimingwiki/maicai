@@ -32,29 +32,37 @@
   </view>
   <!-- 右边 -->
   <view class="right-box" style="height: {{useHeight*0.91}}px;">
-    <view class="all-fl">
-      <view wx:for="{{rightFl}}" wx:key="item" wx:if="{{index<3}}" class="fl-x">{{item.text}}</view>
+    <view class="all-fl" wx:if="{{threeCategoryList.length>=1}}">
+      <scroll-view scroll-X enable-flex scroll-with-animation scroll-into-view="tab{{isCheckThree-1}}">
+        <view class="scfl">
+          <view wx:for="{{threeCategoryList}}" wx:key="item" class="fl-x {{isCheckThree==index?'yes':'no'}}" bindtap="selectFlThree" data-index="{{index}}" 
+          data-id="{{item.category_id}}" id="tab{{index}}">{{item.name}}</view>
+        </view>
+        
+      </scroll-view>
+      
       <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="../../image/arrow-up-s-line.png" mode=""/>
       <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="../../image/arrow-up-s-line-d.png" mode=""/>
     </view>
     <view class="fl-all-fl" wx:if="{{flAllOpen == 0}}" style="height: {{useHeight*0.95}}px;">
       <view class="fl-all-fl-box">
-        <view class="fl-all-fl-for" wx:for="{{rightFl}}" wx:key="item" class="fl-xx">{{item.text}}</view>
+        <view class="fl-all-fl-for" wx:for="{{threeCategoryList}}" wx:key="item" class="fl-xx {{isCheckThree==index?'yes':'no'}}" data-index="{{index}}" 
+          data-id="{{item.category_id}}" catchtap="selectFlThree">{{item.name}}</view>
       </view>
     </view>
     <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.91}}px;" class="fl-content">
-      <view wx:if="{{rightList.length>0}}">
-        <view wx:for="{{rightList}}" wx:key="item" class="fl-for-list" bindtap="goDetails">
-          <image src="{{item.img}}" mode=""/>
+      <view wx:if="{{shopList.length>0}}">
+        <view wx:for="{{shopList}}" wx:key="item" class="fl-for-list" bindtap="goDetails" data-details="{{item}}">
+          <image src="{{item.picture}}" mode=""/>
           <view class="fl-details">
-            <view class="fl-text">{{item.text}}</view>
+            <view class="fl-text">{{item.name}}</view>
             <view>
               <text class="fl-tj">特价</text>
               <text class="fl-fh">24H发货</text>
             </view>
             <view class="fl-qian-box">
-              <text class="fl-qian">￥</text><text class="fl-price">{{item.price}}</text><text class="fl-feng">/份</text>
-              <view class="gwc-image" catchtap="addShopCart">
+              <text class="fl-qian">￥</text><text class="fl-price">12{{item.price}}</text><text class="fl-feng">/份</text>
+              <view class="gwc-image" catchtap="jrShopCart" data-details="{{item.shop_id}}">
                 <image src="../../image/gwc-green.png" mode=""/>
                 <!-- <view class="hongdian">1</view> -->
               </view>

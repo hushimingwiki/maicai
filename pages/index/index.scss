@@ -49,7 +49,7 @@
   border-radius: 36rpx;
   text-align: center;
   font-size: 28rpx;
-  color: #333232;
+  color: #585858;
 }
 .flss image{
   width: 125rpx;
@@ -98,11 +98,13 @@
 .vip-price view{
   background: red;
   color: #fff;
-  font-size: 24rpx;
+  font-size: 20rpx;
   border-radius: 0 50rpx 50rpx 0;
   padding: 0 5rpx;
-  height: 100%;
+  display: flex;
+  align-items: center;
   line-height: 175%;
+
 }
 .org-price{
   text-decoration: line-through;
@@ -125,16 +127,59 @@
   font-weight: bold;
   margin: 0 10rpx;
 }
-.biaoqian {
-  color: #918e8e;
-  font-size: 24rpx;
-  margin: 10rpx;
+.biaoqian{
+  margin-left: 10rpx;
 }
+.biaoqian-list{
+  display: flex;
+  .biaoqian {
+    color: #918e8e;
+    font-size: 18rpx;
+    margin: 10rpx;
+    border-radius: 2rpx;
+    
+    padding: 2rpx 5rpx;
+    border-radius: 7rpx;
+  }
+  .one{
+    color: #F55726;
+    border:1rpx solid #F55726;
+  }
+  .two{
+    color: #40AE36;
+    border:1rpx solid #40AE36;
+  }
+}
+
 .price{
   margin: 0 10rpx 20rpx 10rpx;
   color: red;
-
-}
-.price text{
-  color: #918e8e;
+  display: flex;
+  justify-content: space-between;
+  .left{
+    .yang{
+      font-size: 24rpx;
+      color: red;
+    }
+    .feng{
+      font-size: 24rpx;
+      color: #918e8e;
+    }
+  }
+  .right{
+    image{
+      width: 44rpx;
+      height: 44rpx;
+    }
+    // .hongdian{
+    //   width: 24rpx;
+    //   height: 24rpx;
+    //   color: #ffffff;
+    //   font-size: 14rpx;
+    //   border-radius: 24rpx;
+    //   background-color: #F55726;
+    //   text-align: center;
+    //   line-height: 24rpx;
+    // }
+  }
 }

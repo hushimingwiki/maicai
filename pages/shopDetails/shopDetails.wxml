@@ -1,7 +1,7 @@
 <view class="box">
   <view class="swiper-box">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <swiper-item wx:for="{{shopDetails.pictures}}" wx:key="index">
+      <swiper-item wx:for="{{allShopDetails.pictures}}" wx:key="index">
         <view>
           <image src="{{item}}" mode="aspectFill" />
         </view>
@@ -11,17 +11,17 @@
   <view class="det-box">
     <view class="one">
       <view class="price">￥19<text>/份</text></view>
-      <view class="wz"><image src="../../image/dingwei.png"></image>原产地浙江省丽水市</view>
+      <view class="wz" wx:if="{{candi}}"><image src="../../image/dingwei.png"></image>{{candi}}</view>
     </view>
     <view class="two">
-      {{shopDetails.name}}
+      {{allShopDetails.name}}
     </view>
     <view class="three">
       <view class="flag">产地量贩</view>
       <view class="flag">好吃不腻</view>
       <view class="flag">脆嫩清香</view>
     </view>
-    <view class="four">{{shopDetails.description}}</view>
+    <view class="four">{{allShopDetails.description}}</view>
   </view>
   <view class="server-box">
     <view class="server"><text>配送</text>上架24H发货，第三方物流配送，免运费</view>
@@ -63,29 +63,19 @@
   <view class="specs">
     <view class="specs-title">规格信息</view>
     <view class="specs-list">
-      <view class="list">
-        <view class="list-title">产地</view>浙江丽水
+      <view class="list" wx:for="{{allShopDetails.base_attribute}}" wx:key="index">
+        <view class="list-title">{{item.name}}</view>{{item.value}}
       </view>
-      <view class="list">
-        <view class="list-title">规格</view>500g/份
-      </view>
-      <view class="list">
-        <view class="list-title">保质期</view>保质期
-      </view>
-      <view class="list">
-        <view class="list-title">储存方式</view>冷藏
-      </view>
-      
     </view>
   </view>
   <view class="big-xq">
-    <image src="../../image/xq-1.png" mode="widthFix"/>
+    <image src="{{allShopDetails.picture}}" mode="widthFix"/>
   </view>
   <view class="shopcart">
     <view class="caozuo">
       <view class="cz"><image src="../../image/gouwuche.png" mode=""/><text>购物车</text></view>
       <view class="cz"><image src="../../image/shoucang-h.png" mode=""/><text>收藏</text></view>
     </view>
-    <view class="gwc">加入购物车</view>
+    <view class="gwc" bindtap="jrShopCart">加入购物车</view>
   </view>
 </view>

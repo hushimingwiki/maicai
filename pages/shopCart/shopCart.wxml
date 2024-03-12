@@ -1,21 +1,21 @@
 <view class="box">
   <view class="shopchat">
-    <block wx:if="{{chatList.length>1}}">
-      <view class="shop" wx:for="{{chatList}}" wx:key="index">
-        <image src="../../image/gou.png" mode="" class="xuanz"/>
-        <image src="{{item.image}}" mode="" class="shopimage"/>
+    <block wx:if="{{shopList.length>=1}}">
+      <view class="shop" wx:for="{{shopList}}" wx:key="index">
+        <image src="{{item.check?'../../image/gou.png':'../../image/gou-h.png'}}" mode="" catchtap="checkShop" data-index="{{index}}" class="xuanz"/>
+        <image src="{{item.standardProductUnit.picture}}" mode="" class="shopimage"/>
         <view class="shopinfo">
-          <view class="shopname">彩食鲜菠菜 270g/份</view>
+          <view class="shopname">{{item.standardProductUnit.name}}</view>
           <view class="shopflag">
             <view class="flag1">特价</view>
             <view class="flag2">24H发货</view>
           </view>
           <view class="shopprice">
-            <view class="left">￥<text class="qian">{{item.price}}</text><text class="fen">/份</text></view>
+            <view class="left">￥<text class="qian">{{item.stockKeepingUnit.price}}</text><text class="fen">/份</text></view>
             <view class="right">
-              <view class="jian">-</view>
-              <input type="number" value="{{item.num}}"/>
-              <view class="jia">+</view>
+              <view class="jian" catchtap="delShopCart" data-details="{{item}}" data-index="{{index}}">-</view>
+              <input type="number" value="{{item.quantity}}" bindblur="updateCart" data-id="{{item.shop_car_id}}" data-index="{{index}}"/>
+              <view class="jia" catchtap="jrShopCart" data-details="{{item}}" data-index="{{index}}">+</view>
             </view>
           </view>
         </view>
@@ -25,13 +25,13 @@
   </view>
   <view class="jiesuan">
     <view class="left">
-     <view class="quan"></view>
+     <image src="{{selectAllStatus?'../../image/gou.png':'../../image/gou-h.png'}}" mode="" catchtap="checkShop" class="quan"/>
      <view>全选</view>
-     <view class="delete">删除</view>
+     <!-- <view class="delete">删除</view> -->
     </view>
     <view class="right">
-      <view>合计:</view>
-      <view class="price">￥19</view>
+      <view>合计:{{sunm}}件</view>
+      <view class="price">￥{{totalPrice}}</view>
       <view class="qjs" bindtap="goOrder">去结算</view>
     </view>
   </view>

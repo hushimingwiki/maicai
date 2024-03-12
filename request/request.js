@@ -8,8 +8,8 @@ const post=(url,params,burl)=>{
   return new Promise((resolve,reject)=>{
     let data 
     data = Object.assign({
-      UserId:wx.getStorageSync('userId') || 0,
-      Token:wx.getStorageSync('token') || 0,
+      userId:wx.getStorageSync('userId') || '',
+      token:wx.getStorageSync('token') || '',
     },params)
     // if(getApp() && getApp().globalData.userInfo){
     //    data = Object.assign({
@@ -30,12 +30,15 @@ const post=(url,params,burl)=>{
           resolve(res.data)
         }
         if(res.statusCode==404){
-          app.error('与服务器出现错误')
+          wx.showToast({
+            title:'与服务器出现错误',
+            icon:'none'
+          })
         }
         if(res.data.code==202){
             wx.removeStorageSync('userId')
             wx.removeStorageSync('token')
-            await app.getCode()
+            await getApp().getCode()
         }
       },
       fail:err=>{

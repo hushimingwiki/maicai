@@ -1,6 +1,9 @@
 const app = getApp()
 import {
-  categoryList
+  categoryList,
+  shopList,
+  shopDetails,
+  addShopCart
 } from '../../request/api.js'
 Page({
 
@@ -30,7 +33,10 @@ Page({
     threeCategoryList:[],
     headerHeight:'',
     isCheck:'0',
-    isCheckTwo:'0'
+    isCheckTwo:'0',
+    isCheckThree:'0',
+    shopList:[],
+    activeIndex:0
   },
 
   changeAllOpen(e){
@@ -38,11 +44,30 @@ Page({
       flAllOpen : e.currentTarget.dataset.ao
     })
   },
-  addShopCart(){
-    console.log('maopao')
+  jrShopCart(e){
+    shopDetails(
+      {standard_product_unit_id:e.currentTarget.dataset.details}
+    ).then( res => {
+      console.log(res,'获取商品详情')
+      this.setData({
+        allShopDetails:res.data,
+      })
+      addShopCart({
+        user_id:'',
+        standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
+        stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
+        current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
+        quantity:1
+      }).then( res => {
+        console.log(res,'加入购物车')
+        wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
+      })
+    })  
   },
-  goDetails(){
-    wx.navigateTo({url:'../shopDetails/shopDetails'})
+  goDetails(e){
+    var xxxx = e.currentTarget.dataset.details
+    console.log(JSON.stringify(xxxx),'xxxx')
+    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
   },
   /**
    * 选择搜索类型
@@ -116,6 +141,7 @@ Page({
   })
   this.getThreeCategoryList(id)
  },
+ //获取三级分类
  getThreeCategoryList(e){
   categoryList(
     {parent_id:e}
@@ -124,7 +150,27 @@ Page({
     this.setData({
       threeCategoryList:res.data,
     })
+    this.getShopList()
   })  
+},
+// 切换三级分类
+selectFlThree(e){
+  console.log(e,'eee')
+  let index = e.currentTarget.dataset.index;
+  let id = e.currentTarget.dataset.id;
+  this.setData({
+    isCheckThree:index,
+    flAllOpen : 1
+  })
+  this.getShopList(id)
+},
+getShopList(){
+  shopList().then( res => {
+    console.log(res,'商品列表')
+    this.setData({
+      shopList:res.data,
+    })
+  })   
 },
   /**
    * 生命周期函数--监听页面初次渲染完成

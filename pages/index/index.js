@@ -2,13 +2,14 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp()
 import {
-  bannerList, shopList,
+  bannerList, shopList,addShopCart,shopDetails
 } from '../../request/api.js'
 Page({
   data: {
     bannerList:[],
     shopList:[],
-    headerHeight:''
+    headerHeight:'',
+    allShopDetails:null
   },
   onLoad: function () {
     this.setData({
@@ -19,6 +20,26 @@ Page({
   console.log('index',app.globalData.titleHeight)
     this.getBannerList()
     this.getShopList()
+  },
+  jrShopCart(e){
+      shopDetails(
+        {standard_product_unit_id:e.currentTarget.dataset.details}
+      ).then( res => {
+        console.log(res,'获取商品详情')
+        this.setData({
+          allShopDetails:res.data,
+        })
+        addShopCart({
+          user_id:'',
+          standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
+          stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
+          current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
+          quantity:1
+        }).then( res => {
+          console.log(res,'加入购物车')
+          wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
+        })
+      })  
   },
   getBannerList(){
     bannerList().then( res => {
@@ -38,6 +59,7 @@ Page({
   },
   goDetails(e){
     var xxxx = e.currentTarget.dataset.details
+    console.log(JSON.stringify(xxxx),'xxxx')
     wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
   },
   bindViewTap() {
