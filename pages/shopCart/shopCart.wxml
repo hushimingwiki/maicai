@@ -25,7 +25,7 @@
   </view>
   <view class="jiesuan">
     <view class="left">
-     <image src="{{selectAllStatus?'../../image/gou.png':'../../image/gou-h.png'}}" mode="" catchtap="checkShop" class="quan"/>
+     <image src="{{selectAllStatus?'../../image/gou.png':'../../image/gou-h.png'}}" mode="" catchtap="selectAll" class="quan"/>
      <view>全选</view>
      <!-- <view class="delete">删除</view> -->
     </view>

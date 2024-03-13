@@ -29,3 +29,12 @@ export const shopDetails = (params) => post('standard_product_unit/get',params);
 
 ///shop_car/list 获取购物车列表
 export const shopCartList = (params) => post('shop_car/list',params);
+
+///coupon/list获取优惠券列表
+export const queryCouponList = (params) => post('user_coupon/list',params);
+
+///user_coupon/add 领取优惠券
+export const addCoupon = (params) => post('user_coupon/add',params);
+
+///coupon/list  可获取的优惠券列表
+export const receiveCouponList = (params) => post('coupon/list',params);

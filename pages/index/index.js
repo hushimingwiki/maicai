@@ -2,24 +2,58 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp()
 import {
-  bannerList, shopList,addShopCart,shopDetails
+  bannerList, shopList,addShopCart,shopDetails,receiveCouponList,addCoupon
 } from '../../request/api.js'
 Page({
   data: {
     bannerList:[],
     shopList:[],
     headerHeight:'',
-    allShopDetails:null
+    allShopDetails:null,
+    klqCoupon:[]
   },
   onLoad: function () {
     this.setData({
       headerHeight:app.globalData.titleHeight
     })
     console.log(this.data.headerHeight)
-  console.log('index',app.globalData.capsuleObj)
-  console.log('index',app.globalData.titleHeight)
+    console.log('index',app.globalData.capsuleObj)
+    console.log('index',app.globalData.titleHeight)
     this.getBannerList()
     this.getShopList()
+    this.getReceiveCouponList()
+    
+  },
+  goUse(){
+    wx.navigateTo({
+      url: '../coupon/coupon'
+    })
+  },
+  getReceiveCouponList(){
+    receiveCouponList({
+      shop_id:0,
+      page:0,
+      page_size:100
+    }).then(res=>{
+      console.log(res.data,'可领优惠券')
+      this.setData({
+        klqCoupon:res.data
+      })
+      this.getAddCoupon()
+    })
+  },
+  getAddCoupon(){
+    let couList = this.data.klqCoupon
+    console.log(couList,'couList')
+    couList.forEach(item => {
+      console.log(item.coupon_id,'couList')
+      addCoupon({
+      coupon_id:item.coupon_id
+      }).then(res=>{
+        console.log(res,'领取优惠券成功')
+      })
+    });
+    
   },
   jrShopCart(e){
       shopDetails(

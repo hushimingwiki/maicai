@@ -1,3 +1,73 @@
+.receive-coupon{
+  background: linear-gradient(90deg, #f76e2c, #fd402a);
+  // width: 702rpx;
+  margin: 24rpx;
+  padding: 12rpx;
+  border-radius: 12rpx;
+  .title{
+    color: #fff;
+    text{
+      font-size: 24rpx;
+    }
+  }
+  .coupon-list{
+    margin-top: 12rpx;
+    .sc-v{
+      display: flex;
+      .coupon-c{
+        margin-right: 12rpx;
+        .quan-price{
+          border-radius: 6rpx;
+          height: 60rpx;
+          width: 150rpx;
+          line-height: 60rpx;
+          background-color: #ffffff;
+          color: #f74a35;
+          font-size: 16rpx;
+          text-align: center;
+          text{
+            font-size: 32rpx;
+            font-weight: bold;
+          }
+        }
+        .man {
+          border-top: 1rpx dashed #f76e2c;
+          border-radius: 6rpx;
+          background-color: #ffff;
+          height: 30rpx;
+          line-height: 30rpx;
+          width: 150rpx;
+          font-size: 18rpx;
+          color: #ca9597;
+          text-align: center;
+        }
+      }
+    }
+    
+    
+  }
+  .go-use{
+    background-color: #f9e7b0;
+    width: 300rpx;
+    border-radius: 100rpx;
+    margin: 24rpx auto 12rpx;
+    text-align: center;
+    padding: 12rpx 0;
+    color: #fa4d39;
+    animation: growShrink 1.1s infinite;/* 动画名称，持续时间，和重复次数 */
+  }
+}
+@keyframes growShrink {
+  0% {
+    transform: scale(1); /* 动画开始时元素的大小 */
+  }
+  50% {
+    transform: scale(0.9); /* 动画中间时元素缩小到一半大小 */
+  }
+  100% {
+    transform: scale(1); /* 动画结束时元素恢复到原始大小 */
+  }
+}
 .taptitle {
   position: fixed;
   top: 0;

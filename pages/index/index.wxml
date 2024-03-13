@@ -52,7 +52,20 @@
       <view>火锅到家</view>
     </view>
   </view>
-
+  <view class="receive-coupon" wx:if="{{klqCoupon.length > 0}}">
+    <view class="title">388元券包 <text>新人专享</text></view>
+    <view class="coupon-list">
+      <scroll-view scroll-x="true">
+      <view class="sc-v">
+        <view wx:for="{{klqCoupon}}" wx:key="index" class="coupon-c">
+          <view class="quan-price">￥<text>{{item.price}}</text></view>
+          <view class="man">满{{item.full_price}}可用</view>
+        </view>
+      </view>
+      </scroll-view>
+    </view>
+    <view class="go-use" bindtap="goUse">立即使用</view>
+  </view>
   <view class="sale">
     <view class="sale-title">
       <view>今日疯抢</view>

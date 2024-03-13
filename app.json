@@ -8,12 +8,13 @@
     "pages/logs/logs",
     "pages/shopDetails/shopDetails",
     "pages/order/order",
-    "pages/checkAdr/checkAdr"
+    "pages/checkAdr/checkAdr",
+    "pages/coupon/coupon"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#f6f6f6"
   },
   "tabBar": {
     "list": [

@@ -25,7 +25,7 @@ const post=(url,params,burl)=>{
         "content-type": 'application/x-www-form-urlencoded',
       },
       success: async res => {
-        console.log(res)
+        console.log(res,'request.js')
         if(res.statusCode==200){
           resolve(res.data)
         }
@@ -34,6 +34,9 @@ const post=(url,params,burl)=>{
             title:'与服务器出现错误',
             icon:'none'
           })
+        }
+        if(res.data.code == 201){
+          console.log(res.data.msg)
         }
         if(res.data.code==202){
             wx.removeStorageSync('userId')

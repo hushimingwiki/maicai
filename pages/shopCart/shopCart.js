@@ -64,6 +64,30 @@ Page({
     })
     this.countPrice()
   },
+
+  selectAll:function(e){
+    // 全选ICON默认选中
+     let selectAllStatus = this.data.selectAllStatus;
+     console.log( selectAllStatus," selectAllStatus")
+     // true  -----   false
+     selectAllStatus = !selectAllStatus;
+     // 获取商品数据
+     let list = this.data.shopList;
+     console.log( list,"  this.data.list")
+     // 循环遍历判断列表中的数据是否选中
+     for (let i = 0; i < list.length; i++) {
+       list[i].check = selectAllStatus;
+     }
+    
+     // 页面重新渲染
+     this.setData({
+       selectAllStatus: selectAllStatus,
+       shopList: list
+     });
+     // 计算金额方法
+     this.countPrice();
+
+ },
   //计算价格
   countPrice() {
   let list = this.data.shopList;

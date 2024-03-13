@@ -1,4 +1,7 @@
-// pages/my/my.js
+
+import {
+  queryCouponList
+} from '../../request/api.js'
 const app = getApp()
 Page({
 
@@ -6,20 +9,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    couponList:[]
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.setData({
-      headerHeight:app.globalData.titleHeight
-    })
+  onLoad() {
+    this.getCouponList()
   },
-  goCoupon(){
-    wx.navigateTo({
-      url: '../coupon/coupon'
+  getCouponList(){
+    queryCouponList({
+      shop_id:'',
+      expire:'0',
+      use:'0',
+      page:'0',
+      page_size:'100'
+    }).then( res => {
+      console.log(res,'优惠券列表')
+      this.setData({
+        couponList:res.data
+      })
     })
   },
   /**

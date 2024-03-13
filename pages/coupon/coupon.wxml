@@ -1,0 +1,24 @@
+<view class="box">
+  <view class="title">
+    <view class="title-left">
+      <view class="wsy">未使用（{{couponList.length}}）</view>
+      <view class="ysy">历史优惠券</view>
+    </view>
+    <view class="title-right"></view>
+  </view>
+  <view class="coulist" wx:for="{{couponList}}" wx:key="index">
+    <view class="coupon">
+      <view class="left">
+        <view class="price">￥<text class="jg">24</text><view class="man">满<text>120</text>元使用</view></view>
+      </view>
+      <view class="right">
+        <view class="coupon-det">
+          <view class="one">{{item.name}}</view>
+          <view class="two">有效期至 {{item.end_time}}</view>
+          <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
+        </view>
+        <view class="go-use">去使用</view>
+      </view>
+    </view>
+  </view>
+</view>
