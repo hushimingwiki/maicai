@@ -139,7 +139,7 @@
               <text class="yang">￥</text>{{item.start_price}}
               <text class="feng">/份</text>
             </view>
-            <view class="right" catchtap="jrShopCart" data-details="{{item.shop_id}}">
+            <view class="right" catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}">
               <image src="../../image/gwc-lv.png" ></image>
               <!-- <view class="hongdian">1</view> -->
             </view>

@@ -96,7 +96,7 @@ Page({
   for (let i = 0; i < list.length; i++) {
     if (list[i].check === true) {
       total += list[i].quantity * list[i].stockKeepingUnit.price;
-      sunlu += list[i].quantity;
+      sunlu += Number(list[i].quantity);
       list[i].totalPrice = total
     }
   }
@@ -117,7 +117,7 @@ Page({
       quantity:1
     }).then( res => {
       console.log(res,'加入购物车')
-      data[index].quantity = xxxx.quantity+1
+      data[index].quantity = Number(xxxx.quantity)+1
       this.setData({
         shopList:data
       })
@@ -171,7 +171,16 @@ Page({
     })
   },
   goOrder(){
-    wx.navigateTo({url:'../order/order'})
+    console.log(this.data.shopList)
+    var shopdata = this.data.shopList
+    var newList = shopdata.map(item=>{
+      if(item.check == true){
+        return item
+      }
+    }).filter(Boolean).concat();
+    
+ 
+    wx.navigateTo({url:'../order/order?data=' + JSON.stringify(newList) + '&price=' + this.data.totalPrice})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -6,10 +6,10 @@
     </view>
     <view class="title-right"></view>
   </view>
-  <view class="coulist" wx:for="{{couponList}}" wx:key="index">
-    <view class="coupon">
+  <view class="coulist" wx:for="{{couponList}}" wx:key="index" bindtap="checkCoupon" data-item="{{item}}">
+    <view class="coupon {{totalPricemask >= item.full_price || shopId == item.shop_id || item.shop_id == 0? '' : 'mask'}}">
       <view class="left">
-        <view class="price">￥<text class="jg">24</text><view class="man">满<text>120</text>元使用</view></view>
+        <view class="price">￥<text class="jg">{{item.price}}</text><view class="man">满<text>{{item.full_price}}</text>元使用</view></view>
       </view>
       <view class="right">
         <view class="coupon-det">

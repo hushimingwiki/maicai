@@ -17,9 +17,35 @@ Page({
       headerHeight:app.globalData.titleHeight
     })
   },
+  goOrderList(e){
+    wx.navigateTo({
+      url: '../orderList/orderList?tab=' + e.currentTarget.dataset.tab
+    })
+  },
   goCoupon(){
     wx.navigateTo({
       url: '../coupon/coupon'
+    })
+  },
+  goBalance(){
+    wx.navigateTo({
+      url: '../balance/balance'
+    })
+  },
+  goScore(){
+    wx.showToast({
+      title: '未开发',
+      icon:'none'
+    })
+  },
+  goAdrList(){
+    wx.navigateTo({
+      url: '../adrList/adrList'
+    })
+  },
+  goSetting(){
+    wx.navigateTo({
+      url: '../setting/setting'
     })
   },
   /**

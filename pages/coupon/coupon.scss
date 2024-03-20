@@ -19,6 +19,7 @@
      }
    }
    .coulist{
+     position: relative;
      width: 100%;
      .coupon{
        width: 702rpx;
@@ -80,6 +81,16 @@
            font-size: 24rpx;
            margin: auto 0;
          }
+       }
+     }
+     .mask{
+       background-color: #ffffff;
+       color: #b4b4b4;
+       .left{
+        background-color: #d9d9d9;
+        .price{
+          color: #b2b2b2;
+        }
        }
      }
    }

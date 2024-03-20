@@ -1,0 +1,3 @@
+<view class="box">
+  <view class="delivery-address" bindtap="goDeliveryAdr"><text>收获地址</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+</view>

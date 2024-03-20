@@ -1,0 +1,17 @@
+<!--pages/map-control/map-control.wxml-->
+<view class="map-control-container">
+  <view class="map-control-content">
+    <view class="map-container plr20">
+			<map
+				class="map"
+				id="map"
+        markers="{{markers}}"
+				latitude="{{location.latitude}}"
+				longitude="{{location.longitude}}"
+				show-location="true"
+				scale="16"
+			>
+			</map>
+    </view>
+  </view>
+</view>

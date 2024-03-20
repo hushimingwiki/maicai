@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "locationAuth":"../../components/locationAuth/locationAuth"
+  },
+  "navigationBarTitleText":"添加地址"
+}

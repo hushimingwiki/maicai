@@ -1,0 +1,79 @@
+page {
+  background-color: #f6f6f6;
+}
+.list-box{
+  width: 100%;
+  overflow: hidden;
+}
+.list-row{
+  padding-left: 30rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  position: relative;
+  background-color: white;
+  white-space: nowrap;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.title{
+  display: inline-block;
+  width: 100%;
+}
+.del-bnt{
+  display: inline-block;
+  background-color: red;
+  color: white;
+  width: 200rpx;
+  text-align: center;
+  height: 100%;
+}
+.touch-move-active{
+  -webkit-transform: translateX(-100px);
+  transform: translateX(-100px);
+}
+.one{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  left: 25rpx;
+  top: -25rpx;
+  width: 702rpx;
+}
+.one-a{
+  
+}
+.img {
+  margin-right: 12rpx;
+  width: 52rpx;
+  height: 52rpx;
+  z-index: 999;
+}
+.dizhi{
+  position: absolute;
+  top: 45rpx;
+  max-width: 700rpx;
+  font-size: 24rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+ 
+}
+.mr{
+  background-color: #F3FFF5;
+  color: #40AE36;
+  margin-right: 18rpx;
+}
+
+.adr-but{
+  padding: 24rpx;
+  background-color: rgb(7, 193, 96);
+  color: #ffffff;
+  margin: 100rpx auto;
+  width: 400rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}

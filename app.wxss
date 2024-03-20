@@ -12,3 +12,6 @@ page{
   color: #333232;
   
 }
+.theme_back{
+  background: #19A553;
+}

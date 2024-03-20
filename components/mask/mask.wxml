@@ -1,0 +1,4 @@
+<!--components/mask/mask.wxml-->
+<view class="mask {{value?'':'none'}}" wx:show="{{value}}" animation="{{ani}}">
+  <slot></slot>
+</view>

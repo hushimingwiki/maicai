@@ -1,0 +1,155 @@
+page{
+  background-color: #f6f6f6;
+}
+
+.tabs{
+  background: white;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+.tab{
+  flex:1;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.bar{
+  position: absolute;
+  bottom: 0;
+  height: 6rpx;
+  width: calc(100vw / 6);
+  border-radius: 100rpx;
+  transition: all .3s;
+}
+.detail{
+  flex:1;
+  height: calc(100vh - 90rpx);
+}
+.product{
+  background: white;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  width: 95%;
+  border-radius: 10rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.product-img{
+  width: 170rpx;
+  height: 170rpx;
+  min-width: 170rpx;
+  min-height: 170rpx;
+  max-width: 170rpx;
+  max-height: 170rpx;
+  margin: 20rpx;
+}
+
+.product-title{
+  padding:20rpx;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.right{
+  padding: 20rpx;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content:space-between;
+  flex-wrap: wrap;
+}
+.name{
+  font-size: 28rpx;
+  z-index: 1 !important;
+}
+.price{
+  /* position: absolute; */
+  /* bottom: 20rpx; */
+  width: 100%;
+  left: 0;
+  /* padding: 0 20rpx; */
+  box-sizing: border-box;
+  align-items: flex-end;
+  color: #19A553;
+}
+.num{
+  color: gray;
+}
+.total{
+  padding: 0 20rpx;
+  padding-bottom: 20rpx;
+  font-size: 20rpx;
+  color: gray;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.total-price{
+  color: #19A553;
+  margin: 0 5rpx;
+  font-size: 30rpx;
+}
+
+.btn-group{
+  padding: 20rpx;
+}
+
+.btn{
+  border-radius: 100rpx;
+  border: 1px solid #19A553;
+  background-color: #19A553;
+  padding:6rpx 20rpx;
+  color: #ffffff;
+  margin-left: 10rpx;
+}
+
+.red{
+  border-color: #19A553;
+}
+.product-ordernumber {
+  color: #777777;
+  padding:24rpx 24rpx 0 24rpx;
+  font-size: 26rpx;
+}
+.scrollView{
+  /* height: calc( 100vh - 100rpx ); */
+  box-sizing: border-box;
+  padding-top: 20rpx;
+}
+
+.loading{
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 80rpx;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+}
+
+.isloading{
+  transition: all .3s;
+  animation: rotate linear 1.2s infinite;
+}
+
+@keyframes rotate{
+  0%{
+	    transform: rotate(0deg);
+	  }
+	  50%{
+	    transform:rotate(180deg);
+	  }
+	  100%{
+	    transform: rotate(360deg);
+	  }
+}
+
+.none{
+  padding:100rpx 0;
+  text-align: center;
+  color: gray;
+}

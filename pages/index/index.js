@@ -2,7 +2,7 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp()
 import {
-  bannerList, shopList,addShopCart,shopDetails,receiveCouponList,addCoupon
+  bannerList, shopList,addShopCart,shopDetails,receiveCouponList,addCoupon,zuijinStation
 } from '../../request/api.js'
 Page({
   data: {
@@ -16,13 +16,48 @@ Page({
     this.setData({
       headerHeight:app.globalData.titleHeight
     })
-    console.log(this.data.headerHeight)
-    console.log('index',app.globalData.capsuleObj)
-    console.log('index',app.globalData.titleHeight)
+    // console.log(this.data.headerHeight)
+    // console.log('globalData',app.globalData)
+    // console.log('globalData',app.globalData.adrInfo)
+    // console.log('globalData',app.globalData.capsuleObj)
+    setTimeout(() => {
+      this.getZuijinStation()
+    }, 500)
     this.getBannerList()
-    this.getShopList()
+    
     this.getReceiveCouponList()
     
+  },
+  getZuijinStation(){
+    console.log(app.globalData,'app.globalData')
+    console.log(app.globalData.location,'app.globalData.location')
+    console.log(app.globalData.location.location,'app.globalData.location.location')
+    var myPromise =  new Promise((resolve,reject)=>{
+      if(app.globalData.location){
+        console.log("有经纬度")
+        resolve()
+      }else{
+        console.log("没有经纬度，0.5s后再次执行")
+        setTimeout(() => {
+          this.getZuijinStation()
+        }, 500)
+      }
+    })
+    
+    myPromise.then(res=>{
+      console.log(app.globalData.location,'成功获取经纬度并获取中转站')
+      
+      zuijinStation({
+        province:app.globalData.location.address_component.province,
+        city:app.globalData.location.address_component.city,
+        district:app.globalData.location.address_component.district,
+        longitude:app.globalData.location.location.lng,
+        latitude:app.globalData.location.location.lat
+      }).then(res=>{
+        app.globalData.zzId = res.data.transfer_station_id
+        this.getShopList(res.data.transfer_station_id)
+      })
+    })
   },
   goUse(){
     wx.navigateTo({
@@ -83,8 +118,10 @@ Page({
       })
     })
   },
-  getShopList(){
-    shopList().then( res => {
+  getShopList(e){
+    shopList({
+      transfer_station_id:e
+    }).then( res => {
       console.log(res,'商品列表')
       this.setData({
         shopList:res.data,

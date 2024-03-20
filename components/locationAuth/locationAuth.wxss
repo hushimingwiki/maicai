@@ -1,0 +1,40 @@
+/* components/locationAuth/locationAuth.wxss */
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: white;
+  transform: translate(-50%,-50%);
+  border-radius: 10rpx;
+  overflow: hidden;
+  width: 520rpx;
+}
+.title{
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 32rpx;
+}
+.message{
+  padding: 60rpx 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-top: 1rpx solid rgba(0,0,0,.05);
+}
+.flex{
+  display: flex;
+}
+button{
+  font-weight: normal;
+  background: inherit;
+  padding: 20rpx 0;
+}
+
+.btn-group{
+  border-top: 1rpx solid rgba(0,0,0,.05);
+}
+.btn-group button:first-child{
+  border-right: 1px solid rgba(0,0,0,.05);
+}
+.confirm{
+  color: red;
+}

@@ -165,7 +165,9 @@ selectFlThree(e){
   this.getShopList(id)
 },
 getShopList(){
-  shopList().then( res => {
+  shopList({
+    transfer_station_id:app.globalData.zzId
+  }).then( res => {
     console.log(res,'商品列表')
     this.setData({
       shopList:res.data,

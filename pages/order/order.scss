@@ -42,8 +42,12 @@
     padding: 24rpx 0 0 0;
     display: flex;
     justify-content: space-between;
+    .name{
+      font-size: 24rpx;
+    }
     .time{
       color: #40AE36;
+      font-size: 24rpx;
     }
   }
 

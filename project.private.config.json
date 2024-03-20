@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/balance/balance",
+          "pathName": "pages/balance/balance",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/",
+          "pathName": "pages/orderList/orderList",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "我的",
           "pathName": "pages/my/my",
           "query": "",
@@ -38,5 +52,6 @@
         }
       ]
     }
-  }
+  },
+  "libVersion": "2.30.4"
 }

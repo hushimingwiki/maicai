@@ -1,0 +1,22 @@
+<!--pages/success/success.wxml-->
+<view>
+  <view wx:if="{{type==1}}">
+    <view class="icon success" >
+      <!-- <image src="https://www.dnfc888.com/assets/status2.png" mode="widthFix"></image> -->
+    </view>
+    <view class="test">支付成功</view>
+  </view>
+
+  <view wx:if="{{type==2}}">
+    <view class="icon theme_back">
+      <!-- <image src="https://www.dnfc888.com/assets/status3.png" mode="widthFix"></image> -->
+    </view>
+    <view class="test">支付失败</view>
+  </view>
+
+  <view class="flex jus-b">
+    <button bindtap="back" class="back">返回首页</button>
+    <!-- <button bindtap="go" class="go">继续逛逛</button> -->
+  </view>
+</view>
+

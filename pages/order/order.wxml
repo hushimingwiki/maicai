@@ -3,14 +3,18 @@
     <view class="adr-info" bindtap="goCheckAdr">
       <image src="../../image/dingwei.png" class="dingwei" mode=""/>
       <view class="fh-adr">
-        <view class="dz">广东省韶关市曲江区江畔花园2期23栋</view>
-        <view class="name">CHRISbin 13302345678</view>
+        <view class="dz">{{adrDetails.address}}</view>
+        <view class="name">{{adrDetails.name}} {{adrDetails.phone_number}}</view>
       </view>
       <image src="../../image/arrow-up-s-line-d.png" class="jiantou" mode=""/>
     </view>
     <view class="complete-time">
       <view class="name">预计送达时间</view>
-      <view class="time">1月14日 16:00</view>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" class="time">
+        <view class="picker">
+          当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+        </view>
+      </picker>
     </view>
   </view>
   <view class="shoplist">
@@ -19,20 +23,20 @@
       <view class="acc">上架24H发货，第三方物流配送</view>
     </view>
     <view class="list">
-      <view wx:for="{{shopList}}" wx:key="item" class="list-item">
-        <image src="{{item.image}}" class="item-image" mode=""/>
+      <view wx:for="{{cartShop}}" wx:key="item" class="list-item">
+        <image src="{{item.standardProductUnit.picture}}" class="item-image" mode="aspectFill"/>
         <view class="item-info">
-          <view class="name"><text>{{item.name}}</text><text>￥{{item.price}}</text></view>
-          <view class="guige">规格：{{item.guige}}</view>
-          <view class="num">数量：{{item.num}}</view>
+          <view class="name"><text>{{item.standardProductUnit.name}}</text><text>￥{{item.stockKeepingUnit.price}}</text></view>
+          <view class="guige">规格：{{item.stockKeepingUnit.attribute}}</view>
+          <view class="num">数量：{{item.quantity}}</view>
         </view>
       </view>
     </view>
   </view>
   <view class="qita">
-    <view class="yhq">
+    <view class="yhq" bindtap="goCoupon">
       <text class="name">优惠券</text>
-      <view class="quan"><text>暂无优惠券可以使用</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+      <view class="quan"><text>{{couponDetails?couponDetails.name:'选择优惠券'}}</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
     </view>
     <view class="paytype">
       <text>支付方式</text><text>微信支付</text>
@@ -40,7 +44,7 @@
   </view>
   <view class="jiesuan" style="height: {{tabbarHeight}}px;">
     <view>共2件，</view>
-    <view class="price">合计:<text>￥136</text></view>
-    <view class="qjs">去结算</view>
+    <view class="price">合计:<text>￥{{totalPrice}}</text></view>
+    <view class="qjs" bindtap="createOrder">立即支付</view>
   </view>
 </view>

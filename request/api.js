@@ -5,13 +5,17 @@ import { post, postFile } from './request.js'
 export const userLogin = (params) => post('account/login',params);
  
 // 微信支付Pay/WXPay(int UserId, int Type, String OpenId, String OrderNumber)
-export const WXPay = (params) => post('Pay/WXPay', params);
+export const WXPay = (params) => post('pay/wx_pay', params);
 
-
+//获取用户信息/user/get
+export const getUserInfo = (params) => post('user/get', params);
 
 //轮播图
 export const bannerList = (params) => post('banner/list',params);
-
+///transfer_station/get_closest获取最近的中转站
+export const zuijinStation = (params) => post('transfer_station/get_closest',params);
+////transfer_station/list_nearby获取最近的中转站
+export const fujinStation = (params) => post('transfer_station/list_nearby',params);
 //首页商品列表
 export const shopList = (params) => post('standard_product_unit/recommend',params);
 
@@ -38,3 +42,20 @@ export const addCoupon = (params) => post('user_coupon/add',params);
 
 ///coupon/list  可获取的优惠券列表
 export const receiveCouponList = (params) => post('coupon/list',params);
+
+///user_delivery_address/add 添加收货地址
+export const addAddress = (params) => post('user_delivery_address/add',params);
+//获取地址列表/user_delivery_address/list
+export const addressList = (params) => post('user_delivery_address/list',params);
+//删除收货地址
+export const deleteAddress = (params) => post('user_delivery_address/delete',params);
+//修改收获地址/user_delivery_address/update
+export const updateAddress = (params) => post('user_delivery_address/update',params);
+
+///order/add新增订单
+export const addOrder = (params) => post('order/add',params);
+export const cancelOrder = (params) => post('order/cancel',params);
+//确认订单
+export const confirmReceipt = (params) => post('order/confirm_receipt',params);
+//订单列表
+export const orderList = (params) => post('order/list',params);

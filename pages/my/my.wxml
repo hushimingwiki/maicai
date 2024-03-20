@@ -10,8 +10,8 @@
         </view>
       </view>
       <view class="right">
-        <image src="../../image/ld.png" mode=""/>
-        <image src="../../image/sz.png" mode=""/>
+        <image src="../../image/ld.png" mode="" bindtap="goScore"/>
+        <image src="../../image/sz.png" mode="" bindtap="goSetting"/>
       </view>
     </view>
     <view class="property">
@@ -19,11 +19,11 @@
         <view class="value">0</view>
         <view>优惠券</view>
       </view>
-      <view class="two">
+      <view class="two" bindtap="goScore">
         <view class="value">0</view>
         <view>积分</view>
       </view>
-      <view class="three">
+      <view class="three" bindtap="goBalance">
         <view class="value">0.00</view>
         <view>余额充值(元)</view>
       </view>
@@ -31,29 +31,29 @@
     <view class="order">
       <view class="title">
         <view class="name">我的订单</view>
-        <view class="all">全部订单<image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+        <view class="all" bindtap="goOrderList" data-tab="0">全部订单<image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
       </view>
       <view class="order-zt">
         <view class="zt">
-          <view class="cs">
+          <view class="cs" bindtap="goOrderList" data-tab="1">
             <image src="../../image/dd-dfk.png" mode=""/>
             <view class="name">待付款</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goOrderList" data-tab="2">
             <image src="../../image/dd-dfh.png" mode=""/>
             <view class="name">待发货</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goOrderList" data-tab="3">
             <image src="../../image/dd-dsh.png" mode=""/>
             <view class="name">待收获</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goOrderList" data-tab="4">
             <image src="../../image/dd-dpj.png" mode=""/>
             <view class="name">待评价</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goOrderList" data-tab="5">
             <image src="../../image/dd-dfk.png" mode=""/>
-            <view class="name">退款/售后</view>
+            <view class="name">已取消</view>
           </view>
         </view>
       </view>
@@ -65,23 +65,23 @@
       </view>
       <view class="order-zt">
         <view class="zt">
-          <view class="cs">
+          <view class="cs" bindtap="goAdrList">
             <image src="../../image/fw-shdz.png" mode=""/>
             <view class="name">收货地址</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goScore">
             <image src="../../image/fw-zj.png" mode=""/>
             <view class="name">足迹</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goScore">
             <image src="../../image/fw-sc.png" mode=""/>
             <view class="name">我的收藏</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goScore">
             <image src="../../image/fw-fwzx.png" mode=""/>
             <view class="name">服务中心</view>
           </view>
-          <view class="cs">
+          <view class="cs" bindtap="goScore">
             <image src="../../image/fw-zxkf.png" mode=""/>
             <view class="name">在线客服</view>
           </view>

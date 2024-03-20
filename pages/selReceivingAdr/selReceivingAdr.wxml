@@ -1,0 +1,24 @@
+<view class="box">
+  <view class="list-box" wx:if="{{dataList.length>0}}">
+    <view class="list-row {{delIndex === index ? 'touch-move-active' : ''}}" wx:for="{{dataList}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:key="index">
+      <view class="title">
+        <view class="one">
+          <view class="one-a">
+            <text class="mr" wx:if="{{item.default_address == 1}}">默认</text>
+            <text class="name-phone">{{item.name}} {{item.phone_number}}</text>
+          </view>
+
+          <image class="img" src="../../image/xiugai.png" mode="" bindtap="goUpdateAdr" data-item="{{item}}" />
+          <view class="dizhi">{{item.address}}</view>
+        </view>
+
+      </view>
+      <view class="del-bnt" catchtap="delItem" data-id="{{item.user_delivery_address_id}}">删除</view>
+    </view>
+
+
+  </view>
+  <view class="add-adr">
+    <view class="adr-but" bindtap="addAdr" bindtap="goAddAddress">添加一个收货地址</view>
+  </view>
+</view>

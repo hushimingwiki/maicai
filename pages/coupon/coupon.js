@@ -1,4 +1,3 @@
-
 import {
   queryCouponList
 } from '../../request/api.js'
@@ -9,25 +8,49 @@ Page({
    * 页面的初始数据
    */
   data: {
-    couponList:[]
+    couponList: [],
+    totalPrice: 0,
+    shopId: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(options) {
+    console.log(options)
+    this.setData({
+      totalPrice: options.price,
+      shopId: options.shopId,
+    })
     this.getCouponList()
   },
-  getCouponList(){
+  checkCoupon(e) {
+    if (this.data.totalPrice > 0) {
+      let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
+      let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
+      prevPage.setData({
+        "couponDetails": e.currentTarget.dataset.item
+      });
+      // prevPage.couponAfterPrice()
+      wx.navigateBack({
+        delta: 1,
+        success: function (e) { // 成功的回调
+          if (prevPage == undefined || prevPage == null) return;
+          prevPage.couponAfterPrice(); // 调用A页面的方法, 并将值传过去
+        }
+      }); //关闭当前页面，返回上一个页面
+    }
+  },
+  getCouponList() {
     queryCouponList({
-      shop_id:'',
-      expire:'0',
-      use:'0',
-      page:'0',
-      page_size:'100'
-    }).then( res => {
-      console.log(res,'优惠券列表')
+      shop_id: '',
+      expire: '0',
+      use: '0',
+      page: '0',
+      page_size: '100'
+    }).then(res => {
+      console.log(res, '优惠券列表')
       this.setData({
-        couponList:res.data
+        couponList: res.data
       })
     })
   },

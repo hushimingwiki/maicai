@@ -53,7 +53,7 @@
     <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.91}}px;" class="fl-content">
       <view wx:if="{{shopList.length>0}}">
         <view wx:for="{{shopList}}" wx:key="item" class="fl-for-list" bindtap="goDetails" data-details="{{item}}">
-          <image src="{{item.picture}}" mode=""/>
+          <image src="{{item.picture}}" mode="aspectFill"/>
           <view class="fl-details">
             <view class="fl-text">{{item.name}}</view>
             <view>

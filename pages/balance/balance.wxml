@@ -1,0 +1,28 @@
+<view class="title" style="padding-top: {{capsuleObj.top}}px;">
+  <view class="title-name" style="height: {{capsuleObj.height}}px;">
+   <image src="../../image/arrow-up-s-line.png" mode="" bindtap="goBack"/>
+   <text>我的余额</text>
+   <text> </text>
+  </view>
+  <view class="yue">
+    <view class="qian">
+      <view class="ez">我的余额（元）</view>
+      <view class="jine">100.00</view>
+    </view>
+    <view class="mingxi">查看明细</view>
+  </view>
+</view>
+<view class="chongzhi">
+    <view class="cz-title">在线充值<text>无需绑定，直接到账</text></view>
+    <view class="cz-cz {{currIndex == index?'cz-check':''}}" wx:for="{{priceList}}" wx:key="index" data-index="{{index}}" bindtap="checkPrice">{{item.price}}元</view>
+</view>
+<view class="tips">资金安全，付款便捷，如需发票可联系在线客服</view>
+<view class="zf-type">
+  <view>付款方式</view>
+  <view>微信支付</view>
+</view>
+<view class="zf-price">
+  <view>付款金额</view>
+  <view>1000元</view>
+</view>
+<view class="zf-but">确认充值</view>

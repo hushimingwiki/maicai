@@ -8,8 +8,16 @@
     "pages/logs/logs",
     "pages/shopDetails/shopDetails",
     "pages/order/order",
-    "pages/checkAdr/checkAdr",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/setting/setting",
+    "pages/adrList/adrList",
+    "pages/addAddress/addAddress",
+    "pages/selectAdr/selectAdr",
+    "pages/updateAdr/updateAdr",
+    "pages/orderList/orderList",
+    "pages/selReceivingAdr/selReceivingAdr",
+    "pages/success/success",
+    "pages/balance/balance"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -46,6 +54,18 @@
     "selectedColor": "#40AE36",
     "color": "#BBBBBB"
   },
+  "plugins": {
+    "chooseLocation": {
+      "version": "1.0.10",
+      "provider": "wx76a9a06e5b4e693e"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  },
+  "requiredPrivateInfos": ["chooseLocation","getLocation"],
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",

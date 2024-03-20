@@ -1,0 +1,47 @@
+
+.icon{
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200rpx;
+  height: 200rpx;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 30%;
+}
+.success{
+  background: rgb(15, 189, 15);
+}
+.icon image{
+  width: 150rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%)
+}
+.test{
+  text-align: center;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+.flex{
+  margin: 0 80rpx;
+  margin-top: 100rpx;
+
+}
+.flex button{
+  background: inherit;
+  font-weight: normal;
+  font-size: 26rpx;
+  border-radius: 100rpx;
+  width: 250rpx;
+  line-height:50rpx;
+}
+.back{
+  border: 1px solid #ff3b3b;
+  color: #ff3b3b;
+
+}
+.go{
+  border: 1px solid orange;
+  color: orange;
+}

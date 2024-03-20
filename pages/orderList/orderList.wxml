@@ -1,0 +1,53 @@
+<view class="">
+  <view class="tabs">
+    <view data-index="0" bindtap="changeTab" class="tab {{tabIndex==0?'theme_text':''}}">全部</view>
+    <view data-index="1" bindtap="changeTab" class="tab {{tabIndex==1?'theme_text':''}}">待付款</view>
+    <view data-index="2" bindtap="changeTab" class="tab {{tabIndex==2?'theme_text':''}}">待发货</view>
+    <view data-index="3" bindtap="changeTab" class="tab {{tabIndex==3?'theme_text':''}}">待收货</view>
+    <view data-index="4" bindtap="changeTab" class="tab {{tabIndex==4?'theme_text':''}}">已完成</view>
+    <view data-index="5" bindtap="changeTab" class="tab {{tabIndex==5?'theme_text':''}}">已取消</view>
+    <view class="bar theme_back" style="left:{{tabIndex * (100/6)+'%'}}"></view>
+  </view>
+  
+  <scroll-view bindscrolltolower="scrollEnd" class="scrollView" scroll-y>
+
+    <view class="none" wx:if="{{!list.length}}">
+      您还没有此类订单!
+    </view>
+   <!-- <recommended wx:if="{{!list.length}}" page='{{ziPage}}' category='0'></recommended> -->
+    <view class="product" wx:if="{{list.length}}" wx:for="{{list}}" wx:key="index" catchtap="JumpOrderDetail" data-obj="{{item}}">
+
+      <view class="product-title jus-b">
+        <view style="color:#777777">{{item.shipTime}}</view>
+        <text class="red" wx:if="{{item.order_status==1}}">待支付</text>
+        <text class="red" wx:if="{{item.order_status==2}}">待发货</text>
+        <text class="red" wx:if="{{item.order_status==3}}">待签收</text>
+        <text class="red" wx:if="{{item.order_status==4}}">已完成</text>
+        <text class="red" wx:if="{{item.order_status==5}}">已取消</text>
+      </view>
+      <view class="product-ordernumber">
+        订单编号：{{item.order_number}}
+      </view>
+      <view class="content flex">
+        <image mode="aspectFill" wx:for="{{item.orderItems}}" wx:key="index" wx:for-item="itemmm" wx:for-index='indexxx' src="{{itemmm.picture}}" class="product-img"></image>
+        <view class="flex1 right">
+          <!-- <view class="name line_two">{{item.name}}</view> -->
+          <!-- <view class="guide">规格:{{pro.goodsSpecificationsInfoName}}</view> -->
+          <view class="price jus-b">
+            <!-- <view>{{item.countDown}}</view> -->
+            <!-- <view class="num">
+              已支付{{item.pay_price}}
+            </view> -->
+          </view>
+        </view>
+      </view>
+
+      <view class="total jus-b">
+        <view>共计<text class="total-price">￥{{item.pay_price}}</text>包含运费{{item.freight_price}}</view>
+        <view data-data="{{item}}" catchtap="goPay" class="btn" wx:if="{{item.flag==1&&isOver}}">{{!item.city?"设置收货地址":"去支付"}}</view>
+        <view class="btn red" data-index='{{index}}' catchtap="confirmOrder" wx:if="{{item.flag==3}}">确认收货</view>
+        <view class="btn" catchtap="goGoodsComment" data-data="{{item}}" wx:if="{{item.flag==4}}">评论商品</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

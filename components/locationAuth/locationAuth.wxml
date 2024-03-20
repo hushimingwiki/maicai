@@ -1,0 +1,11 @@
+<!--components/locationAuth/locationAuth.wxml-->
+<mask show="{{value}}">
+  <view class="modal">
+    <view class="title">提示</view>
+    <view class="message">需要您的位置权限才可定位</view>
+    <view class="btn-group flex">
+      <button class="flex1" style="margin:0;width:50%" bindtap="close">取消</button>
+      <button class="flex1" style="margin:0;width:50%" open-type="openSetting" class="confirm" bindtap="confirm">确定</button>
+    </view>
+  </view>
+</mask>
