@@ -1,3 +1,4 @@
+const app = getApp()
 import {
   addressList,deleteAddress,
 } from '../../request/api.js'
@@ -10,7 +11,8 @@ Page({
     dataList:[],
     startX: 0, // 开始坐标
     delIndex: -1, // 当前滑动的元素下标位置
-    isCheckAdr:null
+    isCheckAdr:null,
+    isIndex:null
   },
 
   /**
@@ -18,7 +20,8 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      isCheckAdr:options.isCheckAdr
+      isCheckAdr:options.isCheckAdr,
+      isIndex:options.isIndex
     })
     
   },
@@ -31,7 +34,18 @@ Page({
       prevPage.setData({
         "adrDetails": e.currentTarget.dataset.item
       });
-      wx.navigateBack(); //关闭当前页面，返回上一个页面
+      if(this.data.isIndex == 0){
+        wx.navigateBack({
+          delta: 1,
+          success: function (e) { // 成功的回调
+            if (prevPage == undefined || prevPage == null) return;
+            prevPage.getAdrFjZzz(); // 调用A页面的方法, 并将值传过去
+          }
+        })
+      }else{
+        wx.navigateBack()
+      }
+      
 
     }else{
 

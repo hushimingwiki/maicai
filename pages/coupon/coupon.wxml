@@ -2,23 +2,57 @@
   <view class="title">
     <view class="title-left">
       <view class="wsy">未使用（{{couponList.length}}）</view>
-      <view class="ysy">历史优惠券</view>
+      <!-- <view class="ysy">历史优惠券</view> -->
     </view>
     <view class="title-right"></view>
   </view>
-  <view class="coulist" wx:for="{{couponList}}" wx:key="index" bindtap="checkCoupon" data-item="{{item}}">
-    <view class="coupon {{totalPricemask >= item.full_price || shopId == item.shop_id || item.shop_id == 0? '' : 'mask'}}">
-      <view class="left">
-        <view class="price">￥<text class="jg">{{item.price}}</text><view class="man">满<text>{{item.full_price}}</text>元使用</view></view>
-      </view>
-      <view class="right">
-        <view class="coupon-det">
-          <view class="one">{{item.name}}</view>
-          <view class="two">有效期至 {{item.end_time}}</view>
-          <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
+  <!-- 从订单页面跳转过来 -->
+  <block wx:if="{{totalPrice>0}}">
+    <view class="coulist" wx:for="{{couponList}}" wx:key="index" bindtap="checkCoupon" data-item="{{item}}">
+      <!-- <view>{{totalPrice >= item.full_price}},{{item.shop_id > 0 == shopId}},{{item.expire == 0}},{{item.shop_id == 0}}</view> -->
+      <!-- <view>{{( shopId == item.shop_id || item.shop_id == 0 ) && (totalPrice >= item.full_price) && (item.expire == 0)}}</view> -->
+      <!-- <view>{{shopId == item.shop_id}}</view>
+      <view>{{item.shop_id == 0}}</view> -->
+      <!-- <view>{{shopId == item.shop_id || shopId == 0}}</view>
+      <view>{{totalPrice >= item.full_price}}</view>
+      <view>{{item.expire == 0}}</view> -->
+      <!-- <view class="coupon {{totalPrice >= item.full_price && item.shop_id > 0 == shopId && item.expire == 0 && item.shop_id == 0?'':'mask'}}"> -->
+        <view class="coupon {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'mask'}}">
+        <view class="left">
+          <view class="price">￥<text class="jg">{{item.price}}</text>
+            <view class="man">满<text>{{item.full_price}}</text>元使用</view>
+          </view>
         </view>
-        <view class="go-use">去使用</view>
+        <view class="right">
+          <view class="coupon-det">
+            <view class="one">{{item.name}}</view>
+            <view class="two">有效期至 {{item.end_time}}</view>
+            <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
+          </view>
+          <view class="go-use {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'gray'}}">去使用</view>
+        </view>
       </view>
     </view>
-  </view>
+  </block>
+  <!-- 正常进入 -->
+  <block wx:if="{{totalPrice<=0}}">
+    <view class="coulist" wx:for="{{couponList}}" wx:key="index" bindtap="checkCoupon" data-item="{{item}}">
+      <view class="coupon {{item.expire == 0 ? '' : 'mask'}}">
+        <view class="left">
+          <view class="price">￥<text class="jg">{{item.price}}</text>
+            <view class="man">满<text>{{item.full_price}}</text>元使用</view>
+          </view>
+        </view>
+        <view class="right">
+          <view class="coupon-det">
+            <view class="one">{{item.name}}</view>
+            <view class="two">有效期至 {{item.end_time}}</view>
+            <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
+          </view>
+          <view class="go-use">去使用</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
 </view>

@@ -1,16 +1,16 @@
 <!--pages/success/success.wxml-->
 <view>
   <view wx:if="{{type==1}}">
-    <view class="icon success" >
-      <!-- <image src="https://www.dnfc888.com/assets/status2.png" mode="widthFix"></image> -->
-    </view>
+    <!-- <view class="icon success" >
+      <image src="https://www.dnfc888.com/assets/status2.png" mode="widthFix"></image>
+    </view> -->
     <view class="test">支付成功</view>
   </view>
 
   <view wx:if="{{type==2}}">
-    <view class="icon theme_back">
-      <!-- <image src="https://www.dnfc888.com/assets/status3.png" mode="widthFix"></image> -->
-    </view>
+    <!-- <view class="icon theme_back">
+      <image src="https://www.dnfc888.com/assets/status3.png" mode="widthFix"></image>
+    </view> -->
     <view class="test">支付失败</view>
   </view>
 

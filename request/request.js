@@ -3,6 +3,10 @@ let baseURL = 'http://39.99.133.31:8080/';
 // let baseURL = 'http://120.55.114.174:8080/';
 // let baseURL = 'http://112.126.103.80:8080/';
 const app = getApp()
+const updateBaseURL = (data) =>{
+  baseURL = 'http://192.168.0.105:8080'
+  console.log(baseURL,'baseURLbaseURLbaseURL')
+}
 const post=(url,params,burl)=>{
   let date = Date.parse(new Date())
   return new Promise((resolve,reject)=>{
@@ -83,5 +87,6 @@ const postFile = (file,Token,userId,type) => {
 
 module.exports={
   post:post,
-  postFile: postFile
+  postFile: postFile,
+  updateBaseURL:updateBaseURL
 }

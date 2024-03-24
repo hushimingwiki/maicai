@@ -17,7 +17,8 @@
     "pages/orderList/orderList",
     "pages/selReceivingAdr/selReceivingAdr",
     "pages/success/success",
-    "pages/balance/balance"
+    "pages/balance/balance",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

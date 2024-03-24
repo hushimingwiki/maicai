@@ -3,9 +3,9 @@
   <view class="box" style="top:{{headerHeight + 12}}px">
     <view class="user-info">
       <view class="left">
-        <image src="../../image/ca1.jpg" mode=""/>
+        <image src="{{userInfo.picture?userInfo.picture:'../../image/ca1.jpg'}}" mode=""/>
         <view class="info">
-          <view class="name">喜德盛</view>
+          <view class="name">{{userInfo.nickname}}</view>
           <view>133****1761</view>
         </view>
       </view>
@@ -20,11 +20,15 @@
         <view>优惠券</view>
       </view>
       <view class="two" bindtap="goScore">
-        <view class="value">0</view>
+        <view class="value">{{qianbao.score}}</view>
         <view>积分</view>
       </view>
+      <view class="two" bindtap="goScore">
+        <view class="value">{{qianbao.commission}}</view>
+        <view>佣金</view>
+      </view>
       <view class="three" bindtap="goBalance">
-        <view class="value">0.00</view>
+        <view class="value">{{qianbao.balance}}</view>
         <view>余额充值(元)</view>
       </view>
     </view>
@@ -49,7 +53,7 @@
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="4">
             <image src="../../image/dd-dpj.png" mode=""/>
-            <view class="name">待评价</view>
+            <view class="name">已完成</view>
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="5">
             <image src="../../image/dd-dfk.png" mode=""/>
@@ -69,7 +73,7 @@
             <image src="../../image/fw-shdz.png" mode=""/>
             <view class="name">收货地址</view>
           </view>
-          <view class="cs" bindtap="goScore">
+          <view class="cs" bindtap="updataUrl">
             <image src="../../image/fw-zj.png" mode=""/>
             <view class="name">足迹</view>
           </view>

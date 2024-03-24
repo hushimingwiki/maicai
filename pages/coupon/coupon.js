@@ -24,7 +24,8 @@ Page({
     this.getCouponList()
   },
   checkCoupon(e) {
-    if (this.data.totalPrice > 0) {
+    var itemm = e.currentTarget.dataset.item
+    if ((this.data.shopId == itemm.shop_id || itemm.shop_id == 0) && (this.data.totalPrice >= itemm.full_price) && (itemm.expire == 0)) {
       let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
       let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
       prevPage.setData({

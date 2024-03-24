@@ -74,6 +74,41 @@
   width: 100%;
   background: linear-gradient(175deg, #56ab2f, #f9fff3);
   z-index: 999;
+  .zzz{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 24rpx;
+    image{
+      width: 42rpx;
+      height: 42rpx;
+      margin-left: 24rpx;
+    }
+    .wz{
+      margin: 0 14rpx;
+      font-size: 32rpx;
+      font-weight: bold;
+      overflow: hidden; 
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+      max-width: 200rpx;
+    }
+    .zd{
+      // margin: 0 14rpx;
+    }
+
+    .arrow-bottom {
+      width: 0;   
+      height: 0;   
+      border-left: 5px solid transparent;  /* 左边框的宽 */  
+      border-right: 5px solid transparent; /* 右边框的宽 */  
+      border-top: 5px solid #ffffff; /* 下边框的长度|高,以及背景色 */  
+      font-size: 0;  
+      line-height: 0; 
+    }
+
+  }
 }
 .scrollarea {
   background-color: rgb(250, 244, 244);

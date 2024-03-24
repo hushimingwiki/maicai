@@ -19,11 +19,11 @@
 
       <view class="product-title jus-b">
         <view style="color:#777777">{{item.shipTime}}</view>
-        <text class="red" wx:if="{{item.order_status==1}}">待支付</text>
-        <text class="red" wx:if="{{item.order_status==2}}">待发货</text>
-        <text class="red" wx:if="{{item.order_status==3}}">待签收</text>
-        <text class="red" wx:if="{{item.order_status==4}}">已完成</text>
-        <text class="red" wx:if="{{item.order_status==5}}">已取消</text>
+        <text class="red" wx:if="{{item.order_status==0}}">待支付</text>
+        <text class="red" wx:if="{{item.order_status==1}}">待发货</text>
+        <text class="red" wx:if="{{item.order_status==2}}">待签收</text>
+        <text class="red" wx:if="{{item.order_status==3}}">已完成</text>
+        <text class="red" wx:if="{{item.order_status==4}}">已取消</text>
       </view>
       <view class="product-ordernumber">
         订单编号：{{item.order_number}}

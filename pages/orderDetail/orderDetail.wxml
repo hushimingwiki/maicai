@@ -1,0 +1,121 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="">
+  <view class="order">
+    <view class="status">
+      <span wx:if="{{data.order_status==0}}">待支付</span>
+			<span wx:if="{{data.order_status==1}}">待发货</span>
+			<span wx:if="{{data.order_status==2}}">待签收</span>
+			<span wx:if="{{data.order_status==3}}">已完成</span>
+			<span wx:if="{{data.order_status==4}}">已取消</span>
+    </view>
+    <view class="details" wx:if="{{data.order_status == 0}}">
+      <view>订单未支付，10分钟自动取消</view>
+    </view>
+    <view class="details" wx:if="{{data.order_status == 1}}">
+      <view>商家配货中</view>
+    </view>
+    <view class="details" wx:if="{{data.order_status == 2}}">
+      <view>货物配送中，请保持电话通畅</view>
+    </view>
+    <view class="details" wx:if="{{data.order_status == 3}}">
+      <view>订单已完成</view>
+    </view>
+    <view class="details" wx:if="{{data.order_status == 4}}">
+      <view>订单已取消</view>
+    </view>
+  </view>
+
+	<view class="address bgw">
+		<view class="dizhi">
+			<view>
+        <view class="flex">
+					<text class="left">收货地址：</text>
+					<text>{{data.orderReceiver.detail_address}}</text>
+				</view>
+				<view class="flex address-name">
+					<!-- <text class="left">:</text> -->
+					{{data.orderReceiver.name}}<text>{{data.orderReceiver.phone_number}}</text>
+				</view>
+				
+			</view>
+		</view>
+		<!-- <image class="redandblue" mode="widthFix" src="https://www.dnfc888.com/assets/dannuo/redandblue.png"></image> -->
+	</view>
+
+	<view class="list bgw">
+		<view class="content" wx:for="{{data.orderItems}}" wx:key="index" wx:for-item="itemmm" wx:for-index='indexxx' >
+      <image mode="aspectFill" src="{{itemmm.picture}}" class="product-img"></image>
+      <view class="xinxi">
+        <view>{{itemmm.name}}</view>
+        <view class="xzh">数量:{{itemmm.quantity}}</view>
+        <view class="xzh">金额:{{itemmm.price}}</view>
+      </view>
+		</view>
+	</view>
+
+	<view class="bgw detail">
+		<view wx:if="{{data.order_status==2 || data.order_status==3}}">
+			<text>配送服务：</text>
+			<text wx:if="{{data.shipment_type == 0}}">自取</text>
+			<text wx:if="{{data.shipment_type == 1}}">骑士</text>
+			<text wx:if="{{data.shipment_type == 2}}">快递</text>
+		</view>
+		<!-- <view wx:if="{{data.shipNumber!='' && (data.flag==3 || data.flag==4)}}">
+			<text>物流单号：</text>
+			<text>{{data.shipNumber}}</text>
+		</view> -->
+		<view class="order_status">
+			<text>支付状态：</text>
+      <span wx:if="{{data.order_status==0}}">待支付</span>
+			<span wx:if="{{data.order_status==1}}">待发货</span>
+			<span wx:if="{{data.order_status==2}}">待签收</span>
+			<span wx:if="{{data.order_status==3}}">已完成</span>
+			<span wx:if="{{data.order_status==4}}">已取消</span>
+		</view>
+		<!-- <view>
+      <text>订单信息：</text>
+      <text>餐帮物流</text>
+    </view> -->
+		<view>
+			<text>订单编号：</text>
+			<text bindtap="copyOrderNumber" data-value="{{data.order_number}}">{{data.order_number}}<text class="copy" >复制</text></text>
+		</view>
+		<view>
+			<text>下单时间：</text>
+			<text>{{data.create_time}}</text>
+		</view>
+		
+		<!-- <view bindtap="goCheckPayRes" data-obj="{{data.orderPayRes}}">
+			<text>支付信息</text>
+			<text style="color:blue;text-decoration: underline">查看</text>
+		</view> -->
+		
+	</view>
+
+	<view class="total bgw">
+		<view class="jus-b">
+			<text>商品总额：</text>
+			<text class="red">￥{{data.total_price}}</text>
+		</view>
+
+		<view class="jus-b">
+			<text>配送费：</text>
+			<text class="red">￥{{data.freight_price}}</text>
+		</view>
+		
+		<view class="jus-b">
+			实付金额：<text class="red">￥{{data.order_status == 0?'0':data.pay_price}}</text>
+		</view>
+	</view>
+
+	<view class="btn-group ">
+		<view class="group bgw flex-end" wx:if="{{data.flag!=4}}">
+			<view class="btn " bindtap="checkWuliu" wx:if="{{(data.order_status==1)&&(data.shipNumber!='')}}">查看物流</view>
+			<view class="btn " bindtap="cancelOrder" wx:if="{{data.order_status==0}}">取消订单</view>
+			<view class="btn danger" bindtap="buyAgain" wx:if="{{data.order_status==4}}">再次购买</view>
+			<view class="btn danger" bindtap="goPay" wx:if="{{data.order_status==0}}">立即支付</view>
+			<view class="btn danger" bindtap="confirmOrder" wx:if="{{data.order_status==2 || data.order_status==3}}">确认收货</view>
+			<!-- <view class="btn danger" bindtap="afterSale" wx:if="{{data.flag==4}}">申请售后</view> -->
+		</view>
+	</view>
+</view>

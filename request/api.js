@@ -1,14 +1,23 @@
 import { post, postFile } from './request.js'
 
-
+///pay/recharge_notifytest  测似接口
+// export const notifytest = (params) => post('pay/recharge_notifytest',params);
+///pay/pay_notifytest
+export const payNotifytest = (params) => post('pay/pay_notifytest',params);
 // 微信登陆
 export const userLogin = (params) => post('account/login',params);
  
 // 微信支付Pay/WXPay(int UserId, int Type, String OpenId, String OrderNumber)
 export const WXPay = (params) => post('pay/wx_pay', params);
 
+//获取用户钱包user_wallet/get
+export const wallet = (params) => post('user_wallet/get',params);
+
 //获取用户信息/user/get
 export const getUserInfo = (params) => post('user/get', params);
+
+//y余额充值pay/wx_recharge
+export const recharge = (params) => post('pay/wx_recharge',params);
 
 //轮播图
 export const bannerList = (params) => post('banner/list',params);
@@ -59,3 +68,13 @@ export const cancelOrder = (params) => post('order/cancel',params);
 export const confirmReceipt = (params) => post('order/confirm_receipt',params);
 //订单列表
 export const orderList = (params) => post('order/list',params);
+//取消订单/order/cancel
+export const orderCancel = (params) => post('order/cancel',params);
+////order/confirm_receipt确认收货
+
+export const orderConfirm = (params) => post('order/confirm_receipt',params);
+///order/get_freight_price获取运费
+
+export const orderGetFreightPrice = (params) => post('order/get_freight_price',params);
+
+

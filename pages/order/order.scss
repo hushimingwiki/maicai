@@ -127,10 +127,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  font-size: 24rpx;
   .price {
     text{
-      margin: 0 24rpx;
+      margin: 0 24rpx 0 0;
       color: #EA0000;
       font-size: 36rpx;
     }

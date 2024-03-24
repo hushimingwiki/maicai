@@ -10,11 +10,14 @@ Page({
     shopList:[],
     headerHeight:'',
     allShopDetails:null,
-    klqCoupon:[]
+    klqCoupon:[],
+    adrDetails: null,
+    station:null
   },
   onLoad: function () {
     this.setData({
-      headerHeight:app.globalData.titleHeight
+      headerHeight:app.globalData.titleHeight,
+      capsuleObj:app.globalData.capsuleObj
     })
     // console.log(this.data.headerHeight)
     // console.log('globalData',app.globalData)
@@ -28,7 +31,22 @@ Page({
     this.getReceiveCouponList()
     
   },
+ 
+ 
+  goCheckAdr(){
+    wx.navigateTo({
+      url: '../adrList/adrList?isCheckAdr=0&isIndex=0'
+    })
+  },
+  getAdrFjZzz(){
+    console.log(this.data.adrDetails)
+    this.setData({
+      adrDetails:this.data.adrDetails
+    })
+    this.getZuijinStation()
+  },
   getZuijinStation(){
+    var sdata = this.data.adrDetails
     console.log(app.globalData,'app.globalData')
     console.log(app.globalData.location,'app.globalData.location')
     console.log(app.globalData.location.location,'app.globalData.location.location')
@@ -48,12 +66,16 @@ Page({
       console.log(app.globalData.location,'成功获取经纬度并获取中转站')
       
       zuijinStation({
-        province:app.globalData.location.address_component.province,
-        city:app.globalData.location.address_component.city,
-        district:app.globalData.location.address_component.district,
-        longitude:app.globalData.location.location.lng,
-        latitude:app.globalData.location.location.lat
+        province:sdata ? sdata.province : app.globalData.location.address_component.province,
+        city:sdata ? sdata.city : app.globalData.location.address_component.city,
+        district:sdata ? sdata.district : app.globalData.location.address_component.district,
+        longitude:sdata ? sdata.longitude : app.globalData.location.location.lng,
+        latitude:sdata ? sdata.latitude : app.globalData.location.location.lat
       }).then(res=>{
+        console.log(res,'res')
+        this.setData({
+          station:res.data
+        })
         app.globalData.zzId = res.data.transfer_station_id
         this.getShopList(res.data.transfer_station_id)
       })

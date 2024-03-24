@@ -30,6 +30,10 @@
         .name{
           font-size: 32rpx;
           font-weight: bold;
+          width: 400rpx;
+          overflow: hidden; 
+          white-space: nowrap; 
+          text-overflow: ellipsis;
         }
       }
       image{
@@ -51,6 +55,7 @@
     display: flex;
     justify-content: space-between;
     padding: 36rpx 0;
+    font-size: 24rpx;
     .one,.two,.three{
       width: 30%;
       text-align: center;

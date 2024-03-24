@@ -1,4 +1,8 @@
-// pages/my/my.js
+// pages/my/my.js  /user_wallet/get
+import {
+  wallet,
+} from '../../request/api.js'
+import { updateBaseURL } from '../../request/request.js'
 const app = getApp()
 Page({
 
@@ -6,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    qianbao:null,
+    userInfo:null
   },
 
   /**
@@ -14,7 +19,21 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      headerHeight:app.globalData.titleHeight
+      headerHeight:app.globalData.titleHeight,
+      userInfo:app.globalData.userInfo
+    })
+    
+    this.getWallet()
+  },
+  updataUrl(){
+    updateBaseURL()
+  },
+  getWallet(){
+    wallet().then(res=>{
+      app.globalData.wallet = res.data
+      this.setData({
+        qianbao:res.data,
+      })
     })
   },
   goOrderList(e){

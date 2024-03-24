@@ -3,7 +3,9 @@ const app = getApp()
 import {
   addressList,
   WXPay,
-  addOrder
+  addOrder,
+  payNotifytest,
+  orderGetFreightPrice
 } from '../../request/api.js'
 Page({
 
@@ -22,7 +24,9 @@ Page({
     multiIndex: [0, 0, 0],
     cartShop: null,
     couponDetails: null,
-    cCafterList: null
+    cCafterList: null,
+    Yunfei:0,
+    couponPrice:0
   },
 
   /**
@@ -73,6 +77,35 @@ Page({
       cCafterList: afterList
     })
     this.getAddressList()
+    
+  },
+  //orderGetFreightPrice
+  getYunfei(){
+    function padZero(number) {
+      return number < 10 ? '0' + number : number.toString();
+    }
+     
+    // 使用示例
+    var date = new Date();
+    var tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+    var year = tomorrow.getFullYear();
+    var month = padZero(tomorrow.getMonth() + 1);
+    var day = padZero(tomorrow.getDate());
+     
+    var formattedDate = year + '-' + month + '-' + day;
+    orderGetFreightPrice({
+      user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
+      transfer_station_id: app.globalData.zzId, //中转站 自提点id 如果自取一定需要
+      delivery_type: '1', //配送类型 0立即配送 1预约配送
+      appointment_delivery_time: formattedDate + ' ' + this.data.multiArray[1][this.data.multiIndex[1]], //预约配送时间 自取时间
+      data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
+    }).then(res=>{
+      console.log(res.data,'运费')
+      this.setData({
+        Yunfei:res.data[0],
+        totalPrice:(Number(res.data[0]) + Number(this.data.totalPrice)).toFixed(2),
+      })
+    })
   },
   createOrder() {
     // var date = new Date().toLocaleDateString().replace(/\//g, '-')
@@ -103,73 +136,46 @@ Page({
     }).then(res => {
       if (res.code != 200) {
         wx.showToast({
-          title: '创建订单失败',
+          title: res.msg,
+          icon:'none'
         })
       } else {
-        this.wxPay(res.data[0].pay_order_number)
+        // this.wxPayTest(res.data[0].pay_order_number)
+        app.wxPay(res.data[0].pay_order_number)
       }
     })
   },
-  //微信支付
-  wxPay(e) {
-    WXPay({
+  //test订单生成
+  wxPayTest(e){
+    payNotifytest({
       pay_order_number: e,
-      multiple_order_prompt: 0,
-      openid:app.globalData.userInfo.openid
-    }).then(res => {
-      if (res.code == 200) {
-        wx.requestPayment({
-          timeStamp: res.data.timeStamp,
-          nonceStr: res.data.nonceStr,
-          package: res.data.packageVal,
-          signType: res.data.signType,
-          paySign: res.data.paySign,
-          success: res => {
-            // wx.requestSubscribeMessage({
-            //   tmplIds: ['veHPQugnhfu3a7IlDPW49R96R6Qsz6crK0oAV2K5uY4', 'jLY31VL2yeFgkwrVxguV8L5XTjUkGoVkqYiB1pBFDgg'],
-            //   success(res) {
-            //     console.log(res)
-            //   }
-            // })
-            wx.redirectTo({
-              url: '/pages/success/success?type=1',
-            })
-          },fail (err) {
-            console.log('pay fail', err)
-            wx.showToast({
-              title: '订单已生产',
-            })
-            let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
-            let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
-            wx.navigateBack({
-              delta: 1,
-              success: function (e) { // 成功的回调
-                if (prevPage == undefined || prevPage == null) return;
-                prevPage.getShopCartList(); // 调用A页面的方法, 并将值传过去
-              }
-            }); //关闭当前页面，返回上一个页面
-          }
-        })
-      } else {
-        app.error(res.data)
-      }
+    }).then(res=>{
+      wx.redirectTo({
+        url: '/pages/success/success?type=1',
+      })
     })
   },
+
   couponAfterPrice() {
     var dataa = this.data.cCafterList
     dataa.forEach(item => {
       item.user_coupon_id = this.data.couponDetails.user_coupon_id
     })
     console.log(dataa, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    console.log(this.data.originPrice, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    console.log(this.data.couponDetails.price, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    console.log(this.data.Yunfei, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+
     this.setData({
-      totalPrice: this.data.originPrice - Number(this.data.couponDetails.price),
-      cCafterList: dataa
+      totalPrice: (Number(this.data.originPrice) - Number(this.data.couponDetails.price) + Number(this.data.Yunfei)).toFixed(2),
+      cCafterList: dataa,
+      couponPrice: this.data.couponDetails.price
     })
   },
   goCoupon() {
     console.log(this.data.cartShop[0].standardProductUnit.shop_id, 'this.data.cartShop[0].standardProductUnit.shop_id')
     wx.navigateTo({
-      url: '../coupon/coupon?price=' + this.data.totalPrice + '&shopId=' + this.data.cartShop[0].standardProductUnit.shop_id
+      url: '../coupon/coupon?price=' + this.data.originPrice + '&shopId=' + this.data.cartShop[0].standardProductUnit.shop_id
     })
   },
   bindMultiPickerChange: function (e) {
@@ -202,6 +208,7 @@ Page({
       this.setData({
         adrDetails: newlist[0]
       })
+      this.getYunfei()
     })
   },
   goCheckAdr() {

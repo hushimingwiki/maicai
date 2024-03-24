@@ -44,7 +44,12 @@
   </view>
   <view class="jiesuan" style="height: {{tabbarHeight}}px;">
     <view>共2件，</view>
-    <view class="price">合计:<text>￥{{totalPrice}}</text></view>
+    <view class="price">
+      合计:<text>￥{{totalPrice}}</text>
+      <view wx:if="{{couponPrice>0}}">优惠券:-{{couponPrice}}</view>
+      <view>含运费:{{Yunfei}}</view>
+    </view>
+    
     <view class="qjs" bindtap="createOrder">立即支付</view>
   </view>
 </view>

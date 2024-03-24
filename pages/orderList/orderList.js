@@ -61,12 +61,12 @@ Page({
   },
   //获取列表
   getList(){
-    console.log('获取列表')
+    console.log(this.data.tabIndex,'1233333333333')
     app.loading()
     orderList({
       page: this.data.page,
       page_size: 5,
-      order_status:this.data.tabIndex,
+      order_status:this.data.tabIndex==0?"":this.data.tabIndex-1,
     }).then(res=>{
       if(res.code==200){
         this.setData({

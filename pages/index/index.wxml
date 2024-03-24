@@ -1,6 +1,12 @@
 <!--index.wxml-->
 <view class="taptitle" style="height: {{headerHeight + 40}}px;">
-  <view></view>
+  <view class="zzz" style="height: {{capsuleObj.height}}px;margin-top: {{capsuleObj.top}}px;" bindtap="goCheckAdr">
+    <image src="../../image/dingwei-w.png" mode=""/>
+    <text class="wz" wx:if="{{adrDetails}}">{{adrDetails.detail_address}}</text>
+    <text class="zd" wx:if="{{station}}">{{station.name}}</text>
+    <text wx:if="{{!station}}">切换中转站</text>
+    <view class="arrow-bottom"></view>
+  </view>
   <input class="search" placeholder="买菜就上买菜小程序" />
 </view>
 <scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
