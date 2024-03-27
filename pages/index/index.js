@@ -12,24 +12,11 @@ Page({
     allShopDetails:null,
     klqCoupon:[],
     adrDetails: null,
-    station:null
+    station:null,
+    noInventory:null
   },
   onLoad: function () {
-    this.setData({
-      headerHeight:app.globalData.titleHeight,
-      capsuleObj:app.globalData.capsuleObj
-    })
-    // console.log(this.data.headerHeight)
-    // console.log('globalData',app.globalData)
-    // console.log('globalData',app.globalData.adrInfo)
-    // console.log('globalData',app.globalData.capsuleObj)
-    setTimeout(() => {
-      this.getZuijinStation()
-    }, 500)
-    this.getBannerList()
-    
-    this.getReceiveCouponList()
-    
+
   },
  
  
@@ -56,9 +43,9 @@ Page({
         resolve()
       }else{
         console.log("没有经纬度，0.5s后再次执行")
-        setTimeout(() => {
-          this.getZuijinStation()
-        }, 500)
+        // setTimeout(() => {
+        //   this.getZuijinStation()
+        // }, 500)
       }
     })
     
@@ -189,4 +176,88 @@ Page({
       }
     })
   },
+  // authClose(){
+  //   setTimeout(() => {
+  //     if(app.globalData.location && this.data.noInventory){
+  //       this.goChoose()
+  //     }
+  //   }, 1000);
+  // },
+  getRequest(){
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    if(app.globalData.location){
+      this.getBannerList()
+      this.getZuijinStation()
+      this.getReceiveCouponList()
+      wx.hideLoading()
+    }else{
+      setTimeout(res=>{
+        this.getRequest()
+      },1000)
+    }
+    
+  },
+  onShow() {
+    var that = this
+    that.setData({
+      headerHeight:app.globalData.titleHeight,
+      capsuleObj:app.globalData.capsuleObj
+    })
+    // console.log(this.data.headerHeight)
+    // console.log('globalData',app.globalData)
+    // console.log('globalData',app.globalData.adrInfo)
+    // console.log('globalData',app.globalData.capsuleObj)
+    
+    // setTimeout(() => {
+    //   this.getBannerList()
+    //   this.getZuijinStation()
+    //   this.getReceiveCouponList()
+    // }, 500)
+    // app.isLocation()
+    
+ 
+    wx.getSetting({
+      success:res=>{
+        if (!res.authSetting['scope.userLocation']) {
+          console.log('没有开启定位')
+          console.log(that.data.noInventory,1)
+          that.setData({
+            noInventory:true
+          })
+          app.isLocation()
+          console.log(that.data.noInventory,2)
+        }else{
+          console.log('已开启定位')
+          that.setData({
+            noInventory:false
+          })
+          that.getRequest()
+          // app.isLocation()
+        }
+      }
+    })
+    
+    return
+    console.log(app.globalData.location,'app.globalData.location1')
+    if(!app.globalData.location){
+      console.log(app.globalData.location,'app.globalData.location2')
+      this.setData({
+        noInventory:true
+      })
+      // app.isLocation()
+    }else{
+      this.getBannerList()
+      this.getZuijinStation()
+      this.getReceiveCouponList()
+    }
+    // setTimeout(res=>{
+    //   console.log(app.globalData.location,'app.globalData.location8')
+    //   this.setData({
+    //     noInventory:!app.globalData.location
+    //   })
+    // },1000)
+    
+  }
 })

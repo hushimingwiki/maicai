@@ -154,3 +154,4 @@
       </grid-view>
   </scroll-view>
 </scroll-view>
+<locationAuth bindclose="authClose" wx:if="{{noInventory}}" id="locationAuth" />

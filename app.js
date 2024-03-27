@@ -34,7 +34,7 @@ App({
       await this.getCode()
       await this.getUserInfo()
     }
-    this.getLocation()
+    // this.getLocation()
   },
   async getUserInfo() {
     let that = this
@@ -99,6 +99,7 @@ App({
   },
   // 确认有没有定位权限
   isLocation() {
+    console.log('isLocation3')
     wx.getSetting({
       success: res => {
         //如果没有定位权限
@@ -110,12 +111,15 @@ App({
           Dialog.show()
           this.getLocation()
         } else {
+          console.log(this.globalData.location,'location4')
           Dialog.cancel()
           if (this.globalData.location) {
             return
           }
           this.getLocation()
         }
+      },fail:res=>{
+        console.log(res,'resssssssssssssss')
       }
     })
   },
@@ -176,7 +180,7 @@ App({
       if (this.globalData.location) {
         resolve()
       }
-
+console.log(13)
       wx.getLocation({
         success: res => {
           console.log(res, 'ressssssss')
@@ -207,12 +211,12 @@ App({
           console.log(res, '错误原因')
           wx.getSetting({
             success: res => {
-              // console.log(res)
+              console.log(res)
               //如果没有定位权限
               if (!res.authSetting['scope.userLocation'] && !this.globalData.location) {
-                // Dialog.show()
+                Dialog.show()
               } else {
-                // Dialog.cancel()
+                Dialog.cancel()
                 clearTimeout(modal)
                 var modal = setTimeout(() => {
                   wx.showModal({
@@ -289,7 +293,7 @@ App({
     titleHeight: '',
     tabbarHeight: '',
     statusBarHeight: '',
-    location: '',
+    location: null,
     userAuth: null,
     wallet:null
   }

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "locationAuth":"../../components/locationAuth/locationAuth"
   },
   "navigationStyle":"custom"
 }
