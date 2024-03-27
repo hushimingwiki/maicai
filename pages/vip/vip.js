@@ -1,4 +1,8 @@
-// pages/vip/vip.js
+// 
+import {
+  recharge
+} from '../../request/api.js'
+
 const app = getApp()
 Page({
 
@@ -6,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    headerHeight:''
+    headerHeight:'',
+    isBig:0
   },
 
   /**
@@ -17,7 +22,45 @@ Page({
       headerHeight:app.globalData.titleHeight
     })
   },
-
+  goPay(e){
+    console.log(this.data.price)
+    recharge({
+      type:'1',
+      flag:this.data.isBig,
+      price:'',
+      openid:app.globalData.userInfo.openid
+    }).then(res=>{
+      console.log(res)
+      if(res.code == 200){
+        wx.requestPayment({
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.packageVal,
+          signType: res.data.signType,
+          paySign: res.data.paySign,
+          success: res => {
+            this.getWallet()
+            wx.redirectTo({
+              url: '/pages/success/success?type=1',
+            })
+          },fail (err) {
+            console.log('pay fail', err)
+            wx.showToast({
+              title: '取消支付',
+              icon:'none'
+            })
+          }
+        })
+      }else {
+        app.error(res.data)
+      }
+    })
+  },
+  checkVipType(e){
+    this.setData({
+      isBig:e.currentTarget.dataset.index
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

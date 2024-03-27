@@ -74,7 +74,7 @@ Page({
     var that = this
     // return
     if(e.detail.value.name && e.detail.value.phone_number && e.detail.value.address && e.detail.value.detail_address){
-      const phoneReg = /^1[34578]\d{9}/;
+      const phoneReg = /^1[345789]\d{9}/;
       if(!phoneReg.test(e.detail.value.phone_number)){
         wx.showToast({
           title: '请填正确手机号',

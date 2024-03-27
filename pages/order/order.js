@@ -23,7 +23,9 @@ Page({
     ],
     multiIndex: [0, 0, 0],
     cartShop: null,
-    couponDetails: null,
+    couponDetails: {
+      price:0
+    },
     cCafterList: null,
     Yunfei:0,
     couponPrice:0
@@ -103,7 +105,7 @@ Page({
       console.log(res.data,'运费')
       this.setData({
         Yunfei:res.data[0],
-        totalPrice:(Number(res.data[0]) + Number(this.data.totalPrice)).toFixed(2),
+        totalPrice:(Number(res.data[0]) + Number(this.data.originPrice) + Number(this.data.couponDetails.price)).toFixed(2),
       })
     })
   },

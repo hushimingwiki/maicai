@@ -29,7 +29,7 @@
             <view class="two">有效期至 {{item.end_time}}</view>
             <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
           </view>
-          <view class="go-use {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'gray'}}">去使用</view>
+          <view class="go-use {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'gray'}}" bindtap="goFenlei">去使用</view>
         </view>
       </view>
     </view>
@@ -49,7 +49,7 @@
             <view class="two">有效期至 {{item.end_time}}</view>
             <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
           </view>
-          <view class="go-use">去使用</view>
+          <view class="go-use" bindtap="goFenlei">去使用</view>
         </view>
       </view>
     </view>

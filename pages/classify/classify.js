@@ -36,7 +36,8 @@ Page({
     isCheckTwo:'0',
     isCheckThree:'0',
     shopList:[],
-    activeIndex:0
+    activeIndex:0,
+    flId:null
   },
 
   changeAllOpen(e){
@@ -82,7 +83,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
+    var that = this
+    wx.getStorage({
+      key: 'param',
+      success: function(res) {
+        console.log(res.data,'res.data')
+        that.setData({
+          flId:res.data
+        })
+        that.getCategoryList()
+      }
+    });
     wx.getSystemInfo({
       success(res) {
         that.setData({
@@ -96,12 +107,13 @@ Page({
       statusBarHeight:app.globalData.statusBarHeight,
       capsuleObj:app.globalData.capsuleObj,
     })
-    this.getCategoryList()
+    
   },
   // 获取一级分类列表
   getCategoryList(){
+    console.log('``````````````````',this.data.flId)
     categoryList(
-      {parent_id:0}
+      {parent_id:this.data.flId?this.data.flId:0}
     ).then( res => {
       console.log(res,'分类列表')
       this.setData({

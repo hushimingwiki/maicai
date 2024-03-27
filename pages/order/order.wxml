@@ -36,7 +36,7 @@
   <view class="qita">
     <view class="yhq" bindtap="goCoupon">
       <text class="name">优惠券</text>
-      <view class="quan"><text>{{couponDetails?couponDetails.name:'选择优惠券'}}</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+      <view class="quan"><text>{{couponDetails.price>0?couponDetails.name:'选择优惠券'}}</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
     </view>
     <view class="paytype">
       <text>支付方式</text><text>微信支付</text>

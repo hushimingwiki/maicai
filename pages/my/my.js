@@ -46,6 +46,11 @@ Page({
       url: '../coupon/coupon'
     })
   },
+  goVip(){
+    wx.navigateTo({
+      url: '../vip/vip'
+    })
+  },
   goBalance(){
     wx.navigateTo({
       url: '../balance/balance'

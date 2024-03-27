@@ -2,7 +2,7 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp()
 import {
-  bannerList, shopList,addShopCart,shopDetails,receiveCouponList,addCoupon,zuijinStation
+  bannerList, shopList,addShopCart,shopDetails,receiveCouponList,addCoupon,zuijinStation,categoryList
 } from '../../request/api.js'
 Page({
   data: {
@@ -12,7 +12,8 @@ Page({
     allShopDetails:null,
     klqCoupon:[],
     adrDetails: null,
-    station:null
+    station:null,
+    fenLeiList:null
   },
   onLoad: function () {
     this.setData({
@@ -27,7 +28,7 @@ Page({
       this.getZuijinStation()
     }, 500)
     this.getBannerList()
-    
+    this.getFenlei()
     this.getReceiveCouponList()
     
   },
@@ -37,6 +38,27 @@ Page({
     wx.navigateTo({
       url: '../adrList/adrList?isCheckAdr=0&isIndex=0'
     })
+  },
+  getFenlei(){
+    console.log('123')
+    categoryList({
+      parent_id:0
+    }).then(res=>{
+      this.setData({
+        fenLeiList:res.data
+      })
+    })
+  },
+  goFenlei(e){
+    wx.setStorage({
+      key: 'param',
+      data: e.currentTarget.dataset.id,
+      success: function() {
+        wx.switchTab({
+          url: '../classify/classify'
+        });
+      }
+    });
   },
   getAdrFjZzz(){
     console.log(this.data.adrDetails)

@@ -35,6 +35,7 @@ Page({
         "adrDetails": e.currentTarget.dataset.item
       });
       if(this.data.isIndex == 0){
+        console.log(0)
         wx.navigateBack({
           delta: 1,
           success: function (e) { // 成功的回调
@@ -43,7 +44,14 @@ Page({
           }
         })
       }else{
-        wx.navigateBack()
+        console.log(1)
+        wx.navigateBack({
+          delta: 1,
+          success: function (e) { // 成功的回调
+            if (prevPage == undefined || prevPage == null) return;
+            prevPage.getYunfei(); // 调用A页面的方法, 并将值传过去
+          }
+        })
       }
       
 

@@ -17,46 +17,11 @@
   </swiper>
 
   <view class="fenlei">
-    <view class="flss">
-      <image src="../../image/dh-1.png" mode="" />
+    <view class="flss" wx:for="{{fenLeiList}}" wx:key="index" bindtap="goFenlei" data-id="{{item.category_id}}">
+      <image src="{{item.picture}}" mode="" />
       <view>蔬菜豆菇</view>
     </view>
-    <view class="flss">
-      <image src="../../image/dh-2.png" mode="" />
-      <view>新鲜水果</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-3.png" mode="" />
-      <view>鲜肉蛋禽</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-4.png" mode="" />
-      <view>水产海鲜</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-5.png" mode="" />
-      <view>乳品烘焙</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-6.png" mode="" />
-      <view>方便速食</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-7.png" mode="" />
-      <view>粮油调味</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-8.png" mode="" />
-      <view>零食酒水</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-9.png" mode="" />
-      <view>生活超市</view>
-    </view>
-    <view class="flss">
-      <image src="../../image/dh-10.png" mode="" />
-      <view>火锅到家</view>
-    </view>
+    
   </view>
   <view class="receive-coupon" wx:if="{{klqCoupon.length > 0}}">
     <view class="title">388元券包 <text>新人专享</text></view>
