@@ -33,6 +33,11 @@ Page({
       myYe:app.globalData.wallet.balance
     })
   },
+  viewBalanceDetail(){
+    wx.navigateTo({
+      url: '../balanceDetail/balanceDetail',
+    })
+  },
   getWallet(){
     wallet().then(res=>{
       app.globalData.wallet = res.data

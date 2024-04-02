@@ -1,0 +1,9 @@
+<view wx:for="{{dataList}}" wx:key="index" class="list">
+  <view class="one">
+    <view>{{item.note}}</view>
+    <view>{{item.change}}</view>
+  </view>
+  <view class="two">
+    {{item.create_time}}
+  </view>
+</view>

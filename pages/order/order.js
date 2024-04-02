@@ -131,7 +131,7 @@ Page({
     console.log(app.globalData.userInfo,'userinfo')
     addOrder({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
-      transfer_station_id: app.globalData.zzId, //中转站 自提点id 如果自取一定需要
+      transfer_station_id: wx.getStorageSync('zzId'), //中转站 自提点id 如果自取一定需要
       delivery_type: '1', //配送类型 0立即配送 1预约配送
       appointment_delivery_time: formattedDate + ' ' + this.data.multiArray[1][this.data.multiIndex[1]], //预约配送时间 自取时间
       data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]

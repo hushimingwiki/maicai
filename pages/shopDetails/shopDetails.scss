@@ -128,17 +128,19 @@
       }
       .time{
         color: #888888;
+        font-size: 24rpx;
       }
     }
   }
   .three {
-    margin: 24rpx 0 0 77rpx;
+    margin: 24rpx 0 0 0rpx;
   }
   .four {
-    margin: 24rpx 0 0 77rpx;
+    margin: 24rpx 0 0 0rpx;
     image{
       width: 176rpx;
       height: 176rpx;
+      margin:0 21rpx;
     }
   }
 }
@@ -196,6 +198,7 @@
   background-color: #ffffff;
   display: flex;
   align-items: center;
+  padding: 14rpx 0;
   .caozuo {
     display: flex;
     align-items: center;

@@ -115,6 +115,7 @@
 			<view class="btn danger" bindtap="buyAgain" wx:if="{{data.order_status==4}}">再次购买</view>
 			<view class="btn danger" bindtap="goPay" wx:if="{{data.order_status==0}}">立即支付</view>
 			<view class="btn danger" bindtap="confirmOrder" wx:if="{{data.order_status==2 || data.order_status==3}}">确认收货</view>
+      <view class="btn danger" catchtap="goGoodsComment" wx:if="{{data.order_status==3}}">评论商品</view>
 			<!-- <view class="btn danger" bindtap="afterSale" wx:if="{{data.flag==4}}">申请售后</view> -->
 		</view>
 	</view>

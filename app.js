@@ -3,7 +3,8 @@ import Dialog from 'components/locationAuth/window.js'
 import {
   userLogin,
   getUserInfo,
-  WXPay
+  WXPay,
+  shopCarNum
 } from '/request/api.js'
 import QQMapWX from '/utils/qqmap-wx-jssdk.min.js'
 const app = getApp()
@@ -34,7 +35,8 @@ App({
       await this.getCode()
       await this.getUserInfo()
     }
-    this.getLocation()
+    // this.getLocation()
+   
   },
   async getUserInfo() {
     let that = this
@@ -61,8 +63,19 @@ App({
       if (res.code == 200) {
         this.globalData.userInfo = res.data
         this.globalData.userAuth = true
+        this.getShopCarNum()
         // that.InitJG()
       }
+    })
+  },
+  getShopCarNum(){
+    shopCarNum().then(res=>{
+      console.log(res.data,'购物车数量')
+      wx.setStorageSync('hd', res.data)
+      wx.setTabBarBadge({
+        index: 2,
+        text: res.data
+      });
     })
   },
   getCode() {
@@ -99,6 +112,7 @@ App({
   },
   // 确认有没有定位权限
   isLocation() {
+    console.log('isLocation3')
     wx.getSetting({
       success: res => {
         //如果没有定位权限
@@ -110,12 +124,15 @@ App({
           Dialog.show()
           this.getLocation()
         } else {
+          console.log(this.globalData.location,'location4')
           Dialog.cancel()
           if (this.globalData.location) {
             return
           }
           this.getLocation()
         }
+      },fail:res=>{
+        console.log(res,'resssssssssssssss')
       }
     })
   },
@@ -176,10 +193,9 @@ App({
       if (this.globalData.location) {
         resolve()
       }
-
       wx.getLocation({
         success: res => {
-          console.log(res, 'ressssssss')
+          console.log(res, 'resssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
           let map = new QQMapWX({
             key: '2T7BZ-YB5AJ-3XFF7-KE66C-J4646-2RFCF'
           })
@@ -188,7 +204,7 @@ App({
 
             location: res ? `${res.latitude+','+res.longitude}` : null,
             success: res => {
-              console.log(res, 'zxc')
+              console.log(res, '这里设置了定位')
               this.globalData.location = res.result
               wx.setStorage({
                 data: res.result,
@@ -207,12 +223,12 @@ App({
           console.log(res, '错误原因')
           wx.getSetting({
             success: res => {
-              // console.log(res)
+              console.log(res)
               //如果没有定位权限
               if (!res.authSetting['scope.userLocation'] && !this.globalData.location) {
-                // Dialog.show()
+                Dialog.show()
               } else {
-                // Dialog.cancel()
+                Dialog.cancel()
                 clearTimeout(modal)
                 var modal = setTimeout(() => {
                   wx.showModal({
@@ -289,7 +305,7 @@ App({
     titleHeight: '',
     tabbarHeight: '',
     statusBarHeight: '',
-    location: '',
+    location: null,
     userAuth: null,
     wallet:null
   }

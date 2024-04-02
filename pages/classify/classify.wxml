@@ -7,7 +7,7 @@
   </view>
 </view>
 
-<scroll-view scroll-x="true">
+<scroll-view scroll-x="true" class="flz" style="top:{{capsuleObj.top+capsuleObj.height}}px">
   <view class="yijifenlei">
     <view class="fenleixq" wx:for="{{categoryList}}" wx:key="item" bindtap="selectFlOne" data-index="{{index}}" data-id="{{item.category_id}}">
       <image src="{{item.picture}}" mode="" class="{{isCheck == index?'image1':'image'}}"/>
@@ -17,10 +17,10 @@
 </scroll-view>
 
 <!-- 内容区域 -->
-<view class="level">
+<view class="level allfenlei" style="top:{{capsuleObj.top+capsuleObj.height}}px;margin-top: 198rpx;">
   <!-- 左边 -->
-  <view class="left-box">
-    <scroll-view scroll-y="true" style="height: {{useHeight*0.91}}px;">
+  <view class="left-box" style="height: {{useHeight*0.75}}px;">
+    <scroll-view scroll-y="true" style="height: {{useHeight*0.75}}px;">
       <block wx:for="{{twoCategoryList}}" wx:key="item">
         <view 
         bindtap="bindSelectLeft" 
@@ -31,7 +31,7 @@
     </scroll-view>
   </view>
   <!-- 右边 -->
-  <view class="right-box" style="height: {{useHeight*0.91}}px;">
+  <view class="right-box" style="height: {{useHeight*0.75}}px;">
     <view class="all-fl" wx:if="{{threeCategoryList.length>=1}}">
       <scroll-view scroll-X enable-flex scroll-with-animation scroll-into-view="tab{{isCheckThree-1}}">
         <view class="scfl">
@@ -41,16 +41,16 @@
         
       </scroll-view>
       
-      <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="../../image/arrow-up-s-line.png" mode=""/>
-      <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="../../image/arrow-up-s-line-d.png" mode=""/>
+      <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="https://api.caiduohui.com:8080/assets/arrow-up-s-line.png" mode=""/>
+      <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/>
     </view>
-    <view class="fl-all-fl" wx:if="{{flAllOpen == 0}}" style="height: {{useHeight*0.95}}px;">
+    <view class="fl-all-fl" wx:if="{{flAllOpen == 0}}" style="height: {{useHeight*0.75}}px;">
       <view class="fl-all-fl-box">
         <view class="fl-all-fl-for" wx:for="{{threeCategoryList}}" wx:key="item" class="fl-xx {{isCheckThree==index?'yes':'no'}}" data-index="{{index}}" 
           data-id="{{item.category_id}}" catchtap="selectFlThree">{{item.name}}</view>
       </view>
     </view>
-    <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.91}}px;" class="fl-content">
+    <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.70}}px;" class="fl-content">
       <view wx:if="{{shopList.length>0}}">
         <view wx:for="{{shopList}}" wx:key="item" class="fl-for-list" bindtap="goDetails" data-details="{{item}}">
           <image src="{{item.picture}}" mode="aspectFill"/>
@@ -63,7 +63,7 @@
             <view class="fl-qian-box">
               <text class="fl-qian">￥</text><text class="fl-price">12{{item.price}}</text><text class="fl-feng">/份</text>
               <view class="gwc-image" catchtap="jrShopCart" data-details="{{item.shop_id}}">
-                <image src="../../image/gwc-green.png" mode=""/>
+                <image src="https://api.caiduohui.com:8080/assets/gwc-green.png" mode=""/>
                 <!-- <view class="hongdian">1</view> -->
               </view>
             </view>

@@ -8,7 +8,7 @@
             <text class="name-phone">{{item.name}} {{item.phone_number}}</text>
           </view>
 
-          <image class="img" src="../../image/xiugai.png" mode="" catchtap="goUpdateAdr" data-adr="{{item}}" />
+          <image class="img" src="https://api.caiduohui.com:8080/assets/xiugai.png" mode="" catchtap="goUpdateAdr" data-adr="{{item}}" />
           <view class="dizhi">{{item.address}}</view>
         </view>
         
@@ -20,7 +20,7 @@
             <text class="name-phone">{{item.name}} {{item.phone_number}}</text>
           </view>
 
-          <image class="img" src="../../image/xiugai.png" mode="" bindtap="goUpdateAdr" data-item="{{item}}" />
+          <image class="img" src="https://api.caiduohui.com:8080/assets/xiugai.png" mode="" bindtap="goUpdateAdr" data-item="{{item}}" />
         </view>
         <view class="two">
           {{item.province}}{{item.city}}{{item.district}}{{item.detail_address}}

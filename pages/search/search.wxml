@@ -1,0 +1,20 @@
+<view class="top">
+  <view class="search">
+    <input class="input" type="text" bindinput="changeContent" value="{{name}}"/>
+    
+    <view class="button" bindtap="modify">搜索</view>
+  </view>
+  <view class="gwc" bindtap="goShopCart">
+    <image src="https://api.caiduohui.com:8080/assets/gwc-lv.png" mode=""/>
+  </view>
+</view>
+<scroll-view class="list" scroll-y bindscrolltolower="nextPage">
+  <view class="shop-list" wx:for="{{shopList}}" wx:key="index">
+    <image class="shop-img" src="{{item.picture}}" mode="aspectFill"/>
+    <view class="shop-info"> 
+      <view class="shop-name">{{item.name}}</view>
+      <view class="vip-price">会员价：￥12</view>
+      <view class="shop-price" catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}"><view>￥<text class="red">{{item.start_price}}</text>/份</view><image src="https://api.caiduohui.com:8080/assets/gwc-lv.png" mode=""/></view>
+    </view>
+  </view>
+</scroll-view>

@@ -11,7 +11,7 @@
   <view class="det-box">
     <view class="one">
       <view class="price">￥19<text>/份</text></view>
-      <view class="wz" wx:if="{{candi}}"><image src="../../image/dingwei.png"></image>{{candi}}</view>
+      <view class="wz" wx:if="{{candi}}"><image src="https://api.caiduohui.com:8080/assets/dingwei.png"></image>{{candi}}</view>
     </view>
     <view class="two">
       {{allShopDetails.name}}
@@ -31,32 +31,32 @@
   <view class="evaluate">
     <view class="one">
       <view class="eva-title"><text>用户评价</text>(1680)</view>
-      <view class="see-all">查看全部 ></view>
+      <view class="see-all" bindtap="goCommentList">查看全部 ></view>
     </view>
     <view class="two">
       <view class="user-info">
         <view class="info">
-          <image src="../../image/dh-5.png" mode=""/>
+          <image src="https://api.caiduohui.com:8080/assets/dh-5.png" mode=""/>
           <view class="info-name">
             <text>CHRIS**in</text>
             <view class="xx">
-              <image src="../../image/xx-1.png" mode=""/>
-              <image src="../../image/xx-1.png" mode=""/>
-              <image src="../../image/xx-1.png" mode=""/>
-              <image src="../../image/xx-1.png" mode=""/>
-              <image src="../../image/xx-2.png" mode=""/>
+              <image src="{{Comment.star >= 1?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{Comment.star >= 2?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{Comment.star >= 3?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{Comment.star >= 4?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{Comment.star >= 5?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
             </view>
            
           </view>
         </view>
-        <view class="time">2024.01.05</view>
+        <view class="time">{{Comment.create_time}}</view>
       </view>
     </view>
     <view class="three">
-      黄瓜很新鲜入手很多，活动力度很大必须囤起来，水分足，没有酸感，大小很合适。
+      {{Comment.content}}
     </view>
     <view class="four">
-      <image src="../../image/sc4.jpg" mode=""/>
+      <image wx:for="{{Comment.pictures}}" src="{{item}}"  wx:key="index" mode=""/>
     </view>
     
   </view>
@@ -73,8 +73,8 @@
   </view>
   <view class="shopcart">
     <view class="caozuo">
-      <view class="cz"><image src="../../image/gouwuche.png" mode=""/><text>购物车</text></view>
-      <view class="cz"><image src="../../image/shoucang-h.png" mode=""/><text>收藏</text></view>
+      <view class="cz" bindtap="goShopCart"><image src="https://api.caiduohui.com:8080/assets/gouwuche.png" mode=""/><text>购物车</text></view>
+      <!-- <view class="cz"><image src="https://api.caiduohui.com:8080/assets/shoucang-h.png" mode=""/><text>收藏</text></view> -->
     </view>
     <view class="gwc" bindtap="jrShopCart">加入购物车</view>
   </view>

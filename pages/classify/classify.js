@@ -3,7 +3,8 @@ import {
   categoryList,
   shopList,
   shopDetails,
-  addShopCart
+  addShopCart,
+  categorySearch,
 } from '../../request/api.js'
 Page({
 
@@ -37,7 +38,9 @@ Page({
     isCheckThree:'0',
     shopList:[],
     activeIndex:0,
-    flId:null
+    flId:null,
+    page:0,
+    pageSize:10
   },
 
   changeAllOpen(e){
@@ -61,6 +64,12 @@ Page({
         quantity:1
       }).then( res => {
         console.log(res,'加入购物车')
+        var hd = wx.getStorageSync('hd')
+        wx.setStorageSync('hd', Number(hd)+1)
+        wx.setTabBarBadge({
+          index: 2,
+          text: (Number(hd)+1).toString()
+        });
         wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
       })
     })  
@@ -83,39 +92,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    wx.getStorage({
-      key: 'param',
-      success: function(res) {
-        console.log(res.data,'res.data')
-        that.setData({
-          flId:res.data
-        })
-        that.getCategoryList()
-      }
-    });
-    wx.getSystemInfo({
-      success(res) {
-        that.setData({
-          useHeight:res.windowHeight
-        })
-      }
-    })
-    console.log(app.globalData.capsuleObj,'app.globalData.capsuleObj')
-    this.setData({
-      headerHeight:app.globalData.titleHeight,
-      statusBarHeight:app.globalData.statusBarHeight,
-      capsuleObj:app.globalData.capsuleObj,
-    })
+
     
   },
   // 获取一级分类列表
   getCategoryList(){
-    console.log('``````````````````',this.data.flId)
+    
     categoryList(
       {parent_id:this.data.flId?this.data.flId:0}
     ).then( res => {
-      console.log(res,'分类列表')
+      console.log(res,'一级分类列表')
       this.setData({
         categoryList:res.data,
       })
@@ -127,7 +113,8 @@ Page({
     var ind = e.currentTarget.dataset.index
     var id = e.currentTarget.dataset.id
     this.setData({
-      isCheck : ind
+      isCheck : ind,
+      shopList:[]
     })
     this.getTwoCategoryList(id)
   },
@@ -149,7 +136,8 @@ Page({
   let index = e.currentTarget.dataset.index;
   let id = e.currentTarget.dataset.id;
   this.setData({
-    isCheckTwo:index
+    isCheckTwo:index,
+    shopList:[]
   })
   this.getThreeCategoryList(id)
  },
@@ -162,7 +150,7 @@ Page({
     this.setData({
       threeCategoryList:res.data,
     })
-    this.getShopList()
+    this.getShopList(e)
   })  
 },
 // 切换三级分类
@@ -176,9 +164,12 @@ selectFlThree(e){
   })
   this.getShopList(id)
 },
-getShopList(){
-  shopList({
-    transfer_station_id:app.globalData.zzId
+getShopList(e){
+  categorySearch({
+    transfer_station_id:app.globalData.zzId,
+    category_3_id:e,
+    page:this.data.page,
+    page_size:this.data.pageSize
   }).then( res => {
     console.log(res,'商品列表')
     this.setData({
@@ -198,7 +189,37 @@ getShopList(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var hd = wx.getStorageSync('hd')
+    wx.setTabBarBadge({
+      index: 2,
+      text: hd.toString()
+    });
+    var that = this
+    wx.getStorage({
+      key: 'param',
+      success: function(res) {
+        console.log(res.data,'res.data')
+        that.setData({
+          flId:res.data
+        })
+        that.getCategoryList()
+      },fail:res=>{
+        that.getCategoryList()
+      }
+    });
+    wx.getSystemInfo({
+      success(res) {
+        that.setData({
+          useHeight:res.windowHeight
+        })
+      }
+    })
+    console.log(app.globalData.capsuleObj,'app.globalData.capsuleObj')
+    this.setData({
+      headerHeight:app.globalData.titleHeight,
+      statusBarHeight:app.globalData.statusBarHeight,
+      capsuleObj:app.globalData.capsuleObj,
+    })
   },
 
   /**

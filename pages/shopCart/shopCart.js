@@ -118,6 +118,12 @@ Page({
     }).then( res => {
       console.log(res,'加入购物车')
       data[index].quantity = Number(xxxx.quantity)+1
+      var hd = wx.getStorageSync('hd')
+      wx.setStorageSync('hd', Number(hd)+1)
+      wx.setTabBarBadge({
+        index: 2,
+        text: (Number(hd)+1).toString()
+      });
       this.setData({
         shopList:data
       })
@@ -128,6 +134,7 @@ Page({
     var xxx = e.currentTarget.dataset.details
     var data = this.data.shopList
     var index = e.currentTarget.dataset.index
+   
     if(xxx.quantity > 1){
       updateShopCart({
         shop_car_id:xxx.shop_car_id,
@@ -135,6 +142,12 @@ Page({
       }).then( res => {
         console.log(res,'购物车数量减少')
         data[index].quantity = xxx.quantity-1
+        var hd = wx.getStorageSync('hd')
+        wx.setStorageSync('hd', Number(hd)-1)
+        wx.setTabBarBadge({
+          index: 2,
+          text: (Number(hd)-1).toString()
+        });
         this.setData({
           shopList:data
         })
@@ -147,14 +160,23 @@ Page({
     
   },
   updateCart(e){
+    console.log(e)
     var data = this.data.shopList
     var index = e.currentTarget.dataset.index
+    var changeNum = e.detail.value
+    var nowNum = e.currentTarget.dataset.details.quantity
     updateShopCart({
       shop_car_id:e.currentTarget.dataset.id,
-      quantity:e.detail.value
+      quantity:changeNum
     }).then( res => {
       console.log(res,'购物车数量增多')
-      data[index].quantity = e.detail.value
+      data[index].quantity = changeNum
+      var hd = wx.getStorageSync('hd')
+      wx.setStorageSync('hd', Number(hd)+Number(changeNum - nowNum))
+      wx.setTabBarBadge({
+        index: 2,
+        text: (Number(hd)+Number(changeNum - nowNum)).toString()
+      });
       this.setData({
         shopList:data
       })
@@ -168,6 +190,12 @@ Page({
       console.log(res,'删除购物车商品')
       this.getShopCartList()
       this.countPrice()
+      var hd = wx.getStorageSync('hd')
+      wx.setStorageSync('hd', Number(hd)-1)
+      wx.setTabBarBadge({
+        index: 2,
+        text: (Number(hd)-1).toString()
+      });
     })
   },
   goOrder(){
@@ -194,6 +222,11 @@ Page({
    */
   onShow() {
     this.getShopCartList()
+    var hd = wx.getStorageSync('hd')
+    wx.setTabBarBadge({
+      index: 2,
+      text: hd.toString()
+    });
   },
 
   /**

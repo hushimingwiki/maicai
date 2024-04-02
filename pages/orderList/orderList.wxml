@@ -46,7 +46,7 @@
         <view>共计<text class="total-price">￥{{item.pay_price}}</text>包含运费{{item.freight_price}}</view>
         <view data-data="{{item}}" catchtap="goPay" class="btn" wx:if="{{item.flag==1&&isOver}}">{{!item.city?"设置收货地址":"去支付"}}</view>
         <view class="btn red" data-index='{{index}}' catchtap="confirmOrder" wx:if="{{item.flag==3}}">确认收货</view>
-        <view class="btn" catchtap="goGoodsComment" data-data="{{item}}" wx:if="{{item.flag==4}}">评论商品</view>
+        <view class="btn" catchtap="goGoodsComment" data-data="{{item}}" wx:if="{{item.flag==3}}">评论商品</view>
       </view>
     </view>
   </scroll-view>

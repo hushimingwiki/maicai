@@ -1,68 +1,89 @@
-page{
+page {
   background-color: white;
 }
-.yijifenlei {
-  height: 180rpx;
+
+.allfenlei {
+  position: fixed;
+}
+
+.flz {
+  position: fixed;
   background-color: #c8f5d6;
-  display: flex;
-  align-items: flex-end;
   padding: 0 0 16rpx 0;
-  .fenleixq{
-    text-align: center;
-    margin-left: 25rpx;
-    .image{
-      border-radius: 30rpx;
-      width: 80rpx;
-      height: 80rpx;
-      border: 5rpx #ffffff solid;
-    }
-    .image1{
-      border-radius: 40rpx;
-      width: 100rpx;
-      height: 100rpx;
-      border: 5rpx #28b14a solid;
-    }
-    .name {
-      color: #ffffff;
-      background-color: #28b14a;
-      border-radius: 25rpx;
-      font-size: 24rpx;
-      padding: 2rpx 0;
+  width: 750rpx;
+  .yijifenlei {
+    height: 180rpx;
+    display: flex;
+    align-items: flex-end;
+    
+    .fenleixq {
+      text-align: center;
+      margin-left: 25rpx;
+
+      .image {
+        border-radius: 30rpx;
+        width: 80rpx;
+        height: 80rpx;
+        border: 5rpx #ffffff solid;
+      }
+
+      .image1 {
+        border-radius: 40rpx;
+        width: 100rpx;
+        height: 100rpx;
+        border: 5rpx #28b14a solid;
+      }
+
+      .name {
+        color: #ffffff;
+        background-color: #28b14a;
+        border-radius: 25rpx;
+        font-size: 24rpx;
+        padding: 2rpx 0;
+      }
     }
   }
 }
+
 /* 水平居中摆放（行内元素） */
-.level{
+.level {
   display: flex;
   flex-direction: row;
   align-items: center;
- 
+
 }
+
 /* 搜索 */
-.search-box{
+.search-box {
   padding-left: 24rpx;
   background-color: #c8f5d6;
+  position: fixed;
+  width: 750rpx;
 }
-.down-box{
+
+.down-box {
   width: 15%;
   border: 1rpx solid #f1f1f1;
   border-radius: 10rpx;
   font-size: 32rpx;
   color: gray;
 }
-.input-box{
-  
+
+.input-box {
+
   font-size: 30rpx;
   background-color: #f1f1f1;
-  
+
   border-radius: 50rpx;
   position: relative;
   // padding: 10rpx 0;
 }
-.input-icon{
+
+.input-icon {
   padding: 0 5rpx;
 }
-.button-box{
+
+.button-box {
   border-radius: 50rpx;
   position: absolute;
   right: 0rpx;
@@ -70,57 +91,67 @@ page{
   padding: 10rpx 24rpx;
   color: #ffffff;
 }
+
 /* 左侧内容 */
-.yes{
+.yes {
   color: #40AE36;
   background-color: white;
   /* border-left: 10rpx solid #06bd34; */
   border-top-left-radius: 10rpx;
   border-bottom-left-radius: 10rpx;
   font-size: 24rpx;
-  
+
 }
-.no{
+
+.no {
   border-left: 10rpx solid transparent;
   color: #616060;
   font-size: 24rpx;
 }
-.left-box{
+
+.left-box {
   width: 200rpx;
   background-color: #F7F7F7;
   text-align: center;
   font-size: 32rpx;
 }
-.left-text{
+
+.left-text {
   border-bottom: 1rpx solid white;
   padding: 30rpx 10rpx;
 }
+
 /* 右侧内容 */
-.right-box{
+.right-box {
   width: 550rpx;
   /* margin: 0rpx 10rpx; */
   color: rgb(43, 38, 38);
   position: relative;
-  
+
 }
-.right-text{
+
+.right-text {
   font-size: 31rpx;
   padding: 30rpx 10rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }
-.right-value{
+
+.right-value {
   flex: 1;
 }
-.check-box{
+
+.check-box {
   flex: 1;
   text-align: right;
   zoom: .6;
 }
+
 /* 确定取消 */
-.btn-box{
+.btn-box {
   justify-content: center;
 }
-.btn{
+
+.btn {
   flex: 1;
   padding: 10rpx 15rpx;
   border-radius: 10rpx;
@@ -128,16 +159,19 @@ page{
   text-align: center;
   margin: 15rpx 15rpx 0rpx 15rpx;
 }
-.btn-no{
+
+.btn-no {
   color: #00ff40;
   background-color: #dddddd;
 }
-.btn-yes{
+
+.btn-yes {
   color: white;
   background-color: #06bd34;
 }
+
 /* 无数据显示 */
-.not-data{
+.not-data {
   display: flex;
   justify-content: center;
   font-size: 32rpx;
@@ -145,94 +179,108 @@ page{
   margin-top: 50%;
 }
 
-  .all-fl{
-    width: 100%;
-    position: absolute;
-    top: 12rpx;
-    background-color: #ffffff;
+.all-fl {
+  width: 100%;
+  position: absolute;
+  top: 12rpx;
+  background-color: #ffffff;
+  display: flex;
+  z-index: 999;
+
+  .scfl {
     display: flex;
-    z-index: 999;
-    .scfl{
-      display: flex;
-      width: max-content;
-      .fl-x{
-        color: #40AE36;
-        background-color: #e8f7e4;
-        border-radius: 8rpx;
-        padding: 8rpx 28rpx;
-        margin-left: 10rpx;
-        font-size: 24rpx;
-        width: fit-content;
-        height: fit-content;
-        ;
-      }
-      .yes{
-        color: #40AE36;
-      }
-      .no{
-        color: #333333;
-      }
+    width: max-content;
+
+    .fl-x {
+      color: #40AE36;
+      background-color: #e8f7e4;
+      border-radius: 8rpx;
+      padding: 8rpx 28rpx;
+      margin-left: 10rpx;
+      font-size: 24rpx;
+      width: fit-content;
+      height: fit-content;
+      ;
     }
-    
+
+    .yes {
+      color: #40AE36;
+    }
+
+    .no {
+      color: #333333;
+    }
   }
 
+}
 
-.all-fl image{
+
+.all-fl image {
   width: 50rpx;
   height: 50rpx;
   position: absolute;
   right: 40rpx;
 }
-.fl-all-fl{
+
+.fl-all-fl {
   background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   position: absolute;
   z-index: 999;
   top: 55rpx;
 }
+
 .fl-all-fl-box {
   background-color: #ffffff;
   padding: 10rpx;
   display: flex;
   flex-wrap: wrap;
 }
-.fl-xx{
- 
+
+.fl-xx {
+
   background-color: #e8f7e4;
   border-radius: 8rpx;
   padding: 8rpx 28rpx;
   margin-left: 10rpx;
   margin-bottom: 10rpx;
-  .yes{
+
+  .yes {
     color: #40AE36;
   }
-  .no{
+
+  .no {
     color: #333333;
   }
 }
 
-.fl-content{
+.fl-content {
   margin-top: 60rpx;
 }
-.fl-for-list{
+
+.fl-for-list {
   /* height: 300rpx; */
   width: 100%;
   padding: 10rpx;
   display: flex;
   align-items: center;
 }
-.fl-for-list image{
+
+.fl-for-list image {
   width: 200rpx;
   height: 200rpx;
   margin-right: 12rpx;
 }
+
 .fl-details {
   width: 350rpx;
 }
-.fl-text{
+
+.fl-text {
   margin-bottom: 15rpx;
 }
-.fl-tj{
+
+.fl-tj {
   color: #F55726;
   border: 1rpx solid #F55726;
   border-radius: 8rpx;
@@ -240,7 +288,8 @@ page{
   padding: 2rpx 8rpx;
   font-size: 24rpx;
 }
-.fl-fh{
+
+.fl-fh {
   color: #40AE36;
   border: 1rpx solid #40AE36;
   border-radius: 8rpx;
@@ -248,21 +297,25 @@ page{
   padding: 2rpx 8rpx;
   font-size: 24rpx;
 }
+
 .fl-qian-box {
   margin-top: 15rpx;
   display: flex;
   align-items: center;
   position: relative;
 }
+
 .gwc-image {
   position: absolute;
   right: 50rpx;
 }
-.gwc-image image{
+
+.gwc-image image {
   width: 50rpx;
   height: 50rpx;
 }
-.hongdian{
+
+.hongdian {
   background-color: #EA0000;
   width: 30rpx;
   height: 30rpx;
@@ -274,14 +327,17 @@ page{
   right: -10rpx;
   top: -10rpx;
 }
-.fl-qian{
+
+.fl-qian {
   font-size: 24rpx;
   color: #EA0000;
 }
-.fl-price{
+
+.fl-price {
   color: #EA0000;
 }
-.fl-feng{
+
+.fl-feng {
   color: #888888;
   font-size: 24rpx;
 }

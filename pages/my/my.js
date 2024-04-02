@@ -1,6 +1,6 @@
 // pages/my/my.js  /user_wallet/get
 import {
-  wallet,
+  wallet,queryCouponList
 } from '../../request/api.js'
 import { updateBaseURL } from '../../request/request.js'
 const app = getApp()
@@ -11,7 +11,8 @@ Page({
    */
   data: {
     qianbao:null,
-    userInfo:null
+    userInfo:null,
+    yhqNum:0
   },
 
   /**
@@ -24,6 +25,20 @@ Page({
     })
     
     this.getWallet()
+    this.getYhqNum()
+  },
+  getYhqNum(){
+    queryCouponList({
+      expire:"0",
+      page:'0',
+      page_size:'100'
+    }).then(res=>{
+      console.log(res)
+      console.log('共'+res.data.length+'张优惠券')
+      this.setData({
+        yhqNum:res.data.length
+      })
+    })
   },
   updataUrl(){
     updateBaseURL()
@@ -51,6 +66,11 @@ Page({
       url: '../vip/vip'
     })
   },
+  goDistribution(){
+    wx.navigateTo({
+      url: '../distribution/distribution'
+    })
+  },
   goBalance(){
     wx.navigateTo({
       url: '../balance/balance'
@@ -72,6 +92,11 @@ Page({
       url: '../setting/setting'
     })
   },
+  goTeam(){
+    wx.navigateTo({
+      url: '../team/team'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -83,7 +108,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.setData({
+      userInfo:app.globalData.userInfo
+    })
+    var hd = wx.getStorageSync('hd')
+    wx.setTabBarBadge({
+      index: 2,
+      text: hd.toString()
+    });
   },
 
   /**

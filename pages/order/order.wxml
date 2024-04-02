@@ -1,12 +1,12 @@
 <view class="box">
   <view class="address">
     <view class="adr-info" bindtap="goCheckAdr">
-      <image src="../../image/dingwei.png" class="dingwei" mode=""/>
+      <image src="https://api.caiduohui.com:8080/assets/dingwei.png" class="dingwei" mode=""/>
       <view class="fh-adr">
         <view class="dz">{{adrDetails.address}}</view>
         <view class="name">{{adrDetails.name}} {{adrDetails.phone_number}}</view>
       </view>
-      <image src="../../image/arrow-up-s-line-d.png" class="jiantou" mode=""/>
+      <image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" class="jiantou" mode=""/>
     </view>
     <view class="complete-time">
       <view class="name">预计送达时间</view>
@@ -36,7 +36,7 @@
   <view class="qita">
     <view class="yhq" bindtap="goCoupon">
       <text class="name">优惠券</text>
-      <view class="quan"><text>{{couponDetails.price>0?couponDetails.name:'选择优惠券'}}</text><image src="../../image/arrow-up-s-line-d.png" mode=""/></view>
+      <view class="quan"><text>{{couponDetails.price>0?couponDetails.name:'选择优惠券'}}</text><image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/></view>
     </view>
     <view class="paytype">
       <text>支付方式</text><text>微信支付</text>

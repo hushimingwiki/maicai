@@ -1,0 +1,39 @@
+page {
+  background-color: #f1eeee;
+}
+
+.customer {
+  display: flex;
+  padding: 24rpx;
+  margin: 24rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+
+  .picture {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 100rpx;
+  }
+
+  .tcs {
+    width: 604rpx;
+    display: flex;
+    justify-content: space-between;
+    .center{
+      text-align: center;
+    }
+    .info {
+      margin-left: 24rpx;
+      line-height: 50rpx;
+      .name {
+        font-weight: bold;
+      }
+
+      .time {
+        font-size: 24rpx;
+        color: #919090;
+      }
+
+    }
+  }
+}

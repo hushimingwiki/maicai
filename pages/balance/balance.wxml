@@ -1,6 +1,6 @@
 <view class="title" style="padding-top: {{capsuleObj.top}}px;">
   <view class="title-name" style="height: {{capsuleObj.height}}px;">
-   <image src="../../image/arrow-up-s-line.png" mode="" bindtap="goBack"/>
+   <image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line.png" mode="" bindtap="goBack"/>
    <text>我的余额</text>
    <text> </text>
   </view>
@@ -9,7 +9,7 @@
       <view class="ez">我的余额（元）</view>
       <view class="jine">{{myYe}}</view>
     </view>
-    <view class="mingxi">查看明细</view>
+    <view class="mingxi" bindtap="viewBalanceDetail">查看明细</view>
   </view>
 </view>
 <view class="chongzhi">

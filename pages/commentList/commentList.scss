@@ -1,0 +1,77 @@
+page{
+  background-color: #f7f7f7;
+}
+.list{
+  
+}
+.evaluate{
+  width: 654rpx;
+  
+
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  margin: 24rpx 0 0 24rpx;
+  padding: 24rpx;
+  .one{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding-bottom: 24rpx;
+    .eva-title {
+      
+      color: #BBBBBB;
+      font-size: 26rpx;
+      text{
+        font-size: 32rpx;
+        font-weight: bold;
+        color: #333333;
+      }
+      .see-all {
+        color: #888888;
+      }
+    }
+  }
+  .two {
+    margin-top: 24rpx;
+    .user-info{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .info {
+        display: flex;
+        image{
+          width: 64rpx;
+          height: 64rpx;
+          margin-right: 14rpx;
+        }
+        .info-name {
+          text{
+            font-size: 24rpx;
+            color: #333333;
+          }
+          .xx{
+            image{
+              width: 32rpx;
+              height: 32rpx;
+            }
+          }
+        }
+      }
+      .time{
+        color: #888888;
+        font-size: 24rpx;
+      }
+    }
+  }
+  .three {
+    margin: 24rpx 0 0 0rpx;
+  }
+  .four {
+    margin: 24rpx 0 0 0rpx;
+    image{
+      width: 176rpx;
+      height: 176rpx;
+      margin:0 21rpx;
+    }
+  }
+}

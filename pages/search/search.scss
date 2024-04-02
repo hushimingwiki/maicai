@@ -1,0 +1,99 @@
+.top{
+  display: flex;
+  align-items: center;
+  .search{
+    display: flex;
+    width: 600rpx;
+    height: 80rpx;
+    border: 1rpx solid #2d9206;
+    border-radius: 80rpx;
+    margin: 12rpx 0 12rpx 24rpx;
+    .input{
+      height: 80rpx;
+      width: 500rpx;
+      padding-left: 24rpx;
+    }
+    .button{
+      color: #2d9206;
+      height: 80rpx;
+      line-height: 80rpx;
+      text-align: center;
+      width: 100rpx;
+      border:none;
+      border-left: 1rpx solid #2d9206;
+      font-size: 28rpx;
+      font-weight: bold;
+    }
+  }
+  .gwc{
+    display: flex;
+    margin-left: 24rpx;
+    image{
+      width: 60rpx;
+      height: 60rpx;
+    }
+  }
+}
+.list{
+  height:100vh;
+  margin-bottom: 100rpx;
+  .shop-list{
+    border: 1rpx solid #2d9206;
+    margin: 12rpx 24rpx;
+    height:210rpx;
+    border-radius: 24rpx;
+    display: flex;
+    .shop-img{
+      width: 210rpx;
+      height: 210rpx;
+      border-radius: 24rpx;
+    }
+    .shop-info{
+      width: 444rpx;
+      padding: 12rpx 24rpx;
+      display: flex;
+      flex-direction:column;
+      justify-content: space-between;
+      .shop-price{
+        width: 444rpx;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8rpx;
+        image{
+          width: 50rpx;
+          height: 50rpx;
+        }
+      }
+      .shop-name{
+        width: 444rpx;
+        display: -webkit-box;
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        line-height: 1.5em;
+        max-height: 3em; 
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; 
+        font-weight: bold;
+        
+      }
+      .vip-price{
+        width: 444rpx;
+        font-size: 24rpx;
+        margin-top: 8rpx;
+      }
+      .shop-price{
+        font-size: 24rpx;
+        .red{
+          font-size: 32rpx;
+          color: red;
+        }
+        
+      }
+    }
+  }
+}
+.dibu{
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}

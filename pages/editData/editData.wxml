@@ -1,0 +1,28 @@
+<view class="box">
+        <form catchsubmit="formSubmit">
+            <view class="edit-profile">
+                <text class="left-title">头像</text>
+                <view class="profile-right">
+                    <button class="img-button" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"><image class="img-one" src="{{avatarUrl?avatarUrl:userInfo.picture}}"></image></button>
+                    <!-- <image class="img-two" src="https://www.dnfc888.com/assets/left-right-guidepost.png"></image> -->
+                </view>
+            </view>
+
+            <view class="edit-nickname">
+                <text class="left-title">昵称</text>
+                <view class="nickname-right">
+                    <input type="nickname" placeholder="{{userInfo.nickname}}" name="nickname" value="{{userInfo.nickName}}"></input>
+                    <!-- <image class="img-two" src="https://www.dnfc888.com/assets/left-right-guidepost.png"></image> -->
+                </view>
+            </view>
+            
+          
+
+
+           
+
+            
+       
+            <button class="submit" formType="submit">保存</button>
+        </form>
+</view>

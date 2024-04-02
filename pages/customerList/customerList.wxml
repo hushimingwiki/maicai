@@ -1,0 +1,14 @@
+<view class="" wx:for="{{customerList}}" wx:key="index" class="customer">
+  <image src="https://api.caiduohui.com:8080/picture/20240402023201450000001.jpg" class="picture" mode="" />
+  <view class="tcs">
+    <view class="info">
+      <view class="name">{{item.name}}</view>
+      <view class="time">{{item.time}} 已绑定</view>
+    </view>
+    <view class="info center">
+      <view class="name">￥{{item.price}}999</view>
+      <view class="time">贡献奖金</view>
+    </view>
+  </view>
+
+</view>

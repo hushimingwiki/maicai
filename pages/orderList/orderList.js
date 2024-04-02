@@ -65,7 +65,7 @@ Page({
     app.loading()
     orderList({
       page: this.data.page,
-      page_size: 5,
+      page_size: 10,
       order_status:this.data.tabIndex==0?"":this.data.tabIndex-1,
     }).then(res=>{
       if(res.code==200){

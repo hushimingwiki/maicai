@@ -25,6 +25,12 @@ Page({
       data:optionData
     })
   },
+  goGoodsComment(){
+    console.log(JSON.stringify(this.data.data))
+    wx.navigateTo({
+      url: '/pages/comment/comment?data='+JSON.stringify(this.data.data),
+    })
+  },
   //查看支付详情
   goCheckPayRes(e){
     var obj = JSON.stringify(e.currentTarget.dataset.obj)

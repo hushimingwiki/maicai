@@ -13,26 +13,23 @@ Page({
     klqCoupon:[],
     adrDetails: null,
     station:null,
-    fenLeiList:null
+    fenLeiList:null,
+    StorageDW:null
   },
-  onLoad: function () {
+  onLoad: function (option) {
+    console.log(option,'optionoptionoptionoptionoption')
     this.setData({
       headerHeight:app.globalData.titleHeight,
       capsuleObj:app.globalData.capsuleObj
     })
-    // console.log(this.data.headerHeight)
-    // console.log('globalData',app.globalData)
-    // console.log('globalData',app.globalData.adrInfo)
-    // console.log('globalData',app.globalData.capsuleObj)
-    setTimeout(() => {
-      this.getZuijinStation()
-    }, 500)
-    this.getBannerList()
     this.getFenlei()
-    this.getReceiveCouponList()
     
   },
- 
+  goSearch(){
+    wx.navigateTo({
+      url: '../search/search'
+    })
+  },
  
   goCheckAdr(){
     wx.navigateTo({
@@ -69,11 +66,8 @@ Page({
   },
   getZuijinStation(){
     var sdata = this.data.adrDetails
-    console.log(app.globalData,'app.globalData')
-    console.log(app.globalData.location,'app.globalData.location')
-    console.log(app.globalData.location.location,'app.globalData.location.location')
     var myPromise =  new Promise((resolve,reject)=>{
-      if(app.globalData.location){
+      if(this.data.StorageDW){
         console.log("有经纬度")
         resolve()
       }else{
@@ -85,20 +79,21 @@ Page({
     })
     
     myPromise.then(res=>{
-      console.log(app.globalData.location,'成功获取经纬度并获取中转站')
+      console.log(this.data.StorageDW,'成功获取经纬度并获取中转站')
       
       zuijinStation({
-        province:sdata ? sdata.province : app.globalData.location.address_component.province,
-        city:sdata ? sdata.city : app.globalData.location.address_component.city,
-        district:sdata ? sdata.district : app.globalData.location.address_component.district,
-        longitude:sdata ? sdata.longitude : app.globalData.location.location.lng,
-        latitude:sdata ? sdata.latitude : app.globalData.location.location.lat
+        province:sdata ? sdata.province : this.data.StorageDW.address_component.province,
+        city:sdata ? sdata.city : this.data.StorageDW.address_component.city,
+        district:sdata ? sdata.district : this.data.StorageDW.address_component.district,
+        longitude:sdata ? sdata.longitude : this.data.StorageDW.location.lng,
+        latitude:sdata ? sdata.latitude : this.data.StorageDW.location.lat
       }).then(res=>{
         console.log(res,'res')
         this.setData({
           station:res.data
         })
         app.globalData.zzId = res.data.transfer_station_id
+        wx.setStorageSync('zzId', res.data.transfer_station_id)
         this.getShopList(res.data.transfer_station_id)
       })
     })
@@ -150,6 +145,12 @@ Page({
           quantity:1
         }).then( res => {
           console.log(res,'加入购物车')
+          var hd = wx.getStorageSync('hd')
+          wx.setStorageSync('hd', Number(hd)+1)
+          wx.setTabBarBadge({
+            index: 2,
+            text: (Number(hd)+1).toString()
+          });
           wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
         })
       })  
@@ -164,7 +165,9 @@ Page({
   },
   getShopList(e){
     shopList({
-      transfer_station_id:e
+      transfer_station_id:e,
+      page:0,
+      page_size:5
     }).then( res => {
       console.log(res,'商品列表')
       this.setData({
@@ -211,4 +214,97 @@ Page({
       }
     })
   },
+  // authClose(){
+  //   setTimeout(() => {
+  //     if(this.data.StorageDW && this.data.noInventory){
+  //       this.goChoose()
+  //     }
+  //   }, 1000);
+  // },
+  getRequest(){
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    console.log(app.globalData,'this.data.StorageDW')
+    var dingwei = wx.getStorageSync('area')
+    this.setData({
+      StorageDW:dingwei
+    })
+    console.log(dingwei,'dingweidingweidingweidingweidingweidingweidingweidingwei')
+    if(dingwei){
+      this.getBannerList()
+      this.getZuijinStation()
+      this.getReceiveCouponList()
+      wx.hideLoading()
+    }else{
+      setTimeout(res=>{
+        this.getRequest()
+      },1000)
+    }
+    
+  },
+  onShow() {
+    var that = this
+    that.setData({
+      headerHeight:app.globalData.titleHeight,
+      capsuleObj:app.globalData.capsuleObj
+    })
+    // console.log(this.data.headerHeight)
+    // console.log('globalData',app.globalData)
+    // console.log('globalData',app.globalData.adrInfo)
+    // console.log('globalData',app.globalData.capsuleObj)
+    
+    // setTimeout(() => {
+    //   this.getBannerList()
+    //   this.getZuijinStation()
+    //   this.getReceiveCouponList()
+    // }, 500)
+    // app.isLocation()
+    var hd = wx.getStorageSync('hd')
+    wx.setTabBarBadge({
+      index: 2,
+      text: hd.toString()
+    });
+    wx.getSetting({
+      success:res=>{
+        if (!res.authSetting['scope.userLocation']) {
+          console.log('没有开启定位')
+          console.log(that.data.noInventory,1)
+          that.setData({
+            noInventory:true
+          })
+          app.isLocation()
+          console.log(that.data.noInventory,2)
+        }else{
+          console.log('已开启定位')
+          that.setData({
+            noInventory:false
+          })
+          that.getRequest()
+          // app.isLocation()
+        }
+      }
+    })
+    
+    return
+    console.log(this.data.StorageDW,'this.data.StorageDW1')
+    if(!this.data.StorageDW){
+      console.log(this.data.StorageDW,'this.data.StorageDW2')
+      this.setData({
+        noInventory:true
+      })
+      // app.isLocation()
+    }else{
+      this.getBannerList()
+      this.getZuijinStation()
+      this.getReceiveCouponList()
+    }
+    // setTimeout(res=>{
+    //   console.log(this.data.StorageDW,'this.data.StorageDW8')
+    //   this.setData({
+    //     noInventory:!this.data.StorageDW
+    //   })
+    // },1000)
+    
+  }
 })

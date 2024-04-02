@@ -1,0 +1,29 @@
+<scroll-view scroll-y bindscrolltolower="nextPage" class="list">
+  <view wx:for="{{Comment}}" wx:key="index" class="evaluate">
+    <view class="two">
+      <view class="user-info">
+        <view class="info">
+          <image src="https://api.caiduohui.com:8080/assets/dh-5.png" mode=""/>
+          <view class="info-name">
+            <text>CHRIS**in</text>
+            <view class="xx">
+              <image src="{{item.star >= 1?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{item.star >= 2?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{item.star >= 3?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{item.star >= 4?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+              <image src="{{item.star >= 5?'https://api.caiduohui.com:8080/assets/xx-1.png':'https://api.caiduohui.com:8080/assets/xx-2.png'}}" mode=""/>
+            </view>
+           
+          </view>
+        </view>
+        <view class="time">{{item.create_time}}</view>
+      </view>
+    </view>
+    <view class="three">
+      {{item.content}}
+    </view>
+    <view class="four">
+      <image wx:for="{{item.pictures}}" src="{{item}}" wx:key="index" mode=""/>
+    </view>
+  </view>
+</scroll-view>

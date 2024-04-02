@@ -18,7 +18,15 @@
     "pages/selReceivingAdr/selReceivingAdr",
     "pages/success/success",
     "pages/balance/balance",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/search/search",
+    "pages/balanceDetail/balanceDetail",
+    "pages/comment/comment",
+    "pages/commentList/commentList",
+    "pages/team/team",
+    "pages/editData/editData",
+    "pages/distribution/distribution",
+    "pages/customerList/customerList"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -13,9 +13,13 @@ export const WXPay = (params) => post('pay/wx_pay', params);
 //获取用户钱包user_wallet/get
 export const wallet = (params) => post('user_wallet/get',params);
 
+//获取钱包明细user_wallet_record/list
+export const userWalletRecord = (params) => post('user_wallet_record/list',params);
 //获取用户信息/user/get
 export const getUserInfo = (params) => post('user/get', params);
 
+//修改用户信息 /user/update
+export const updateUserInfo = (params) => post('user/update', params);
 //y余额充值pay/wx_recharge
 export const recharge = (params) => post('pay/wx_recharge',params);
 
@@ -77,4 +81,17 @@ export const orderConfirm = (params) => post('order/confirm_receipt',params);
 
 export const orderGetFreightPrice = (params) => post('order/get_freight_price',params);
 
+///分类获取商品standard_product_unit/category_search
+export const categorySearch = (params) => post('standard_product_unit/category_search',params);
+
+///standard_product_unit/search 搜索
+export const productSearch = (params) => post('standard_product_unit/search',params);
+
+//获取购物车数量 /shop_car/get_count
+export const shopCarNum = (params) => post('shop_car/get_count',params);
+
+//评论 /standard_product_unit_comment/add
+export const GoodsComment = (params) => post('standard_product_unit_comment/add',params);
+//评论列表 /standard_product_unit_comment/list
+export const CommentList = (params) => post('standard_product_unit_comment/list',params);
 
