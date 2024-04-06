@@ -26,8 +26,16 @@ page {
       margin-left: 24rpx;
       line-height: 50rpx;
       .name {
-        font-weight: bold;
-      }
+				
+				font-weight: bold;
+				
+			}
+			.zx{
+				width: 400rpx;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
 
       .time {
         font-size: 24rpx;

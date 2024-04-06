@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "index",
+          "pathName": "pages/index/index",
+          "query": "parentId=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/balance/balance",
           "pathName": "pages/balance/balance",
           "query": "",
@@ -53,5 +60,5 @@
       ]
     }
   },
-  "libVersion": "2.30.4"
+  "libVersion": "3.3.5"
 }

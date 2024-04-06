@@ -155,6 +155,8 @@ page{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: -100rpx;
 }
 .canvas {
   width: 300px;

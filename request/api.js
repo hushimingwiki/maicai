@@ -7,6 +7,9 @@ export const payNotifytest = (params) => post('pay/pay_notifytest',params);
 // 微信登陆
 export const userLogin = (params) => post('account/login',params);
  
+// 获取二维码 /invite/qr_code_xcx
+export const inviteQrCode = (params) => post('invite/qr_code_xcx',params);
+
 // 微信支付Pay/WXPay(int UserId, int Type, String OpenId, String OrderNumber)
 export const WXPay = (params) => post('pay/wx_pay', params);
 
@@ -95,3 +98,5 @@ export const GoodsComment = (params) => post('standard_product_unit_comment/add'
 //评论列表 /standard_product_unit_comment/list
 export const CommentList = (params) => post('standard_product_unit_comment/list',params);
 
+//二级分销邀请列表 /invite/list
+export const inviteList = (params) => post('invite/list',params);

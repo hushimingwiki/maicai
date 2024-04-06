@@ -1,4 +1,8 @@
-// pages/customerList/customerList.ts
+// pages/customerList/customerList.ts 
+import {
+	inviteList
+} from '../../request/api.js'
+var app = getApp()
 Page({
 
   /**
@@ -21,16 +25,30 @@ Page({
         time:'2024-03-31',
         price:'99.9'
       },
-    ]
+		],
+		page:0,
+		pageSize:10
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
-  },
-
+		this.getInviteList()
+	},
+	getInviteList(){
+		inviteList({
+			target_user_id:app.globalData.userInfo.user_id,
+			page:this.data.page,
+			page_size:this.data.pageSize
+		}).then(res=>{
+			console.log(res)
+			this.setData({
+				customerList:res.data
+			})
+		})
+	},
+	
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

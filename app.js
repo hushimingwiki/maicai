@@ -6,10 +6,12 @@ import {
   WXPay,
   shopCarNum
 } from '/request/api.js'
-import QQMapWX from '/utils/qqmap-wx-jssdk.min.js'
+import QQMapWX from '/utils/qqmap-wx-jssdk.js'
 const app = getApp()
 App({
-  async onLaunch() {
+  async onLaunch(option) {
+		console.log(option.query.parentId,'optionoptionoptionoptionoption')
+		wx.setStorageSync('parentId', option.query.parentId)
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -82,13 +84,15 @@ App({
     return new Promise((resolve, reject) => {
       wx.showLoading({
         title: '登录中',
-      })
+			})
+			var pid = wx.getStorageSync('parentId')
+			console.log(pid,'pidddddddddddddddddddddddddd')
       wx.login({
         success: login => {
           console.log(login, 'login')
           userLogin({
             type: 1,
-            parent_id: 0,
+            parent_id: wx.getStorageSync('parentId')?wx.getStorageSync('parentId'):0,
             identification: login.code,
             sms_code: '',
             appid: 'wx9662daace8be7f13',
@@ -190,6 +194,7 @@ App({
   getLocation(callback) {
     let that = this
     return new Promise((resolve, reject) => {
+			console.log(this.globalData.location,'this.globalData.location')
       if (this.globalData.location) {
         resolve()
       }
@@ -214,7 +219,7 @@ App({
               return res.result
             },
             fail: res => {
-              console.log(res, 'zxc111')
+              console.log(res, 'zxc1111111111111111111111111111111111111111111111111111111111111')
             }
 
           })

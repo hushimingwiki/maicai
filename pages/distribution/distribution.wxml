@@ -36,15 +36,15 @@
     </view>
   </view>
 </view>
-
+<!-- <image src="{{url}}"  mode="" style="width: 450rpx; height: 623rpx;"/> -->
 <view class="publicize-model" wx:if="{{publicizeModel}}">
-  <!-- <view class="baibao">
-    <canvas id="myCanvas" type="2d" style="border: 1px solid; width: 300px; height: 150px;" />
-  </view> -->
+  <view class="haibao">
+    <canvas id="myCanvas" type="2d" style="width: 450rpx; height: 623rpx;" />
+  </view>
 
   <view class="caozuo">
     <view class="fx">
-      <button class="fx-l">
+      <button class="fx-l" bindtap="downImage">
         <image src="https://api.caiduohui.com:8080/assets/download.png" mode=""/>
         <view>下载海报</view>
       </button>
