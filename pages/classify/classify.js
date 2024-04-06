@@ -150,7 +150,7 @@ Page({
     this.setData({
       threeCategoryList:res.data,
     })
-    this.getShopList(e)
+    this.getShopList(res.data[0].category_id)
   })  
 },
 // 切换三级分类

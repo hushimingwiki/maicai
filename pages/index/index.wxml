@@ -11,7 +11,7 @@
 </view>
 <scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
   <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
-    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index">
+    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index" bindtap="goVip">
       <image src='{{item.picture}}'></image>
     </swiper-item>
   </swiper>

@@ -25,6 +25,11 @@ Page({
     this.getFenlei()
     
   },
+  goVip(){
+    wx.navigateTo({
+      url: '../vip/vip'
+    })
+  },
   goSearch(){
     wx.navigateTo({
       url: '../search/search'
