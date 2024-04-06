@@ -1,5 +1,5 @@
 const app = getApp()
-import QQMapWX from '/utils/qqmap-wx-jssdk.min.js'
+// import QQMapWX from '/utils/qqmap-wx-jssdk.min.js'
 Page({
 
 	/**

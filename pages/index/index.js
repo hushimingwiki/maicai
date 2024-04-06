@@ -228,10 +228,10 @@ Page({
   // },
   getRequest(){
     wx.showLoading({
-      title: '数据加载中',
+      title: '获取定位中',
     })
     console.log(app.globalData,'this.data.StorageDW')
-    var dingwei = wx.getStorageSync('area')
+		var dingwei = app.globalData.location
     this.setData({
       StorageDW:dingwei
     })
@@ -286,7 +286,7 @@ Page({
             noInventory:false
           })
           that.getRequest()
-          // app.isLocation()
+          app.isLocation()
         }
       }
     })
