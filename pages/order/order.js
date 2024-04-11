@@ -5,7 +5,8 @@ import {
   WXPay,
   addOrder,
   payNotifytest,
-  orderGetFreightPrice
+  orderGetFreightPrice,
+  appointment
 } from '../../request/api.js'
 Page({
 
@@ -18,8 +19,7 @@ Page({
     adrDetails: null,
     // multiArray: [['明天'], ['06:00-06:30', '06:30-07:00', '07:00-07:30', '07:30-08:00', '08:00-08:30', '08:30-09:00', '09:00-09:30', '09:30-10:00', '10:00-10:30', '10:30-11:00', '11:00-11:30', '11:30-12:00']],
     multiArray: [
-      ['明天'],
-      ['11:30:00', '17:30:00']
+      
     ],
     multiIndex: [0, 0, 0],
     cartShop: null,
@@ -28,26 +28,35 @@ Page({
     },
     cCafterList: null,
     Yunfei:0,
-    couponPrice:0
+    couponPrice:0,
+    allJianShu:0,
+    nowDate:null,
+    switch1Checked:false,
+    switch2Checked:false,
+    note:'',
+    unable_contact:'',
+    nowDidian:'',
+    today:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getAppointment()
     // console.log(options, 'options')
     var cartShop = JSON.parse(options.data)
     // console.log(cartShop, 'cartShop')
     var afterList = []
     cartShop.forEach(item => {
-      // console.log(item.stockKeepingUnit.shop_id,'item.stockKeepingUnit.shop_id')
+      console.log(item,'item.standardProductUnit.shop_id')
       if(afterList.length > 0){
         afterList.forEach(itemm=>{
-          // console.log(itemm,'itemmitemm')
-          if(item.stockKeepingUnit.shop_id == itemm.shop_id){
+          console.log(itemm,'itemmitemm')
+          if(item.standardProductUnit.shop_id == itemm.shop_id){
             // console.log(afterList,'匹配到相同店铺')
             var obj = {
-              stock_keeping_unit_id: item.stockKeepingUnit.stock_keeping_unit_id,
+              standard_product_unit_id: item.standardProductUnit.standard_product_unit_id,
               quantity: item.quantity
             }
             itemm.data.push(obj)
@@ -58,17 +67,19 @@ Page({
       }else{
         // console.log('没有数据')
         var obj = {
-          shop_id: item.stockKeepingUnit.shop_id,
+          shop_id: item.standardProductUnit.shop_id,
           user_coupon_id: '',
           data: [{
-            stock_keeping_unit_id: item.stockKeepingUnit.stock_keeping_unit_id,
+            standard_product_unit_id: item.standardProductUnit.standard_product_unit_id,
             quantity: item.quantity
           }]
         }
         afterList.push(obj)
       }
-
-     
+      console.log(item,'item')
+      this.setData({
+        allJianShu : Number(this.data.allJianShu) + Number(item.quantity)
+      })
      
     })
     this.setData({
@@ -76,30 +87,69 @@ Page({
       cartShop: cartShop,
       totalPrice: options.price,
       originPrice: options.price,
-      cCafterList: afterList
+      cCafterList: afterList,
+      bottomLift: app.globalData.bottomLift,
     })
     this.getAddressList()
     
+  },
+  setNote(e){
+    console.log(e.detail.value)
+    this.setData({
+      note:e.detail.value
+    })
+  },
+  switch1Change(e){
+    this.setData({
+      switch1Checked:e.detail.value
+    })
+  },
+  switch2Change(e){
+    if(!e.detail.value){
+      this.setData({
+        unable_contact:''
+      })
+    }
+    this.setData({
+      switch2Checked:e.detail.value
+    })
+  },
+  seletDidian(e){
+    console.log(e,'eee')
+    this.setData({
+      unable_contact:e.currentTarget.dataset.value,
+      nowDidian:e.currentTarget.dataset.index
+    })
+  },
+  getAppointment(){
+    var data = []
+    appointment().then(res=>{
+      console.log(res)
+      data[0] = ['今天','明天']
+      data[1] = res.data[0]
+      console.log(data)
+      this.setData({
+        allData:res.data,
+        multiArray:data,
+        nowDate:res.data[0][0]
+      })
+    })
   },
   //orderGetFreightPrice
   getYunfei(){
     function padZero(number) {
       return number < 10 ? '0' + number : number.toString();
     }
-     
-    // 使用示例
-    var date = new Date();
-    var tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
-    var year = tomorrow.getFullYear();
-    var month = padZero(tomorrow.getMonth() + 1);
-    var day = padZero(tomorrow.getDate());
-     
-    var formattedDate = year + '-' + month + '-' + day;
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const formattedDate = year + '-' + month + '-' + day;
     orderGetFreightPrice({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
       transfer_station_id: app.globalData.zzId, //中转站 自提点id 如果自取一定需要
       delivery_type: '1', //配送类型 0立即配送 1预约配送
-      appointment_delivery_time: formattedDate + ' ' + this.data.multiArray[1][this.data.multiIndex[1]], //预约配送时间 自取时间
+      appointment_delivery_time: formattedDate + ' ' + this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
       data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
     }).then(res=>{
       console.log(res.data,'运费')
@@ -114,27 +164,29 @@ Page({
     function padZero(number) {
       return number < 10 ? '0' + number : number.toString();
     }
-     
-    // 使用示例
-    var date = new Date();
-    var tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
-    var year = tomorrow.getFullYear();
-    var month = padZero(tomorrow.getMonth() + 1);
-    var day = padZero(tomorrow.getDate());
-     
-    var formattedDate = year + '-' + month + '-' + day;
-    // console.log(formattedDate);
-    // console.log(this.data.adrDetails.user_delivery_address_id, 'this.data.adrDetails.user_delivery_address_id')
-    // console.log(app.globalData.zzId, 'app.globalData.zzId')
-    // console.log(formattedDate + ' ' + this.data.multiArray[1][this.data.multiIndex[1]], 'this.data.multiArray[1][multiIndex[1]]')
-    // console.log(this.data.cartShop, 'this.data.cartShop')
-    console.log(app.globalData.userInfo,'userinfo')
+    var formattedDate
+    if(this.data.today == 0){
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = currentDate.getDate().toString().padStart(2, '0');
+      formattedDate = year + '-' + month + '-' + day;
+    }else{
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = (currentDate.getDate() + 1).toString().padStart(2, '0');
+      formattedDate = year + '-' + month + '-' + day;
+    }
     addOrder({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
       transfer_station_id: wx.getStorageSync('zzId'), //中转站 自提点id 如果自取一定需要
       delivery_type: '1', //配送类型 0立即配送 1预约配送
-      appointment_delivery_time: formattedDate + ' ' + this.data.multiArray[1][this.data.multiIndex[1]], //预约配送时间 自取时间
-      data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
+      appointment_delivery_time: formattedDate + ' ' +this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
+      data: JSON.stringify(this.data.cCafterList), //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
+      phone_contact:this.data.switch1Checked == true ? 1 : 0,
+      note:this.data.note,
+      unable_contact:this.data.unable_contact
     }).then(res => {
       if (res.code != 200) {
         wx.showToast({
@@ -143,6 +195,12 @@ Page({
         })
       } else {
         // this.wxPayTest(res.data[0].pay_order_number)
+        var hd = wx.getStorageSync('hd')
+        wx.setStorageSync('hd', Number(hd) - this.data.allJianShu)
+        wx.setTabBarBadge({
+          index: 2,
+          text: (Number(hd) - this.data.allJianShu).toString()
+        });
         app.wxPay(res.data[0].pay_order_number)
       }
     })
@@ -182,14 +240,38 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker发送选择改变，携带值为', this.data.allData[e.detail.value[0]][e.detail.value[1]])
     this.setData({
-      multiIndex: e.detail.value
+      multiIndex: e.detail.value,
       // distributionTime: e.detail.value
-
+      nowDate : this.data.allData[e.detail.value[0]][e.detail.value[1]]
     })
+
   },
   bindMultiPickerColumnChange(e) {
+    console.log(e,'e')
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    if(e.detail.column==0){
+      if(e.detail.value == 0){
+        console.log(0)
+        var data = []
+        data[0] = ['今天','明天']
+        data[1] = this.data.allData[0]
+        this.setData({
+          multiArray:data,
+          today:0
+        })
+      }else{
+        console.log(1)
+        var data = []
+        data[0] = ['今天','明天']
+        data[1] = this.data.allData[1]
+        this.setData({
+          multiArray:data,
+          today:1
+        })
+      }
+    }
   },
   getAddressList() {
     addressList({

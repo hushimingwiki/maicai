@@ -32,6 +32,7 @@ Page({
       capsuleObj:app.globalData.capsuleObj,
       myYe:app.globalData.wallet.balance
     })
+    this.getWallet()
   },
   viewBalanceDetail(){
     wx.navigateTo({
@@ -42,7 +43,7 @@ Page({
     wallet().then(res=>{
       app.globalData.wallet = res.data
       this.setData({
-        myYe:res.data.balance
+        qianbao:res.data
       })
     })
   },
@@ -64,8 +65,11 @@ Page({
           paySign: res.data.paySign,
           success: res => {
             this.getWallet()
-            wx.redirectTo({
-              url: '/pages/success/success?type=1',
+            // wx.redirectTo({
+            //   url: '/pages/success/success?type=1',
+            // })
+            wx.showToast({
+              title: '充值成功',
             })
           },fail (err) {
             console.log('pay fail', err)

@@ -6,12 +6,13 @@
         <image src="{{item.standardProductUnit.picture}}" mode="" class="shopimage"/>
         <view class="shopinfo">
           <view class="shopname">{{item.standardProductUnit.name}}</view>
-          <view class="shopflag">
+          <!-- <view class="shopflag">
             <view class="flag1">特价</view>
             <view class="flag2">24H发货</view>
-          </view>
+          </view> -->
+          <view class="yuanjia">原价<text class="qian">{{item.standardProductUnit.price}}</text><text class="fen">/份</text></view>
           <view class="shopprice">
-            <view class="left">￥<text class="qian">{{item.stockKeepingUnit.price}}</text><text class="fen">/份</text></view>
+            <view class="left">￥<text class="qian">{{item.standardProductUnit.very_important_person_price}}</text><text class="fen">/份</text></view>
             <view class="right">
               <view class="jian" catchtap="delShopCart" data-details="{{item}}" data-index="{{index}}">-</view>
               <input type="number" value="{{item.quantity}}" bindblur="updateCart" data-details="{{item}}" data-id="{{item.shop_car_id}}" data-index="{{index}}"/>

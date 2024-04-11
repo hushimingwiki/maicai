@@ -27,6 +27,10 @@
       margin: 0 24rpx;
       width: 416rpx;
       max-height: 150rpx;
+      .yuanjia{
+        margin-top: 10rpx;
+        font-size: 24rpx;
+      }
       .shopname{
         font-weight: 600;
       }
@@ -50,7 +54,6 @@
         }
       }
       .shopprice{
-        margin-top: 10rpx;
         display: flex;
         align-items: center;
         justify-content: space-between;

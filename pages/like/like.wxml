@@ -1,4 +1,4 @@
-<view class="top">
+<!-- <view class="top">
   <view class="search">
     <input class="input" type="text" bindinput="changeContent" value="{{name}}" />
 
@@ -7,7 +7,7 @@
   <view class="gwc" bindtap="goShopCart">
     <image src="https://api.caiduohui.com:8080/assets/gwc-lv.png" mode="" />
   </view>
-</view>
+</view> -->
 <scroll-view class="list" scroll-y bindscrolltolower="nextPage">
   <view class="shop-list" wx:for="{{shopList}}" wx:key="index" bindtap="goDetails" data-details="{{item}}">
     <image class="shop-img" src="{{item.picture}}" mode="aspectFill" />
@@ -16,8 +16,8 @@
       <view class="biaoqian">{{item.description}}</view>
       <view class="vip-price">原价￥{{item.price}}</view>
       <view class="shop-price">
-        <view>钻卡价￥<text class="red">{{item.start_price}}</text>/份</view>
-        <image catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}" src="https://api.caiduohui.com:8080/assets/gwc-lv.png" mode="" />
+        <view>钻卡价￥<text class="red">{{item.very_important_person_price}}</text>/份</view>
+        <image catchtap="shoucang" data-details="{{item.standard_product_unit_id}}" src="https://api.caiduohui.com:8080/assets/shoucang.png" mode="" />
       </view>
     </view>
   </view>

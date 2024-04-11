@@ -2,7 +2,10 @@ const app = getApp()
 import {
   shopDetails,
   addShopCart,
-  CommentList
+  CommentList,
+  likeAdd,
+  likeDelete,
+  likeList
 } from '../../request/api.js'
 
 Page({
@@ -27,7 +30,8 @@ Page({
     shopDetails:null,
     candi:'',
     allShopDetails:null,
-    Comment:null
+    Comment:null,
+    isShoucang:null
   },
 
   /**
@@ -36,19 +40,65 @@ Page({
   onLoad(options) {
     var xxxx = JSON.parse(options.details) // 先decode再把字符串转数组
     console.log(xxxx,'xxxx')
-    let cd = xxxx.base_attribute.filter(item => item.name == '产地')
-    console.log(cd[0].value[0])
+    // let cd = xxxx.base_attribute.filter(item => item.name == '产地')
+    // console.log(cd[0].value[0])
     console.log(xxxx,'xxxxxxxx')
     this.setData({
+      shopId:xxxx.standard_product_unit_id,
       shopDetails: xxxx,
-      candi:cd[0].value[0]
+      // candi:cd[0].value[0],
+      bottomLift: app.globalData.bottomLift,
     })
     this.getShopDetails()
     
   },
+  shoucang(){
+    if(!this.data.isShoucang){
+      likeAdd({
+        standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id
+      }).then(res=>{
+        console.log(res.code)
+        if(res.code == 200){
+          wx.showToast({
+            title: '收藏成功',
+          })
+          this.setData({
+            isShoucang:true
+          })
+        }
+      })
+    }else{
+      likeDelete({
+        standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id
+      }).then(res=>{
+        console.log(res.code)
+        if(res.code == 200){
+          wx.showToast({
+            title: '取消收藏',
+          })
+          this.setData({
+            isShoucang:false
+          })
+        }
+      })
+    }
+  },
   goCommentList(){
     wx.navigateTo({
       url: '../commentList/commentList?obj=' + JSON.stringify(this.data.allShopDetails),
+    })
+  },
+  chakan(e){
+    console.log(e.currentTarget.dataset.img,'eeeeeeeeeeeeeee')
+    wx.previewImage({
+      current: e.currentTarget.dataset.img[0], // 当前显示图片的http链接
+      urls: e.currentTarget.dataset.img, // 需要预览的图片http链接列表
+      success:res=>{
+        console.log('成功',res)
+      },
+      fail:err=>{
+        console.log('失败',err)
+      }
     })
   },
   getShopDetails(){
@@ -58,6 +108,7 @@ Page({
       console.log(res,'获取商品详情')
       this.setData({
         allShopDetails:res.data,
+        isShoucang:res.data.like
       })
       this.getCommentList()
     })  
@@ -66,8 +117,7 @@ Page({
     addShopCart({
       user_id:'',
       standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-      stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
-      current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
+      current_price:this.data.allShopDetails.price,
       quantity:1
     }).then( res => {
       console.log(res,'加入购物车')
@@ -87,7 +137,6 @@ getCommentList(){
   console.log(this.data.allShopDetails,'this.data.allShopDetails')
   CommentList({
     standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-    stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
     self_comment:'0',
     page:0,
     page_size:1

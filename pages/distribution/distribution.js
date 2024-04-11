@@ -62,7 +62,7 @@ Page({
 			title: '生成分享海报中...',
 		})
 		inviteQrCode({
-			scene: '?parentId=' + app.globalData.userInfo.user_id
+			scene: app.globalData.userInfo.user_id
 		}).then(res => {
 			this.setData({
 				base64url: 'data:image/png;base64,' + res.data
@@ -331,12 +331,12 @@ Page({
 		}
 	},
 	downImage() {
-		postFile(this.data.url).then(res => {
-			console.log(res.data)
+    console.log(this.data.url,'this.data.url')
+		postFile({type:4},this.data.url).then(res => {
+			console.log(res,'进入wx.previewImage')
 			wx.previewImage({
-				current: 'https://api.caiduohui.com:8080/picture/' + res.data, // 当前显示图片的http链接
-				urls: ['https://api.caiduohui.com:8080/picture/' + res.data], // 需要预览的图片http链接列表
-				showmenu: true
+				current: 'https://api.caiduohui.com:8080/tmp_picture/' + res.data, // 当前显示图片的http链接
+				urls: ['https://api.caiduohui.com:8080/tmp_picture/' + res.data], // 需要预览的图片http链接列表
 			})
 		})
 

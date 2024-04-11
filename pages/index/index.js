@@ -14,16 +14,38 @@ Page({
     adrDetails: null,
     station:null,
     fenLeiList:null,
-    StorageDW:null
+    StorageDW:null,
+    isEnd:true,
+    page:0,
+    pageSize:10
   },
   onLoad: function (option) {
-    console.log(option,'optionoptionoptionoptionoption')
+    var that = this
     this.setData({
       headerHeight:app.globalData.titleHeight,
       capsuleObj:app.globalData.capsuleObj
     })
     this.getFenlei()
-    
+    wx.getSetting({
+      success:res=>{
+        if (!res.authSetting['scope.userLocation']) {
+          console.log('没有开启定位')
+          console.log(that.data.noInventory,1)
+          that.setData({
+            noInventory:true
+          })
+          app.isLocation()
+          console.log(that.data.noInventory,2)
+        }else{
+          console.log('已开启定位')
+          that.setData({
+            noInventory:false
+          })
+          that.getRequest()
+          app.isLocation()
+        }
+      }
+    })
   },
   goVip(){
     wx.navigateTo({
@@ -54,7 +76,10 @@ Page({
   goFenlei(e){
     wx.setStorage({
       key: 'param',
-      data: e.currentTarget.dataset.id,
+      data: {
+        id : e.currentTarget.dataset.id,
+        index : e.currentTarget.dataset.index,
+      },
       success: function() {
         wx.switchTab({
           url: '../classify/classify'
@@ -95,7 +120,8 @@ Page({
       }).then(res=>{
         console.log(res,'res')
         this.setData({
-          station:res.data
+          station:res.data,
+          now_zzid:res.data.transfer_station_id
         })
         app.globalData.zzId = res.data.transfer_station_id
         wx.setStorageSync('zzId', res.data.transfer_station_id)
@@ -145,8 +171,7 @@ Page({
         addShopCart({
           user_id:'',
           standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-          stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
-          current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
+          current_price:this.data.allShopDetails.price,
           quantity:1
         }).then( res => {
           console.log(res,'加入购物车')
@@ -169,15 +194,24 @@ Page({
     })
   },
   getShopList(e){
+    wx.showLoading({
+      title:'加载中...'
+    })
     shopList({
-      transfer_station_id:e,
-      page:0,
-      page_size:5
+      transfer_station_id:this.data.now_zzid,
+      page:this.data.page,
+      page_size:this.data.pageSize
     }).then( res => {
       console.log(res,'商品列表')
+      // this.setData({
+      //   shopList:res.data,
+      // })
       this.setData({
-        shopList:res.data,
+        page:this.data.page+1,
+        shopList: [...this.data.shopList,...res.data],
+        isEnd:res.data.length<10?false:true
       })
+      wx.hideLoading()
     })   
   },
   goDetails(e){
@@ -249,47 +283,13 @@ Page({
     
   },
   onShow() {
-    var that = this
-    that.setData({
-      headerHeight:app.globalData.titleHeight,
-      capsuleObj:app.globalData.capsuleObj
-    })
-    // console.log(this.data.headerHeight)
-    // console.log('globalData',app.globalData)
-    // console.log('globalData',app.globalData.adrInfo)
-    // console.log('globalData',app.globalData.capsuleObj)
     
-    // setTimeout(() => {
-    //   this.getBannerList()
-    //   this.getZuijinStation()
-    //   this.getReceiveCouponList()
-    // }, 500)
-    // app.isLocation()
     var hd = wx.getStorageSync('hd')
     wx.setTabBarBadge({
       index: 2,
       text: hd.toString()
     });
-    wx.getSetting({
-      success:res=>{
-        if (!res.authSetting['scope.userLocation']) {
-          console.log('没有开启定位')
-          console.log(that.data.noInventory,1)
-          that.setData({
-            noInventory:true
-          })
-          app.isLocation()
-          console.log(that.data.noInventory,2)
-        }else{
-          console.log('已开启定位')
-          that.setData({
-            noInventory:false
-          })
-          that.getRequest()
-          app.isLocation()
-        }
-      }
-    })
+
     
     return
     console.log(this.data.StorageDW,'this.data.StorageDW1')
@@ -311,5 +311,13 @@ Page({
     //   })
     // },1000)
     
-  }
+  },
+    /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if(this.data.isEnd){
+      this.getShopList()
+    }
+  },
 })

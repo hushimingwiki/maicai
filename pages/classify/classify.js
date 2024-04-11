@@ -12,79 +12,82 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scroll:true, //是否允许右侧内容滚动
-    index: 0,
+    scroll: true, //是否允许右侧内容滚动
     array: ['菜品', '原材料'],
-    useHeight:'',
-    current:'0',
-    leftList:[
-      {id:'0',text:'蔬菜豆菇'},{id:'1',text:'新鲜水果'},{id:'2',text:'鲜肉蛋禽'},
-      {id:'3',text:'水产海鲜'},{id:'4',text:'乳品烘焙'},{id:'5',text:'方便速食'},
-      {id:'6',text:'粮油调品'},{id:'7',text:'零食酒水'},{id:'8',text:'生活超市'},
-      {id:'9',text:'火锅到家'}
-    ],
-    rightFl:[
-      {id:'0',text:'蔬菜'},{id:'1',text:'豆菇'},{id:'2',text:'叶子菜'},
-      {id:'3',text:'茄子'},{id:'4',text:'玉米'},{id:'5',text:'黄牙白'},
-    ],
-    rightList:[],
-    flAllOpen:1,
-    categoryList:[],
-    twoCategoryList:[],
-    threeCategoryList:[],
-    headerHeight:'',
-    isCheck:'0',
-    isCheckTwo:'0',
-    isCheckThree:'0',
-    shopList:[],
-    activeIndex:0,
-    flId:null,
-    page:0,
-    pageSize:10
+    useHeight: '',
+    current: '0',
+    rightList: [],
+    flAllOpen: 1,
+    categoryList: [],
+    twoCategoryList: [],
+    threeCategoryList: [],
+    headerHeight: '',
+    isCheck: '0',
+    isCheckTwo: '0',
+    isCheckThree: '0',
+    shopList: [],
+    activeIndex: 0,
+    flId: null,
+    page: 0,
+    pageSize: 10,
+    isEnd: true,
+    category_3_id:0,
+    isOnonLoad:false
   },
 
-  changeAllOpen(e){
+  changeAllOpen(e) {
     this.setData({
-      flAllOpen : e.currentTarget.dataset.ao
+      flAllOpen: e.currentTarget.dataset.ao
     })
   },
-  jrShopCart(e){
-    shopDetails(
-      {standard_product_unit_id:e.currentTarget.dataset.details}
-    ).then( res => {
-      console.log(res,'获取商品详情')
+  goSearch(){
+    wx.navigateTo({
+      url: '../search/search'
+    })
+  },
+  jrShopCart(e) {
+    shopDetails({
+      standard_product_unit_id: e.currentTarget.dataset.details
+    }).then(res => {
+      console.log(res, '获取商品详情')
       this.setData({
-        allShopDetails:res.data,
+        allShopDetails: res.data,
+        zdId:this.data.zzId
       })
       addShopCart({
-        user_id:'',
+        user_id: '',
         standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-        stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
-        current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
-        quantity:1
-      }).then( res => {
-        console.log(res,'加入购物车')
+        current_price:this.data.allShopDetails.price,
+        quantity: 1
+      }).then(res => {
+        console.log(res, '加入购物车')
         var hd = wx.getStorageSync('hd')
-        wx.setStorageSync('hd', Number(hd)+1)
+        wx.setStorageSync('hd', Number(hd) + 1)
         wx.setTabBarBadge({
           index: 2,
-          text: (Number(hd)+1).toString()
+          text: (Number(hd) + 1).toString()
         });
-        wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
+        wx.showToast({
+          title: '加入购物车成功，我在购物车等你哦',
+          icon: 'none',
+          duration: 1500
+        })
       })
-    })  
+    })
   },
-  goDetails(e){
+  goDetails(e) {
     var xxxx = e.currentTarget.dataset.details
-    console.log(JSON.stringify(xxxx),'xxxx')
-    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
+    console.log(JSON.stringify(xxxx), 'xxxx')
+    wx.navigateTo({
+      url: '../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)
+    })
   },
   /**
    * 选择搜索类型
    */
-  bindPickerChange(e){
+  bindPickerChange(e) {
     this.setData({
-      index:e.detail.value
+      index: e.detail.value
     })
   },
 
@@ -93,133 +96,186 @@ Page({
    */
   onLoad: function (options) {
 
-    
+
   },
   // 获取一级分类列表
-  getCategoryList(){
-    
-    categoryList(
-      {parent_id:this.data.flId?this.data.flId:0}
-    ).then( res => {
-      console.log(res,'一级分类列表')
+  getCategoryList() {
+    wx.showLoading({
+      title:'加载中...'
+    })
+    categoryList({
+      parent_id: 0
+    }).then(res => {
+      console.log(res, '一级分类列表')
       this.setData({
-        categoryList:res.data,
+        shopList: [],
+        page: 0,
+        isEnd: true,
+        categoryList: res.data,
       })
+      
       this.getTwoCategoryList(res.data[0].category_id)
-    })  
+    })
   },
   // 选择一级分类事件
-  selectFlOne(e){
+  selectFlOne(e) {
     var ind = e.currentTarget.dataset.index
     var id = e.currentTarget.dataset.id
     this.setData({
-      isCheck : ind,
-      shopList:[]
+      isCheck: ind,
+      shopList: [],
+      page: 0,
+      isEnd: true
     })
     this.getTwoCategoryList(id)
   },
   // 获取二级分类列表
-  getTwoCategoryList(e){
-    categoryList(
-      {parent_id:e}
-    ).then( res => {
-      console.log(res,'二级分类列表')
+  getTwoCategoryList(e) {
+    categoryList({
+      parent_id: this.data.flId ? this.data.flId : e
+    }).then(res => {
+      console.log(res, '二级分类列表')
       this.setData({
-        twoCategoryList:res.data,
+        twoCategoryList: res.data,
+        flId:null
       })
+      wx.setStorageSync('param', null)
       this.getThreeCategoryList(res.data[0].category_id)
-    })  
+    })
   },
   // 选择二级分类列表
- bindSelectLeft(e){
-  console.log(e)
-  let index = e.currentTarget.dataset.index;
-  let id = e.currentTarget.dataset.id;
-  this.setData({
-    isCheckTwo:index,
-    shopList:[]
-  })
-  this.getThreeCategoryList(id)
- },
- //获取三级分类
- getThreeCategoryList(e){
-  categoryList(
-    {parent_id:e}
-  ).then( res => {
-    console.log(res,'三级分类列表')
+  bindSelectLeft(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index;
+    let id = e.currentTarget.dataset.id;
     this.setData({
-      threeCategoryList:res.data,
+      isCheckTwo: index,
+      shopList: [],
+      page: 0,
+      isEnd: true
     })
-    this.getShopList(res.data[0].category_id)
-  })  
-},
-// 切换三级分类
-selectFlThree(e){
-  console.log(e,'eee')
-  let index = e.currentTarget.dataset.index;
-  let id = e.currentTarget.dataset.id;
-  this.setData({
-    isCheckThree:index,
-    flAllOpen : 1
-  })
-  this.getShopList(id)
-},
-getShopList(e){
-  categorySearch({
-    transfer_station_id:app.globalData.zzId,
-    category_3_id:e,
-    page:this.data.page,
-    page_size:this.data.pageSize
-  }).then( res => {
-    console.log(res,'商品列表')
+    this.getThreeCategoryList(id)
+  },
+  //获取三级分类
+  getThreeCategoryList(e) {
+    categoryList({
+      parent_id: e
+    }).then(res => {
+      console.log(res, '三级分类列表')
+      this.setData({
+        threeCategoryList: res.data,
+        now3flId: res.data[0].category_id
+      })
+      console.log(1)
+      this.getShopList(res.data[0].category_id)
+    })
+  },
+  // 切换三级分类
+  selectFlThree(e) {
+    console.log(e, 'eee')
+    let index = e.currentTarget.dataset.index;
+    let id = e.currentTarget.dataset.id;
     this.setData({
-      shopList:res.data,
+      isCheckThree: index,
+      flAllOpen: 1,
+      now3flId: id,
+      page: 0,
+      isEnd: true
     })
-  })   
-},
+    console.log(2)
+    this.getShopList(id)
+  },
+  getShopList(e) {
+    categorySearch({
+      transfer_station_id: this.data.zdId,
+      category_3_id: this.data.now3flId,
+      page: this.data.page,
+      page_size: this.data.pageSize
+    }).then(res => {
+      console.log(res, '商品列表')
+      if(res.code=='200'){
+        this.setData({
+          page: this.data.page + 1,
+          shopList: [...this.data.shopList, ...res.data],
+          isEnd: res.data.length < 10 ? false : true
+        })
+        wx.hideLoading()
+      }else{
+        wx.hideLoading()
+        wx.showToast({
+          title: res.msg,
+          icon:'error'
+        })
+      }
+      
+    })
+  },
+  nextPage() {
+    console.log(3)
+    if (this.data.isEnd) {
+      this.getShopList()
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
     // 获取当前设备可用高度
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    var upPageData = wx.getStorageSync('param')
+    if(upPageData){
+      console.log('有缓存index',upPageData)
+      that.setData({
+        flId: upPageData.id,
+        isCheck:upPageData.index
+      })
+      that.getCategoryList()
+    }else{
+      console.log('mei 有缓存index')
+      that.getCategoryList()
+    }
+    wx.getSystemInfo({
+      success(res) {
+        that.setData({
+          useHeight: res.windowHeight
+        })
+      }
+    })
+    console.log(app.globalData.capsuleObj, 'app.globalData.capsuleObj')
+    this.setData({
+      headerHeight: app.globalData.titleHeight,
+      statusBarHeight: app.globalData.statusBarHeight,
+      capsuleObj: app.globalData.capsuleObj,
+      zdId :  app.globalData.zzId,
+
+    })
     var hd = wx.getStorageSync('hd')
     wx.setTabBarBadge({
       index: 2,
       text: hd.toString()
     });
-    var that = this
-    wx.getStorage({
-      key: 'param',
-      success: function(res) {
-        console.log(res.data,'res.data')
-        that.setData({
-          flId:res.data
-        })
-        that.getCategoryList()
-      },fail:res=>{
-        that.getCategoryList()
+    return
+    console.log(this.data.zdId,app.globalData.zzId,'zz')
+    if(this.data.zdId != app.globalData.zzId){
+      console.log("切换了站点")
+      this.setData({
+        zdId :  app.globalData.zzId
+      })
+      console.log(4)
+      if(!this.data.isOnonLoad){
+        this.getShopList()
       }
-    });
-    wx.getSystemInfo({
-      success(res) {
-        that.setData({
-          useHeight:res.windowHeight
-        })
-      }
-    })
-    console.log(app.globalData.capsuleObj,'app.globalData.capsuleObj')
-    this.setData({
-      headerHeight:app.globalData.titleHeight,
-      statusBarHeight:app.globalData.statusBarHeight,
-      capsuleObj:app.globalData.capsuleObj,
-    })
+      
+    }else if(this.data.zdId == app.globalData.zzId && !this.data.isOnonLoad){
+      this.getShopList()
+    }
   },
 
   /**

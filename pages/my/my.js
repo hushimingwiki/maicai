@@ -24,8 +24,12 @@ Page({
       userInfo:app.globalData.userInfo
     })
     
-    this.getWallet()
     this.getYhqNum()
+  },
+  goEditData(){
+    wx.navigateTo({
+      url: '../editData/editData'
+    })
   },
   getYhqNum(){
     queryCouponList({
@@ -97,6 +101,11 @@ Page({
       url: '../team/team'
     })
   },
+  goLike(){
+    wx.navigateTo({
+      url: '../like/like'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -108,6 +117,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    
     this.setData({
       userInfo:app.globalData.userInfo
     })
@@ -116,6 +126,7 @@ Page({
       index: 2,
       text: hd.toString()
     });
+    this.getWallet()
   },
 
   /**

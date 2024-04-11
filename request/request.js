@@ -59,7 +59,7 @@ const post=(url,params,burl)=>{
   })
 }
 
-const postFile = (file) => {
+const postFile = (obj,file) => {
   console.log(file,'filefilefilefilefilefilefilefile')
   let date = Date.parse(new Date())
   return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ const postFile = (file) => {
       name: 'file',
       header:{"content":"multipart/form-data"},
       formData:{
-        type:'3',
+        type:obj.type,
         token:getApp().globalData.token
       },
       success:res=>{

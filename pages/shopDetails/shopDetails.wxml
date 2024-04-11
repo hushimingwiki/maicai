@@ -10,27 +10,28 @@
   </view>
   <view class="det-box">
     <view class="one">
-      <view class="price">￥19<text>/份</text></view>
-      <view class="wz" wx:if="{{candi}}"><image src="https://api.caiduohui.com:8080/assets/dingwei.png"></image>{{candi}}</view>
+      <view class="price">钻卡价￥{{allShopDetails.very_important_person_price}}<text>/份</text></view>
+      
+      <view class="wz" wx:if="{{allShopDetails.base_attribute}}"><image src="https://api.caiduohui.com:8080/assets/dingwei.png"></image>{{allShopDetails.base_attribute[0].value[0]}}</view>
     </view>
+    <view class="">原价￥{{allShopDetails.price}}</view>
     <view class="two">
       {{allShopDetails.name}}
     </view>
-    <view class="three">
+    <!-- <view class="three">
       <view class="flag">产地量贩</view>
       <view class="flag">好吃不腻</view>
       <view class="flag">脆嫩清香</view>
-    </view>
+    </view> -->
     <view class="four">{{allShopDetails.description}}</view>
   </view>
   <view class="server-box">
-    <view class="server"><text>配送</text>上架24H发货，第三方物流配送，免运费</view>
-    <view class="server"><text>服务</text>品质保证，生鲜不支持7天无理由退货</view>
-    <view class="server"><text>优惠</text>特价商品每人限购2份</view>
+    <view class="server"><text>配送</text>同城实时配送，方便快捷</view>
+    <view class="server"><text>服务</text>品质保证，除质量问题外，净菜不支持七天无理由退换货。</view>
   </view>
   <view class="evaluate">
     <view class="one">
-      <view class="eva-title"><text>用户评价</text>(1680)</view>
+      <view class="eva-title"><text>用户评价</text>({{allShopDetails.comment_number}})</view>
       <view class="see-all" bindtap="goCommentList">查看全部 ></view>
     </view>
     <view class="two">
@@ -56,7 +57,7 @@
       {{Comment.content}}
     </view>
     <view class="four">
-      <image wx:for="{{Comment.pictures}}" src="{{item}}"  wx:key="index" mode=""/>
+      <image wx:for="{{Comment.pictures}}" src="{{item}}"  wx:key="index" bindtap="chakan" data-img="{{Comment.pictures}}" mode="center"/>
     </view>
     
   </view>
@@ -68,13 +69,17 @@
       </view>
     </view>
   </view>
-  <view class="big-xq">
-    <image src="{{allShopDetails.picture}}" mode="widthFix"/>
+  <view class="video" wx:if="{{allShopDetails.video}}">
+    <video src="{{allShopDetails.video}}"/>
   </view>
-  <view class="shopcart">
-    <view class="caozuo">
+  <view class="big-xq">
+    <image wx:for="{{allShopDetails.detail_pictures}}" src="{{item}}" wx:key="index" mode="widthFix"/>
+  </view>
+  <view class="liukong"></view>
+  <view class="shopcart" style="padding-bottom:{{bottomLift}}px">
+    <view class="caozuo" bindtap="shoucang">
       <view class="cz" bindtap="goShopCart"><image src="https://api.caiduohui.com:8080/assets/gouwuche.png" mode=""/><text>购物车</text></view>
-      <!-- <view class="cz"><image src="https://api.caiduohui.com:8080/assets/shoucang-h.png" mode=""/><text>收藏</text></view> -->
+      <view class="cz"><image src="{{isShoucang?'https://api.caiduohui.com:8080/assets/shoucang.png':'https://api.caiduohui.com:8080/assets/shoucang-h.png'}}" mode=""/><text>收藏</text></view>
     </view>
     <view class="gwc" bindtap="jrShopCart">加入购物车</view>
   </view>

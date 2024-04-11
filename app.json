@@ -26,7 +26,8 @@
     "pages/team/team",
     "pages/editData/editData",
     "pages/distribution/distribution",
-    "pages/customerList/customerList"
+    "pages/customerList/customerList",
+    "pages/like/like"
   ],
   "window": {
     "navigationBarTextStyle": "black",

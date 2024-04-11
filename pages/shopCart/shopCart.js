@@ -95,7 +95,7 @@ Page({
   let sunlu = 0
   for (let i = 0; i < list.length; i++) {
     if (list[i].check === true) {
-      total += list[i].quantity * list[i].stockKeepingUnit.price;
+      total += list[i].quantity * list[i].standardProductUnit.price;
       sunlu += Number(list[i].quantity);
       list[i].totalPrice = total
     }
@@ -111,9 +111,9 @@ Page({
     var data = this.data.shopList
     var index = e.currentTarget.dataset.index
     addShopCart({
-      standard_product_unit_id:xxxx.stockKeepingUnit.standard_product_unit_id,
-      stock_keeping_unit_id:xxxx.stockKeepingUnit.stock_keeping_unit_id,
-      current_price:xxxx.stockKeepingUnit.price,
+      standard_product_unit_id:xxxx.standardProductUnit.standard_product_unit_id,
+      stock_keeping_unit_id:xxxx.standardProductUnit.stock_keeping_unit_id,
+      current_price:xxxx.standardProductUnit.price,
       quantity:1
     }).then( res => {
       console.log(res,'加入购物车')

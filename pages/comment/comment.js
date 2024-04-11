@@ -221,7 +221,7 @@ Page({
     }
     dataList.forEach((item, index, arr)=>{
       console.log(item.image)
-      postFile(item.image).then(ress => {
+      postFile({type:3},item.image).then(ress => {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         console.log(ress, "reeeeeeeeee")
         that.setData({

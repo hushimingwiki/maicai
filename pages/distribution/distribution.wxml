@@ -14,11 +14,11 @@
 
   <view class="user-income">
     <view class="info">
-      <view class="font-w">0.06</view>
+      <view class="font-w">0.00</view>
       <view class="text">待结算金额</view>
     </view>
     <view class="info">
-      <view class="font-w">0.06</view>
+      <view class="font-w">0.00</view>
       <view class="text">累计奖励</view>
     </view>
     <view class="info acc" bindtap="goCustomerList">

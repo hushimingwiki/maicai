@@ -2,7 +2,7 @@
   <image src="https://api.caiduohui.com:8080/assets/wod.png" mode="" class="background"/>
   <view class="box" style="top:{{headerHeight + 12}}px">
     <view class="user-info">
-      <view class="left">
+      <view class="left" bindtap="goEditData">
         <image src="{{userInfo.picture?userInfo.picture:'https://api.caiduohui.com:8080/assets/ca1.jpg'}}" mode=""/>
         <view class="info">
           <view class="name">{{userInfo.nickname}}</view>
@@ -29,7 +29,7 @@
       </view>
       <view class="three" bindtap="goBalance">
         <view class="value">{{qianbao.balance}}</view>
-        <view>余额充值(元)</view>
+        <view>余额充值</view>
       </view>
     </view>
     <view class="order">
@@ -89,10 +89,10 @@
             <image src="https://api.caiduohui.com:8080/assets/fw-sc.png" mode=""/>
             <view class="name">分销中心</view>
           </view>
-          <!-- <view class="cs" bindtap="goScore">
-            <image src="https://api.caiduohui.com:8080/assets/fw-zxkf.png" mode=""/>
-            <view class="name">在线客服</view>
-          </view> -->
+          <view class="cs" bindtap="goLike">
+            <image src="https://api.caiduohui.com:8080/assets/fw-zj.png" mode=""/>
+            <view class="name">我的收藏</view>
+          </view>
         </view>
       </view>
     </view>

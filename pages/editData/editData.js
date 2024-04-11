@@ -51,7 +51,7 @@ Page({
     }
     console.log(this.data.avatarUrl)
     if(this.data.avatarUrl){
-      postFile(this.data.avatarUrl).then(ress=>{
+      postFile({type:3},this.data.avatarUrl).then(ress=>{
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         console.log(ress,"reeeeeeeeee")
         updateUserInfo({

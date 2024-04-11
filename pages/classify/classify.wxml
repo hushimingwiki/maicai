@@ -1,7 +1,7 @@
 <!-- 顶部区域 -->
 <view class="level search-box" style="padding-top: {{capsuleObj.top}}px;">
   <!-- 中间搜索框 -->
-  <view class="level input-box" style="height: {{capsuleObj.height}}px;width: {{702 - capsuleObj.width * 2}}rpx;">
+  <view class="level input-box" style="height: {{capsuleObj.height}}px;width: {{702 - capsuleObj.width * 2}}rpx;" bindtap="goSearch">
     <icon class="input-icon" type="search" size="16"></icon>
     <input placeholder="平价蔬菜"/>
   </view>
@@ -50,18 +50,19 @@
           data-id="{{item.category_id}}" catchtap="selectFlThree">{{item.name}}</view>
       </view>
     </view>
-    <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.70}}px;" class="fl-content">
+    <scroll-view scroll-y="{{scroll}}" style="height: {{useHeight*0.70}}px;" class="fl-content" bindscrolltolower="nextPage">
       <view wx:if="{{shopList.length>0}}">
         <view wx:for="{{shopList}}" wx:key="item" class="fl-for-list" bindtap="goDetails" data-details="{{item}}">
           <image src="{{item.picture}}" mode="aspectFill"/>
           <view class="fl-details">
             <view class="fl-text">{{item.name}}</view>
-            <view>
+            <!-- <view>
               <text class="fl-tj">特价</text>
               <text class="fl-fh">24H发货</text>
-            </view>
+            </view> -->
+            <view class="vipprice">原价{{item.price}}</view>
             <view class="fl-qian-box">
-              <text class="fl-qian">￥</text><text class="fl-price">12{{item.price}}</text><text class="fl-feng">/份</text>
+              <text class="fl-qian">钻卡价￥</text><text class="fl-price">{{item.very_important_person_price}}</text><text class="fl-feng">/份</text>
               <view class="gwc-image" catchtap="jrShopCart" data-details="{{item.shop_id}}">
                 <image src="https://api.caiduohui.com:8080/assets/gwc-green.png" mode=""/>
                 <!-- <view class="hongdian">1</view> -->
@@ -73,6 +74,9 @@
       <!-- 无数据显示 -->
       <view class="not-data" wx:else>
         <text>暂无数据！</text>
+      </view>
+      <view class="not-data" wx:if="{{!isEnd}}">
+        <text>到底了！</text>
       </view>
     </scroll-view>
   </view>

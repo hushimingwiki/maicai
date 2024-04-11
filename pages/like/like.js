@@ -1,6 +1,8 @@
 // pages/search/search.ts productSearch
 import {
-  productSearch,shopDetails,addShopCart
+  likeList,
+  likeAdd,
+  likeDelete,
 } from '../../request/api.js'
 const app = getApp()
 Page({
@@ -28,6 +30,7 @@ Page({
       dizhi:dingwei,
       zzId:app.globalData.zzId
     })
+    this.getShopList()
   },
   nextPage(){
     if(this.data.isEnd){
@@ -39,27 +42,13 @@ Page({
     console.log(JSON.stringify(xxxx),'xxxx')
     wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
   },
-  modify(){
-    if(!this.data.name){
-      return
-    }
-    this.setData({
-      page:0,
-      shopList:[]
-    })
-    this.getShopList()
-  },
+
   getShopList(){
-    productSearch({
-      keyword:this.data.name,
-      province:this.data.dizhi.address_component.province,
-      city:this.data.dizhi.address_component.city,
-      district:this.data.dizhi.address_component.district,
+    likeList({
       page:this.data.page,
       page_size:this.data.pageSize,
-      transfer_station_id:this.data.zzId
     }).then( res => {
-      console.log(res,'搜索商品列表')
+      console.log(res,'收藏列表')
       this.setData({
         shopList:[...this.data.shopList,...res.data],
         page:this.data.page+1,
@@ -67,38 +56,36 @@ Page({
       })
     })
   },
-  jrShopCart(e){
-    shopDetails(
-      {standard_product_unit_id:e.currentTarget.dataset.details}
-    ).then( res => {
-      console.log(res,'获取商品详情')
-      this.setData({
-        allShopDetails:res.data,
-      })
-      addShopCart({
-        user_id:'',
-        standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-        stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
-        current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
-        quantity:1
-      }).then( res => {
-        console.log(res,'加入购物车')
-        wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
-      })
-    })  
-  },
-  goShopCart(){
-    wx.switchTab({
-      url: '../shopCart/shopCart',
+  shoucang(e){
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确定要取消收藏？',
+      success (res) {
+        if (res.confirm) {
+          likeDelete({
+            standard_product_unit_id:e.currentTarget.dataset.details
+          }).then(res=>{
+            console.log(res.code)
+            if(res.code == 200){
+              wx.showToast({
+                title: '取消收藏',
+              })
+              that.setData({
+                shopList:[],
+                page:0,
+                isEnd:true
+              })
+              that.getShopList()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
-  },
-  changeContent (e){
-      console.log(e.detail.value)
-      this.setData({
-          name:e.detail.value
-      })
-  },
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

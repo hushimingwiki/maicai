@@ -10,8 +10,11 @@ import QQMapWX from '/utils/qqmap-wx-jssdk.js'
 const app = getApp()
 App({
   async onLaunch(option) {
-		console.log(option.query.parentId,'optionoptionoptionoptionoption')
-		wx.setStorageSync('parentId', option.query.parentId)
+    if(option.query.scene){
+      wx.setStorageSync('parentId', option.query.scene)
+    }else if(option.query.parentId){
+      wx.setStorageSync('parentId', option.query.parentId)
+    }
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -28,6 +31,9 @@ App({
         this.globalData.capsuleObj = capsuleObj;
         this.globalData.titleHeight = statusBarHeight + capsuleObj.height + (capsuleObj.top - statusBarHeight) * 2;
         this.globalData.statusBarHeight = statusBarHeight
+        if (res.safeArea.top > 20) {
+          this.globalData.bottomLift = res.screenHeight - res.safeArea.bottom;
+        }
       },
       failure() {}
     })
@@ -92,7 +98,7 @@ App({
           console.log(login, 'login')
           userLogin({
             type: 1,
-            parent_id: wx.getStorageSync('parentId')?wx.getStorageSync('parentId'):0,
+            parent_id: pid?pid:0,
             identification: login.code,
             sms_code: '',
             appid: 'wx9662daace8be7f13',
@@ -194,19 +200,16 @@ App({
   getLocation(callback) {
     let that = this
     return new Promise((resolve, reject) => {
-			console.log(this.globalData.location,'this.globalData.location')
       if (this.globalData.location) {
         resolve()
       }
       wx.getLocation({
         success: res => {
-          console.log(res, 'resssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
           let map = new QQMapWX({
             key: '2T7BZ-YB5AJ-3XFF7-KE66C-J4646-2RFCF'
           })
           console.log(map, 'map')
           map.reverseGeocoder({
-
             location: res ? `${res.latitude+','+res.longitude}` : null,
             success: res => {
               console.log(res, '这里设置了定位')
@@ -219,9 +222,8 @@ App({
               return res.result
             },
             fail: res => {
-              console.log(res, 'zxc1111111111111111111111111111111111111111111111111111111111111')
+              console.log(res, '获取定位失败')
             }
-
           })
         },
         fail: res => {

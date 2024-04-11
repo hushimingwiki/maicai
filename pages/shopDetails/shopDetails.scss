@@ -185,7 +185,20 @@
 }
 .big-xq {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   image{
+    width: 750rpx;
+    margin: 0;
+    padding: 0;
+  }
+}
+.liukong{
+  height: 200rpx;
+}
+.video{
+  width: 750rpx;
+  video{
     width: 750rpx;
   }
 }
@@ -205,11 +218,11 @@
     width: 200rpx;
     margin-left: 24rpx;
     .cz {
-      width: 100rpx;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       color: #666666;
+      font-size: 24rpx;
       image{
         width: 48rpx;
         height: 48rpx;

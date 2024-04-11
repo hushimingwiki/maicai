@@ -100,3 +100,15 @@ export const CommentList = (params) => post('standard_product_unit_comment/list'
 
 //二级分销邀请列表 /invite/list
 export const inviteList = (params) => post('invite/list',params);
+
+//获取时间列表 /order/get_appointment_delivery_time
+export const appointment = (params) => post('order/get_appointment_delivery_time',params);
+
+//添加收藏  /like/add
+export const likeAdd = (params) => post('like/add',params);
+
+//删除收藏 /like/delete
+export const likeDelete = (params) => post('like/delete',params);
+
+//获取收藏列表
+export const likeList = (params) => post('like/list',params);

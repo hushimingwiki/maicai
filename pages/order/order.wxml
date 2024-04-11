@@ -19,15 +19,15 @@
   </view>
   <view class="shoplist">
     <view class="title">
-      <view class="name">生鲜快递发货</view>
-      <view class="acc">上架24H发货，第三方物流配送</view>
+      <view class="name">净菜同城配送</view>
+      <view class="acc">按照客户指定时间段配送到家</view>
     </view>
     <view class="list">
       <view wx:for="{{cartShop}}" wx:key="item" class="list-item">
         <image src="{{item.standardProductUnit.picture}}" class="item-image" mode="aspectFill"/>
         <view class="item-info">
-          <view class="name"><text>{{item.standardProductUnit.name}}</text><text>￥{{item.stockKeepingUnit.price}}</text></view>
-          <view class="guige">规格：{{item.stockKeepingUnit.attribute}}</view>
+          <view class="name"><text>{{item.standardProductUnit.name}}</text><text>￥{{item.standardProductUnit.price}}</text></view>
+          <!-- <view class="guige">规格：{{item.standardProductUnit.attribute}}</view> -->
           <view class="num">数量：{{item.quantity}}</view>
         </view>
       </view>
@@ -41,13 +41,42 @@
     <view class="paytype">
       <text>支付方式</text><text>微信支付</text>
     </view>
+    <view class="goutong">
+      <text>缺货时与我电话沟通过</text><switch checked="{{switch1Checked}}" bindchange="switch1Change"/>
+    </view>
+    <view class="beizhu">
+      <text>备注</text><input type="text" value="{{note}}" bindinput="setNote" placeholder="选填，可以告诉我们您的特殊需求"/>
+    </view>
+    <view class="goutong">
+      <text>联系不上时放指定地点</text><switch checked="{{switch2Checked}}" bindchange="switch2Change"/>
+    </view>
+    <view class="didian" wx:if="{{switch2Checked}}">
+      <view class="zx {{nowDidian == 1?'lv' : ''}}" bindtap="seletDidian" data-value="家门口" data-index="1">家门口</view>
+      <view class="zx {{nowDidian == 2?'lv' : ''}}" bindtap="seletDidian" data-value="门把手上" data-index="2">门把手上</view>
+      <view class="zx {{nowDidian == 3?'lv' : ''}}" bindtap="seletDidian" data-value="门卫室" data-index="3">门卫室</view>
+      <view class="zx {{nowDidian == 4?'lv' : ''}}" bindtap="seletDidian" data-value="自提点" data-index="4">自提点</view>
+      <view class="zx {{nowDidian == 5?'lv' : ''}}" bindtap="seletDidian" data-value="外卖存放桌" data-index="5">外卖存放桌</view>
+      <view class="zx {{nowDidian == 6?'lv' : ''}}" bindtap="seletDidian" data-value="外卖取餐架" data-index="6">外卖取餐架</view>
+      <view class="zx {{nowDidian == 7?'lv' : ''}}" bindtap="seletDidian" data-value="单元楼一楼大堂" data-index="7">单元楼一楼大堂</view>
+    </view>
   </view>
-  <view class="jiesuan" style="height: {{tabbarHeight}}px;">
-    <view>共2件，</view>
+  <view class="baozhang">
+    <view class="title">安全保障</view>
+    <view class="content">
+      <view class="zs">缺重退款</view>
+      <view>收到货后，如商品实际重量不足，全额退款</view>
+    </view>
+    <view class="content">
+      <view class="zs">安心退换</view>
+      <view>收货后如商品有质量问题，可申请退换货</view>
+    </view>
+  </view>
+  <view class="jiesuan" style="padding-bottom:{{bottomLift}}px">
+    <view>共{{allJianShu}}件，</view>
     <view class="price">
       合计:<text>￥{{totalPrice}}</text>
       <view wx:if="{{couponPrice>0}}">优惠券:-{{couponPrice}}</view>
-      <view>含运费:{{Yunfei}}</view>
+      <view>配送费:{{Yunfei}}</view>
     </view>
     
     <view class="qjs" bindtap="createOrder">立即支付</view>

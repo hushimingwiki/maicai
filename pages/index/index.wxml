@@ -7,21 +7,21 @@
     <text wx:if="{{!station}}">切换中转站</text>
     <view class="arrow-bottom"></view>
   </view>
-  <input class="search" placeholder="买菜就上买菜小程序" bindtap="goSearch"/>
+  <input class="search" placeholder="方便 快捷的净菜一站式配送 全在菜多惠" bindtap="goSearch"/>
 </view>
 <scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
-  <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
-    <swiper-item bindtap="navigate" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index" bindtap="goVip">
+  <!-- <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
+    <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index" bindtap="goVip">
       <image src='{{item.picture}}'></image>
     </swiper-item>
-  </swiper>
+  </swiper> -->
+  <image class="swiper" src="{{bannerList[0].picture}}" bindtap="goVip" mode=""/>
 
   <view class="fenlei">
-    <view class="flss" wx:for="{{fenLeiList}}" wx:key="index" bindtap="goFenlei" data-id="{{item.category_id}}">
+    <view class="flss" wx:for="{{fenLeiList}}" wx:key="index" bindtap="goFenlei" data-id="{{item.category_id}}" data-index="{{index}}">
       <image src="{{item.picture}}" mode="" />
       <view>{{item.name}}</view>
     </view>
-    
   </view>
   <view class="receive-coupon" wx:if="{{klqCoupon.length > 0}}">
     <view class="title">388元券包 <text>新人专享</text></view>
@@ -105,9 +105,10 @@
             <!-- <view class="biaoqian two"></view> -->
           </view>
           <view class="biaoqian">{{item.description}}</view>
+          <view class="vipprice">原价{{item.price}}</view>
           <view class="price">
             <view class="left">
-              <text class="yang">￥</text>{{item.start_price}}
+              <text class="yang">钻卡价￥</text>{{item.very_important_person_price}}
               <text class="feng">/份</text>
             </view>
             <view class="right" catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}">

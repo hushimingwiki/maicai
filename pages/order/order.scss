@@ -55,6 +55,7 @@
 .shoplist {
   @include adr;
   .title {
+    font-size: 24rpx;
     display: flex;
     justify-content: space-between;
     .acc{
@@ -65,7 +66,7 @@
     margin-top: 24rpx;
     .list-item {
       display: flex;
-      
+      margin-bottom: 12rpx;
       .item-image{
         width: 150rpx;
         height: 150rpx;
@@ -91,6 +92,7 @@
   }
 }
 .qita {
+  font-size: 24rpx;
   @include adr;
   .yhq{
     display: flex;
@@ -116,6 +118,64 @@
     border-top: 1rpx solid #e4e4e4;
     padding: 24rpx 0 0 0;
   }
+  .goutong{
+    margin-top: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1rpx solid #e4e4e4;
+    padding: 24rpx 0 0 0;
+    switch{
+      zoom: .6;
+    }
+  }
+  .didian{
+    background-color: #f6f6f6;
+    padding: 10rpx 10rpx 0 10rpx;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12rpx;
+    .zx{
+      background-color: #ffffff;
+      color: #000000;
+      padding: 5rpx 10rpx;
+      width: max-content;
+      border-radius: 5rpx;
+      margin: 0 14rpx 14rpx 0;
+    }
+    .lv{
+      background-color: #40AE36;
+      color: #ffffff;
+    }
+  }
+  .beizhu{
+    margin-top: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1rpx solid #e4e4e4;
+    padding: 24rpx 0 0 0;
+    input{
+      width: 70%;
+      text-align: right;
+    }
+  }
+}
+.baozhang{
+  @include adr;
+  .title{
+    font-size: 24rpx;
+    font-weight: bold;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding-bottom: 12rpx;
+  }
+  .content{
+    padding: 12rpx 0 0 0;
+    font-size: 24rpx;
+    .zs{
+      font-weight: bold;;
+    }
+  }
 }
 .jiesuan {
   position: fixed;
@@ -128,6 +188,7 @@
   justify-content: flex-end;
   align-items: center;
   font-size: 24rpx;
+  padding: 12rpx 0;
   .price {
     text{
       margin: 0 24rpx 0 0;

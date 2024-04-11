@@ -24,9 +24,8 @@ Page({
     data:true,
   },
   goChoose(){
-    //腾讯插件
-    const key = '2T7BZ-YB5AJ-3XFF7-KE66C-J4646-2RFCF'; //使用在腾讯位置服务申请的key
-    const referer = '菜多惠'; //调用插件的app的名称
+    const key = '2T7BZ-YB5AJ-3XFF7-KE66C-J4646-2RFCF'; 
+    const referer = '菜多惠'; 
     let address = app.globalData.location.location
     const location = JSON.stringify({
       latitude: address.lat,
