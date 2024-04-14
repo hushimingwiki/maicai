@@ -14,9 +14,11 @@
     <view class="test">支付失败</view>
   </view>
 
-  <view class="flex jus-b">
+  <view class="flex">
     <button bindtap="back" class="back">返回首页</button>
-    <!-- <button bindtap="go" class="go">继续逛逛</button> -->
+		<button bindtap="backOrder" class="back">返回订单</button>
+    <button bindtap="go" class="go">继续逛逛</button>
+		
   </view>
 </view>
 

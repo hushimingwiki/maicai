@@ -26,26 +26,7 @@ Page({
       capsuleObj:app.globalData.capsuleObj
     })
     this.getFenlei()
-    wx.getSetting({
-      success:res=>{
-        if (!res.authSetting['scope.userLocation']) {
-          console.log('没有开启定位')
-          console.log(that.data.noInventory,1)
-          that.setData({
-            noInventory:true
-          })
-          app.isLocation()
-          console.log(that.data.noInventory,2)
-        }else{
-          console.log('已开启定位')
-          that.setData({
-            noInventory:false
-          })
-          that.getRequest()
-          app.isLocation()
-        }
-      }
-    })
+
   },
   goVip(){
     wx.navigateTo({
@@ -205,19 +186,19 @@ Page({
       console.log(res,'商品列表')
       // this.setData({
       //   shopList:res.data,
-      // })
-      this.setData({
-        page:this.data.page+1,
-        shopList: [...this.data.shopList,...res.data],
-        isEnd:res.data.length<10?false:true
-      })
+			// })
+				this.setData({
+					page:this.data.page+1,
+					shopList: [...this.data.shopList,...res.data],
+					isEnd:res.data.length<10?false:true
+				})
       wx.hideLoading()
     })   
   },
   goDetails(e){
     var xxxx = e.currentTarget.dataset.details
     console.log(JSON.stringify(xxxx),'xxxx')
-    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
+    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + encodeURIComponent(JSON.stringify(xxxx))})
   },
   bindViewTap() {
     wx.navigateTo({
@@ -283,13 +264,35 @@ Page({
     
   },
   onShow() {
-    
+    var that = this
     var hd = wx.getStorageSync('hd')
     wx.setTabBarBadge({
       index: 2,
       text: hd.toString()
-    });
-
+		});
+		this.setData({
+			shopList:[]
+		})
+		wx.getSetting({
+      success:res=>{
+        if (!res.authSetting['scope.userLocation']) {
+          console.log('没有开启定位')
+          console.log(that.data.noInventory,1)
+          that.setData({
+            noInventory:true
+          })
+          app.isLocation()
+          console.log(that.data.noInventory,2)
+        }else{
+          console.log('已开启定位')
+          that.setData({
+            noInventory:false
+          })
+          that.getRequest()
+          app.isLocation()
+        }
+      }
+    })
     
     return
     console.log(this.data.StorageDW,'this.data.StorageDW1')

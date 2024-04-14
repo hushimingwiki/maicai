@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "success",
+          "pathName": "pages/success/success",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "index",
           "pathName": "pages/index/index",
           "query": "parentId=2",

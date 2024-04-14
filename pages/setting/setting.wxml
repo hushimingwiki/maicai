@@ -1,4 +1,4 @@
 <view class="box">
-  <view class="delivery-address" bindtap="goEditData"><text>用户信息</text><image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/></view>
-  <view class="delivery-address" bindtap="goDeliveryAdr"><text>收获地址</text><image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/></view>
+  <view class="delivery-address" bindtap="goEditData"><text>用户信息</text><image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode=""/></view>
+  <view class="delivery-address" bindtap="goDeliveryAdr"><text>收获地址</text><image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode=""/></view>
 </view>

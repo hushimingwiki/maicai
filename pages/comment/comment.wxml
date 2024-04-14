@@ -12,8 +12,8 @@
       <text>描述相符 </text>
       <view class="stars">
         <view class="flex" wx:for="{{5}}" wx:key="index">
-          <image wx:if="{{index>=Score}}" data-index="{{index+1}}" bindtap="tap" src="https://api.caiduohui.com:8080/assets/star2.png" mode="widthFix"></image>
-          <image wx:if="{{index<Score}}" data-index="{{index+1}}" bindtap="tap" src="https://api.caiduohui.com:8080/assets/star1.png" mode="widthFix"></image>
+          <image wx:if="{{index>=Score}}" data-index="{{index+1}}" bindtap="tap" src="https://tencent.file.caiduohui.com/assets/star2.png" mode="widthFix"></image>
+          <image wx:if="{{index<Score}}" data-index="{{index+1}}" bindtap="tap" src="https://tencent.file.caiduohui.com/assets/star1.png" mode="widthFix"></image>
         </view>
         <view>{{describeText}}</view>
         <!-- <image src="{{item.type==1?'https://www.dnfc888.com/assets/star1.png':'https://www.dnfc888.com/assets/star2.png'}}" wx:for="{{evaluate}}" wx:key="{{item.index}}" bindtap="cutStar" data-index="{{item.index}}"></image>{{describe}} -->
@@ -29,7 +29,7 @@
         <view class="image">
           <image wx:for="{{pic}}" wx:key="index" src="{{item.image}}" class="image-l"><view bindtap="delect" data-index="{{index}}" class="hd">X</view></image>
           <view class='addimg' bindtap='imgSelect' data-iindex="{{iindex}}" wx:if="{{pic.length<9}}">
-            <image src='https://api.caiduohui.com:8080/assets/add-video.png'></image>
+            <image src='https://tencent.file.caiduohui.com/assets/add-video.png'></image>
           </view>
         </view>
 

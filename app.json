@@ -26,6 +26,7 @@
     "pages/team/team",
     "pages/editData/editData",
     "pages/distribution/distribution",
+    "pages/disDel/disDel",
     "pages/customerList/customerList",
     "pages/like/like"
   ],

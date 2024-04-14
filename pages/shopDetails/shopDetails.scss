@@ -16,7 +16,27 @@
   border-radius: 10rpx;
   padding: 24rpx;
   max-width: 702rpx;
-  margin: 24rpx;
+	margin: 24rpx;
+	.goVip{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #9feb9d;
+		padding: 24rpx;
+		margin-top: 12rpx;
+		border-radius: 14rpx;
+		.wenzi{
+			color: #444343;
+			font-size: 24rpx;
+		}
+		.go{
+			color: #fff;
+			font-size: 24rpx;
+			background-color: #0b8007;
+			padding: 4rpx 15rpx;
+			border-radius: 20rpx;
+		}
+	}
   .one{
     display: flex;
     justify-content: space-between;

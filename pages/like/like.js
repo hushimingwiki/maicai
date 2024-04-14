@@ -40,7 +40,7 @@ Page({
   goDetails(e){
     var xxxx = e.currentTarget.dataset.details
     console.log(JSON.stringify(xxxx),'xxxx')
-    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)})
+    wx.navigateTo({url:'../shopDetails/shopDetails?details=' + encodeURIComponent(JSON.stringify(xxxx))})
   },
 
   getShopList(){

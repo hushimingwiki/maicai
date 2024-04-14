@@ -208,7 +208,7 @@ Page({
     }).filter(Boolean).concat();
     
  
-    wx.navigateTo({url:'../order/order?data=' + JSON.stringify(newList) + '&price=' + this.data.totalPrice})
+    wx.navigateTo({url:'../order/order?data=' + encodeURIComponent(JSON.stringify(newList)) + '&price=' + this.data.totalPrice})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

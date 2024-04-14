@@ -16,6 +16,8 @@ export const WXPay = (params) => post('pay/wx_pay', params);
 //获取用户钱包user_wallet/get
 export const wallet = (params) => post('user_wallet/get',params);
 
+//获取vip信息 user_very_important_person/get
+export const vipInfo = (params) => post('user_very_important_person/get',params);
 //获取钱包明细user_wallet_record/list
 export const userWalletRecord = (params) => post('user_wallet_record/list',params);
 //获取用户信息/user/get

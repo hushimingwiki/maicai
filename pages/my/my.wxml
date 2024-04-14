@@ -1,17 +1,18 @@
 <view class="con">
-  <image src="https://api.caiduohui.com:8080/assets/wod.png" mode="" class="background"/>
+  <image src="https://tencent.file.caiduohui.com/assets/wod.png" mode="" class="background"/>
   <view class="box" style="top:{{headerHeight + 12}}px">
     <view class="user-info">
       <view class="left" bindtap="goEditData">
-        <image src="{{userInfo.picture?userInfo.picture:'https://api.caiduohui.com:8080/assets/ca1.jpg'}}" mode=""/>
+        <image src="{{userInfo.picture?userInfo.picture:'https://tencent.file.caiduohui.com/assets/ca1.jpg'}}" mode=""/>
         <view class="info">
           <view class="name">{{userInfo.nickname}}</view>
-          <!-- <view>133****1761</view> -->
+          <view class="zkVip" wx:if="{{vipDetails.vip_1 == 1}}">钻卡会员</view>
+          <view class="pyVip" wx:if="{{vipDetails.vip_1 == 0}}">普通用户</view>
         </view>
       </view>
       <view class="right">
-        <!-- <image src="https://api.caiduohui.com:8080/assets/ld.png" mode="" bindtap="goScore"/> -->
-        <image src="https://api.caiduohui.com:8080/assets/sz.png" mode="" bindtap="goSetting"/>
+        <!-- <image src="https://tencent.file.caiduohui.com/assets/ld.png" mode="" bindtap="goScore"/> -->
+        <image src="https://tencent.file.caiduohui.com/assets/sz.png" mode="" bindtap="goSetting"/>
       </view>
     </view>
     <view class="property">
@@ -35,28 +36,28 @@
     <view class="order">
       <view class="title">
         <view class="name">我的订单</view>
-        <view class="all" bindtap="goOrderList" data-tab="0">全部订单<image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/></view>
+        <view class="all" bindtap="goOrderList" data-tab="0">全部订单<image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode=""/></view>
       </view>
       <view class="order-zt">
         <view class="zt">
           <view class="cs" bindtap="goOrderList" data-tab="1">
-            <image src="https://api.caiduohui.com:8080/assets/dd-dfk.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/dd-dfk.png" mode=""/>
             <view class="name">待付款</view>
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="2">
-            <image src="https://api.caiduohui.com:8080/assets/dd-dfh.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/dd-dfh.png" mode=""/>
             <view class="name">待发货</view>
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="3">
-            <image src="https://api.caiduohui.com:8080/assets/dd-dsh.png" mode=""/>
-            <view class="name">待收获</view>
+            <image src="https://tencent.file.caiduohui.com/assets/dd-dsh.png" mode=""/>
+            <view class="name">待收货</view>
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="4">
-            <image src="https://api.caiduohui.com:8080/assets/dd-dpj.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/dd-dpj.png" mode=""/>
             <view class="name">已完成</view>
           </view>
           <view class="cs" bindtap="goOrderList" data-tab="5">
-            <image src="https://api.caiduohui.com:8080/assets/dd-dfk.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/dd-dfk.png" mode=""/>
             <view class="name">已取消</view>
           </view>
         </view>
@@ -65,32 +66,32 @@
     <view class="order">
       <view class="title">
         <view class="name">我的服务</view>
-        <!-- <view class="all">全部订单<image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/></view> -->
+        <!-- <view class="all">全部订单<image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode=""/></view> -->
       </view>
       <view class="order-zt">
         <view class="zt">
           <view class="cs" bindtap="goAdrList">
-            <image src="https://api.caiduohui.com:8080/assets/fw-shdz.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-shdz.png" mode=""/>
             <view class="name">收货地址</view>
           </view>
           <!-- <view class="cs" bindtap="updataUrl">
-            <image src="https://api.caiduohui.com:8080/assets/fw-zj.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-zj.png" mode=""/>
             <view class="name">足迹</view>
           </view> -->
           <!-- <view class="cs" bindtap="goTeam">
-            <image src="https://api.caiduohui.com:8080/assets/fw-sc.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-sc.png" mode=""/>
             <view class="name">我的团队</view>
           </view> -->
           <view class="cs" bindtap="goVip">
-            <image src="https://api.caiduohui.com:8080/assets/fw-fwzx.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-fwzx.png" mode=""/>
             <view class="name">会员中心</view>
           </view>
           <view class="cs" bindtap="goDistribution">
-            <image src="https://api.caiduohui.com:8080/assets/fw-sc.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-sc.png" mode=""/>
             <view class="name">分销中心</view>
           </view>
           <view class="cs" bindtap="goLike">
-            <image src="https://api.caiduohui.com:8080/assets/fw-zj.png" mode=""/>
+            <image src="https://tencent.file.caiduohui.com/assets/fw-zj.png" mode=""/>
             <view class="name">我的收藏</view>
           </view>
         </view>

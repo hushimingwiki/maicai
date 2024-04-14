@@ -40,6 +40,11 @@ Page({
 			userInfo: app.globalData.userInfo
 		})
 	},
+	goJiesuan(){
+		wx.navigateTo({
+			url: '../disDel/disDel',
+		})
+	},
 	goCustomerList() {
 		wx.navigateTo({
 			url: '../customerList/customerList',
@@ -98,7 +103,7 @@ Page({
 					ctx.scale(dpr, dpr)
 
 					wx.getImageInfo({
-						src: 'https://api.caiduohui.com:8080/assets/haibao-bg.png',
+						src: 'https://tencent.file.caiduohui.com/assets/haibao-bg.png',
 						success(res) {
 							console.log(res, 'pppz')
 							//获取二维码的图片路径
@@ -283,7 +288,7 @@ Page({
 		ctx.strokeStyle = "red"; //线条的颜色
 		ctx.stroke();
 		ctx.clip();
-		ctx.createImage('https://api.caiduohui.com:8080/picture/20240403214856210000001.jpg', x, y, w, h);
+		ctx.createImage('https://tencent.file.caiduohui.com/assets/20240403214856210000001.jpg', x, y, w, h);
 		ctx.restore();
 		ctx.closePath();
 		ctx.fill()
@@ -377,7 +382,7 @@ Page({
 		return {
 			title: app.globalData.userInfo.nickname + '邀请你加入菜多惠',
 			path: '/pages/index/index?parentId=' + app.globalData.userInfo.user_id,
-			imageUrl: 'https://api.caiduohui.com:8080/assets/logo.png'
+			imageUrl: 'https://tencent.file.caiduohui.com/assets/logo.png'
 		}
 	}
 })

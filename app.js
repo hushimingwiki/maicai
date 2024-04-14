@@ -4,7 +4,8 @@ import {
   userLogin,
   getUserInfo,
   WXPay,
-  shopCarNum
+	shopCarNum,
+	vipInfo
 } from '/request/api.js'
 import QQMapWX from '/utils/qqmap-wx-jssdk.js'
 const app = getApp()
@@ -42,6 +43,7 @@ App({
     } else {
       await this.getCode()
       await this.getUserInfo()
+      await this.getVipInfo()
     }
     // this.getLocation()
    
@@ -75,7 +77,13 @@ App({
         // that.InitJG()
       }
     })
-  },
+	},
+	async getVipInfo(){
+		vipInfo().then(res=>{
+			console.log(res.data)
+			wx.setStorageSync('vip', res.data)
+		})
+	},
   getShopCarNum(){
     shopCarNum().then(res=>{
       console.log(res.data,'购物车数量')

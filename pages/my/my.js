@@ -23,7 +23,11 @@ Page({
       headerHeight:app.globalData.titleHeight,
       userInfo:app.globalData.userInfo
     })
-    
+		var vip = wx.getStorageSync('vip')
+		console.log(vip,'vip')
+		this.setData({
+			vipDetails:vip
+		})
     this.getYhqNum()
   },
   goEditData(){

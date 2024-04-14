@@ -16,10 +16,10 @@ Page({
   data: {
     background: [
       {
-        image:'https://api.caiduohui.com:8080/assets/xq-1.png'
+        image:'https://tencent.file.caiduohui.com/assets/xq-1.png'
       },
       {
-        image:'https://api.caiduohui.com:8080/assets/xq-1.png'
+        image:'https://tencent.file.caiduohui.com/assets/xq-1.png'
       }
     ],
     indicatorDots: true,
@@ -38,7 +38,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var xxxx = JSON.parse(options.details) // 先decode再把字符串转数组
+		console.log(options.details,'options')
+    var xxxx = JSON.parse(decodeURIComponent(options.details)) // 先decode再把字符串转数组
     console.log(xxxx,'xxxx')
     // let cd = xxxx.base_attribute.filter(item => item.name == '产地')
     // console.log(cd[0].value[0])
@@ -51,7 +52,17 @@ Page({
     })
     this.getShopDetails()
     
-  },
+	},
+	goVip(){
+		wx.navigateTo({
+			url: '../vip/vip',
+		})
+	},
+	getVip(){
+		getApp().getCode()
+		var as =  wx.getStorageSync('vip')
+		console.log(as,'asss')
+	},
   shoucang(){
     if(!this.data.isShoucang){
       likeAdd({

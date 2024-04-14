@@ -5,7 +5,7 @@
     <view class="button" bindtap="modify">搜索</view>
   </view>
   <view class="gwc" bindtap="goShopCart">
-    <image src="https://api.caiduohui.com:8080/assets/gwc-lv.png" mode="" />
+    <image src="https://tencent.file.caiduohui.com/assets/gwc-lv.png" mode="" />
   </view>
 </view> -->
 <scroll-view class="list" scroll-y bindscrolltolower="nextPage">
@@ -17,7 +17,7 @@
       <view class="vip-price">原价￥{{item.price}}</view>
       <view class="shop-price">
         <view>钻卡价￥<text class="red">{{item.very_important_person_price}}</text>/份</view>
-        <image catchtap="shoucang" data-details="{{item.standard_product_unit_id}}" src="https://api.caiduohui.com:8080/assets/shoucang.png" mode="" />
+        <image catchtap="shoucang" data-details="{{item.standard_product_unit_id}}" src="https://tencent.file.caiduohui.com/assets/shoucang.png" mode="" />
       </view>
     </view>
   </view>

@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="taptitle" style="height: {{headerHeight + 40}}px;">
   <view class="zzz" style="height: {{capsuleObj.height}}px;margin-top: {{capsuleObj.top}}px;" bindtap="goCheckAdr">
-    <image src="https://api.caiduohui.com:8080/assets/dingwei-w.png" mode=""/>
+    <image src="https://tencent.file.caiduohui.com/assets/dingwei-w.png" mode=""/>
     <text class="wz" wx:if="{{adrDetails}}">{{adrDetails.detail_address}}</text>
     <text class="zd" wx:if="{{station}}">{{station.name}}</text>
     <text wx:if="{{!station}}">切换中转站</text>
@@ -45,47 +45,47 @@
     <scroll-view scroll-x="true" >
       <view class="sale-list">
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/dh-10.png" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/dh-10.png" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/dh-1.png" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/dh-1.png" mode="" />
           <view class="vip-price">￥25.8<view>抢</view></view>
           <view class="org-price">￥55.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/dh-10.png" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/dh-10.png" mode="" />
           <view class="vip-price">￥74.8<view>抢</view></view>
           <view class="org-price">￥66.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/dh-1.png" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/dh-1.png" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/banner1.jpg" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/banner1.jpg" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/banner2.jpg" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/banner2.jpg" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/banner1.jpg" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/banner1.jpg" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/banner2.jpg" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/banner2.jpg" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
         <view class="sale-info">
-          <image src="https://api.caiduohui.com:8080/assets/banner1.jpg" mode="" />
+          <image src="https://tencent.file.caiduohui.com/assets/banner1.jpg" mode="" />
           <view class="vip-price">￥19.8<view>抢</view></view>
           <view class="org-price">￥32.8</view>
         </view>
@@ -112,7 +112,7 @@
               <text class="feng">/份</text>
             </view>
             <view class="right" catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}">
-              <image src="https://api.caiduohui.com:8080/assets/gwc-lv.png" ></image>
+              <image src="https://tencent.file.caiduohui.com/assets/gwc-lv.png" ></image>
               <!-- <view class="hongdian">1</view> -->
             </view>
           </view>

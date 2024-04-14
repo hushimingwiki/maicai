@@ -2,7 +2,7 @@
   <view class="shopchat">
     <block wx:if="{{shopList.length>=1}}">
       <view class="shop" wx:for="{{shopList}}" wx:key="index">
-        <image src="{{item.check?'https://api.caiduohui.com:8080/assets/gou.png':'https://api.caiduohui.com:8080/assets/gou-h.png'}}" mode="" catchtap="checkShop" data-index="{{index}}" class="xuanz"/>
+        <image src="{{item.check?'https://tencent.file.caiduohui.com/assets/gou.png':'https://tencent.file.caiduohui.com/assets/gou-h.png'}}" mode="" catchtap="checkShop" data-index="{{index}}" class="xuanz"/>
         <image src="{{item.standardProductUnit.picture}}" mode="" class="shopimage"/>
         <view class="shopinfo">
           <view class="shopname">{{item.standardProductUnit.name}}</view>
@@ -26,7 +26,7 @@
   </view>
   <view class="jiesuan">
     <view class="left">
-     <image src="{{selectAllStatus?'https://api.caiduohui.com:8080/assets/gou.png':'https://api.caiduohui.com:8080/assets/gou-h.png'}}" mode="" catchtap="selectAll" class="quan"/>
+     <image src="{{selectAllStatus?'https://tencent.file.caiduohui.com/assets/gou.png':'https://tencent.file.caiduohui.com/assets/gou-h.png'}}" mode="" catchtap="selectAll" class="quan"/>
      <view>全选</view>
      <!-- <view class="delete">删除</view> -->
     </view>

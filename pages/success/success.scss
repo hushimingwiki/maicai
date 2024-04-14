@@ -1,4 +1,7 @@
-
+.box{
+	display: flex;
+	flex-wrap: wrap;;
+}
 .icon{
   border-radius: 50%;
   overflow: hidden;
@@ -26,7 +29,8 @@
 .flex{
   margin: 0 80rpx;
   margin-top: 100rpx;
-
+	display: flex;
+	flex-wrap: wrap;
 }
 .flex button{
   background: inherit;
@@ -39,9 +43,10 @@
 .back{
   border: 1px solid #ff3b3b;
   color: #ff3b3b;
-
+	margin-top: 24rpx;
 }
 .go{
   border: 1px solid orange;
-  color: orange;
+	color: orange;
+	margin-top: 24rpx;
 }

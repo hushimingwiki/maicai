@@ -1,19 +1,19 @@
 <view class="p-box">
   <view class="user-info">
     <view class="left">
-      <image src="{{userInfo.picture?userInfo.picture:'https://api.caiduohui.com:8080/assets/ca1.jpg'}}" mode="" />
+      <image src="{{userInfo.picture?userInfo.picture:'https://tencent.file.caiduohui.com/assets/ca1.jpg'}}" mode="" />
       <view class="info">
         <view class="name">{{userInfo.nickname}}</view>
         <view class="vip-type">普通会员</view>
       </view>
     </view>
     <view class="right">
-      <image src="https://api.caiduohui.com:8080/assets/jiantou-r.png" mode="" />
+      <image src="https://tencent.file.caiduohui.com/assets/jiantou-r.png" mode="" />
     </view>
   </view>
 
   <view class="user-income">
-    <view class="info">
+    <view class="info" bindtap="goJiesuan">
       <view class="font-w">0.00</view>
       <view class="text">待结算金额</view>
     </view>
@@ -22,7 +22,7 @@
       <view class="text">累计奖励</view>
     </view>
     <view class="info acc" bindtap="goCustomerList">
-      <view class="flex-end">客户<image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode="" /></view>
+      <view class="flex-end">客户<image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode="" /></view>
     </view>
   </view>
 </view>
@@ -31,7 +31,7 @@
   <view class="title">推广工具</view>
   <view class="tool-list"> 
     <view class="tool" bindtap="showPublicizeModel">
-      <image src="https://api.caiduohui.com:8080/assets/yaoqing.png" mode=""/>
+      <image src="https://tencent.file.caiduohui.com/assets/yaoqing.png" mode=""/>
       <view class="text">邀请推广</view>
     </view>
   </view>
@@ -45,11 +45,11 @@
   <view class="caozuo">
     <view class="fx">
       <button class="fx-l" bindtap="downImage">
-        <image src="https://api.caiduohui.com:8080/assets/download.png" mode=""/>
+        <image src="https://tencent.file.caiduohui.com/assets/download.png" mode=""/>
         <view>下载海报</view>
       </button>
       <button class="fx-l" open-type='share' >
-        <image src="https://api.caiduohui.com:8080/assets/wx.png" mode=""/>
+        <image src="https://tencent.file.caiduohui.com/assets/wx.png" mode=""/>
         <view>发送好友</view>
       </button>
     </view>

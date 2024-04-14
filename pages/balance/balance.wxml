@@ -1,6 +1,6 @@
 <view class="title" style="padding-top: {{capsuleObj.top}}px;">
   <view class="title-name" style="height: {{capsuleObj.height}}px;">
-   <image src="https://api.caiduohui.com:8080/assets/arrow-up-s-line.png" mode="" bindtap="goBack"/>
+   <image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line.png" mode="" bindtap="goBack"/>
    <text>我的余额</text>
    <text> </text>
   </view>

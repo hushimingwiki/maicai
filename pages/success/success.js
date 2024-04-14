@@ -22,7 +22,12 @@ Page({
   },
   go(){
     wx.switchTab({
-      url: '/pages/cate/cate',
+      url: '/pages/classify/classify',
+    })
+  },
+  backOrder(){
+    wx.navigateTo({
+      url: '/pages/orderList/orderList',
     })
   },
   /**

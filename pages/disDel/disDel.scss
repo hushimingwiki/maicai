@@ -1,0 +1,56 @@
+page{
+	background-color: rgb(238, 234, 234);
+}
+.box{
+	width: 654rpx;
+	margin: 24rpx 0 0 24rpx;
+	background-color: #fff;
+	border-radius: 10rpx;
+	font-size: 24rpx;
+	padding: 24rpx;
+	.title{
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1rpx #e4e4e4 solid;
+		padding-bottom: 24rpx;
+		.tixian{
+			border: 1rpx solid #e0b805;
+			color: #e0b805;
+			padding: 4rpx 12rpx;
+			font-size: 24rpx;
+		}
+	}
+	.shuju{
+		display: flex;
+		margin-top: 24rpx;
+		.fz{
+			text-align: center;
+			width: 33.3%;
+			.je {
+				font-size: 28rpx;
+				font-weight: bold;
+			}
+			.wz{
+				font-size: 22rpx;
+				color: #a7a6a6;
+			}
+		
+		}
+	}
+}
+.xiangqing{
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding: 12rpx 0 0 0;
+	.anniu{
+		background-color: #cea905;
+		color: #fff;
+		width: 702rpx;
+		margin: 0 24rpx;
+		text-align: center;
+		padding: 12rpx 0;
+		border-radius: 10rpx;
+	}
+}

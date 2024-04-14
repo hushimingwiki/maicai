@@ -79,7 +79,7 @@ Page({
     var xxxx = e.currentTarget.dataset.details
     console.log(JSON.stringify(xxxx), 'xxxx')
     wx.navigateTo({
-      url: '../shopDetails/shopDetails?details=' + JSON.stringify(xxxx)
+      url: '../shopDetails/shopDetails?details=' + encodeURIComponent(JSON.stringify(xxxx))
     })
   },
   /**
@@ -229,7 +229,10 @@ Page({
    */
   onShow: function () {
     var that = this
-    var upPageData = wx.getStorageSync('param')
+		var upPageData = wx.getStorageSync('param')
+		this.setData({
+			zdId :  app.globalData.zzId,
+		})
     if(upPageData){
       console.log('有缓存index',upPageData)
       that.setData({
@@ -253,7 +256,7 @@ Page({
       headerHeight: app.globalData.titleHeight,
       statusBarHeight: app.globalData.statusBarHeight,
       capsuleObj: app.globalData.capsuleObj,
-      zdId :  app.globalData.zzId,
+      
 
     })
     var hd = wx.getStorageSync('hd')

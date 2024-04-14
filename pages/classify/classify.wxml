@@ -41,8 +41,8 @@
         
       </scroll-view>
       
-      <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="https://api.caiduohui.com:8080/assets/arrow-up-s-line.png" mode=""/>
-      <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="https://api.caiduohui.com:8080/assets/arrow-up-s-line-d.png" mode=""/>
+      <image wx:if="{{flAllOpen == 1}}" bindtap="changeAllOpen" data-ao="0" src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line.png" mode=""/>
+      <image wx:elif="{{flAllOpen == 0}}" bindtap="changeAllOpen" data-ao="1" src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" mode=""/>
     </view>
     <view class="fl-all-fl" wx:if="{{flAllOpen == 0}}" style="height: {{useHeight*0.75}}px;">
       <view class="fl-all-fl-box">
@@ -64,7 +64,7 @@
             <view class="fl-qian-box">
               <text class="fl-qian">钻卡价￥</text><text class="fl-price">{{item.very_important_person_price}}</text><text class="fl-feng">/份</text>
               <view class="gwc-image" catchtap="jrShopCart" data-details="{{item.shop_id}}">
-                <image src="https://api.caiduohui.com:8080/assets/gwc-green.png" mode=""/>
+                <image src="https://tencent.file.caiduohui.com/assets/gwc-green.png" mode=""/>
                 <!-- <view class="hongdian">1</view> -->
               </view>
             </view>

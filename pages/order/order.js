@@ -36,16 +36,19 @@ Page({
     note:'',
     unable_contact:'',
     nowDidian:'',
-    today:0,
+		today:0,
+		jintian:null,
+		mingtian:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+		this.getDate()
     this.getAppointment()
     // console.log(options, 'options')
-    var cartShop = JSON.parse(options.data)
+    var cartShop = JSON.parse(decodeURIComponent(options.data))
     // console.log(cartShop, 'cartShop')
     var afterList = []
     cartShop.forEach(item => {
@@ -92,7 +95,15 @@ Page({
     })
     this.getAddressList()
     
-  },
+	},
+	noUseCoupon(){
+		this.setData({
+			couponDetails:{
+				price:0
+			}
+		})
+		this.couponAfterPrice()
+	},
   setNote(e){
     console.log(e.detail.value)
     this.setData({
@@ -125,7 +136,7 @@ Page({
     var data = []
     appointment().then(res=>{
       console.log(res)
-      data[0] = ['今天','明天']
+      data[0] = [this.data.jintian,this.data.mingtian]
       data[1] = res.data[0]
       console.log(data)
       this.setData({
@@ -140,16 +151,12 @@ Page({
     function padZero(number) {
       return number < 10 ? '0' + number : number.toString();
     }
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = currentDate.getDate().toString().padStart(2, '0');
-    const formattedDate = year + '-' + month + '-' + day;
+    
     orderGetFreightPrice({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
       transfer_station_id: app.globalData.zzId, //中转站 自提点id 如果自取一定需要
       delivery_type: '1', //配送类型 0立即配送 1预约配送
-      appointment_delivery_time: formattedDate + ' ' + this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
+      appointment_delivery_time: this.data.jintian + ' ' + this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
       data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
     }).then(res=>{
       console.log(res.data,'运费')
@@ -166,17 +173,9 @@ Page({
     }
     var formattedDate
     if(this.data.today == 0){
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-      const day = currentDate.getDate().toString().padStart(2, '0');
-      formattedDate = year + '-' + month + '-' + day;
+      formattedDate = this.data.jintian
     }else{
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-      const day = (currentDate.getDate() + 1).toString().padStart(2, '0');
-      formattedDate = year + '-' + month + '-' + day;
+      formattedDate = this.data.mingtian
     }
     addOrder({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
@@ -221,10 +220,10 @@ Page({
     dataa.forEach(item => {
       item.user_coupon_id = this.data.couponDetails.user_coupon_id
     })
-    console.log(dataa, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
-    console.log(this.data.originPrice, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
-    console.log(this.data.couponDetails.price, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
-    console.log(this.data.Yunfei, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    // console.log(dataa, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    // console.log(this.data.originPrice, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    // console.log(this.data.couponDetails.price, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
+    // console.log(this.data.Yunfei, 'dataadataadataadataadataadataadataadataadataadataadataadataa')
 
     this.setData({
       totalPrice: (Number(this.data.originPrice) - Number(this.data.couponDetails.price) + Number(this.data.Yunfei)).toFixed(2),
@@ -255,7 +254,7 @@ Page({
       if(e.detail.value == 0){
         console.log(0)
         var data = []
-        data[0] = ['今天','明天']
+        data[0] = [this.data.jintian,this.data.mingtian]
         data[1] = this.data.allData[0]
         this.setData({
           multiArray:data,
@@ -264,7 +263,7 @@ Page({
       }else{
         console.log(1)
         var data = []
-        data[0] = ['今天','明天']
+        data[0] = [this.data.jintian,this.data.mingtian]
         data[1] = this.data.allData[1]
         this.setData({
           multiArray:data,
@@ -299,7 +298,23 @@ Page({
     wx.navigateTo({
       url: '../adrList/adrList?isCheckAdr=0'
     })
-  },
+	},
+	getDate(){
+		var today
+		var tomorrw
+		const currentDate = new Date();
+		const year = currentDate.getFullYear();
+		const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+		const day = currentDate.getDate().toString().padStart(2, '0');
+		today = year + '-' + month + '-' + day;
+		const day2 = (currentDate.getDate() + 1).toString().padStart(2, '0');
+		tomorrw = year + '-' + month + '-' + day2;
+		console.log(today,tomorrw)
+		this.setData({
+			jintian:today,
+			mingtian:tomorrw
+		})
+	},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
