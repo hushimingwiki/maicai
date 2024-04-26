@@ -38,7 +38,10 @@ Page({
     nowDidian:'',
 		today:0,
 		jintian:null,
-		mingtian:null
+    mingtian:null,
+    lowPrice:0,
+    isDK:false,
+    psType:1
   },
 
   /**
@@ -47,9 +50,9 @@ Page({
   onLoad(options) {
 		this.getDate()
     this.getAppointment()
-    // console.log(options, 'options')
+    
     var cartShop = JSON.parse(decodeURIComponent(options.data))
-    // console.log(cartShop, 'cartShop')
+  
     var afterList = []
     cartShop.forEach(item => {
       console.log(item,'item.standardProductUnit.shop_id')
@@ -85,16 +88,101 @@ Page({
       })
      
     })
+    var as = wx.getStorageSync('vip')
+    var zzs = wx.getStorageSync('zzInfo')
     this.setData({
       tabbarHeight: app.globalData.tabbarHeight,
       cartShop: cartShop,
       totalPrice: options.price,
-      originPrice: options.price,
+      noVipPrice:options.price,
+      originPrice: as.vip_1 == "1" ? (Number(options.price)*0.8).toFixed(2) : options.price,
+      lowPrice: as.vip_1 == "1" ? (Number(options.price) - (Number(options.price)*0.8)).toFixed(2) : '0',
+      lowPriceT : (Number(options.price) - (Number(options.price)*0.8)).toFixed(2),
       cCafterList: afterList,
       bottomLift: app.globalData.bottomLift,
+      vipInfo:as,
+      zitiInfo:zzs
     })
+    console.log(this.data.zitiInfo,'zitiInfozitiInfozitiInfozitiInfozitiInfozitiInfozitiInfo')
     this.getAddressList()
     
+  },
+  selectPsType(e){
+    this.setData({
+      psType:e.currentTarget.dataset.index
+    })
+    this.getYunfei()
+  },
+  aa(){
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    var cartShop = this.data.cartShop
+    var oPrice = this.data.originPrice
+    this.getDate()
+    this.getAppointment()
+    
+    
+  
+    var afterList = []
+    cartShop.forEach(item => {
+      console.log(item,'item.standardProductUnit.shop_id')
+      if(afterList.length > 0){
+        afterList.forEach(itemm=>{
+          console.log(itemm,'itemmitemm')
+          if(item.standardProductUnit.shop_id == itemm.shop_id){
+            // console.log(afterList,'匹配到相同店铺')
+            var obj = {
+              standard_product_unit_id: item.standardProductUnit.standard_product_unit_id,
+              quantity: item.quantity
+            }
+            itemm.data.push(obj)
+          }else{
+            // console.log(afterList,'不是相同店铺')
+          }
+        })
+      }else{
+        // console.log('没有数据')
+        var obj = {
+          shop_id: item.standardProductUnit.shop_id,
+          user_coupon_id: '',
+          data: [{
+            standard_product_unit_id: item.standardProductUnit.standard_product_unit_id,
+            quantity: item.quantity
+          }]
+        }
+        afterList.push(obj)
+      }
+      console.log(item,'item')
+      this.setData({
+        allJianShu : Number(this.data.allJianShu) + Number(item.quantity)
+      })
+     
+    })
+    var as = wx.getStorageSync('vip')
+    this.setData({
+      tabbarHeight: app.globalData.tabbarHeight,
+      cartShop: cartShop,
+      totalPrice: oPrice,
+      originPrice: as.vip_1 == "1" ? (Number(oPrice)*0.8).toFixed(2) : oPrice,
+      lowPrice: as.vip_1 == "1" ? (Number(oPrice) - (Number(oPrice)*0.8)).toFixed(2) : '0',
+      lowPriceT : (Number(oPrice) - (Number(oPrice)*0.8)).toFixed(2),
+      cCafterList: afterList,
+      bottomLift: app.globalData.bottomLift,
+      vipInfo:as
+    })
+    this.getAddressList()
+  },
+  goVip(){
+		wx.navigateTo({
+			url: '../vip/vip',
+		})
+	},
+  getVip(){
+		getApp().getCode()
+		var as =  wx.getStorageSync('vip')
+    console.log(as,'asss')
+    this.setData({
+      vipInfo:as
+    })
 	},
 	noUseCoupon(){
 		this.setData({
@@ -108,6 +196,11 @@ Page({
     console.log(e.detail.value)
     this.setData({
       note:e.detail.value
+    })
+  },
+  switchIsDK(e){
+    this.setData({
+      isDK:e.detail.value
     })
   },
   switch1Change(e){
@@ -135,15 +228,44 @@ Page({
   getAppointment(){
     var data = []
     appointment().then(res=>{
-      console.log(res)
-      data[0] = [this.data.jintian,this.data.mingtian]
-      data[1] = res.data[0]
+      console.log(res,'zzzzzzzzzzz')
+      // res.data = [
+      //   [],
+      //   [ "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      //   ["11:30:00-12:00:00", "12:00:00-12:30:00", "12:30:00-13:00:00", "17:30:00-18:00:00", "18:00:00-18:30:00", "18:30:00-19:00:00", "19:00:00-19:30:00"],
+      // ]
+      if(res.data[0].length >= 1){
+        console.log('11111111111111111111')
+        data[0] = [this.data.jintian,this.data.mingtian]
+        data[1] = res.data[0]
+        this.setData({
+          allData:res.data,
+          multiArray:data,
+          nowDate:res.data[0][0],
+          today:0
+        })
+      }else{
+        console.log('2222222222222222222222')
+        data[0] = [this.data.mingtian]
+        data[1] = res.data[1]
+        this.setData({
+          allData:res.data,
+          multiArray:data,
+          nowDate:res.data[1][0],
+          today:1
+        })
+      }
+      console.log(this.data.allData,'allData')
+      console.log(this.data.multiArray,'multiArray')
+      console.log(this.data.nowDate,'nowDate')
       console.log(data)
-      this.setData({
-        allData:res.data,
-        multiArray:data,
-        nowDate:res.data[0][0]
-      })
+      
     })
   },
   //orderGetFreightPrice
@@ -155,11 +277,12 @@ Page({
     orderGetFreightPrice({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
       transfer_station_id: app.globalData.zzId, //中转站 自提点id 如果自取一定需要
-      delivery_type: '1', //配送类型 0立即配送 1预约配送
+      delivery_type: this.data.psType, //配送类型 0立即配送 1预约配送
       appointment_delivery_time: this.data.jintian + ' ' + this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
       data: JSON.stringify(this.data.cCafterList) //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
     }).then(res=>{
       console.log(res.data,'运费')
+      console.log(this.data.originPrice,'原籍')
       this.setData({
         Yunfei:res.data[0],
         totalPrice:(Number(res.data[0]) + Number(this.data.originPrice) + Number(this.data.couponDetails.price)).toFixed(2),
@@ -177,15 +300,19 @@ Page({
     }else{
       formattedDate = this.data.mingtian
     }
+    console.log(this.data.nowDate)
+    console.log(formattedDate + ' ' +this.data.nowDate.slice(0,-9))
+    
     addOrder({
       user_delivery_address_id: this.data.adrDetails.user_delivery_address_id, //收货地址id
       transfer_station_id: wx.getStorageSync('zzId'), //中转站 自提点id 如果自取一定需要
-      delivery_type: '1', //配送类型 0立即配送 1预约配送
+      delivery_type: this.data.psType, //配送类型 0立即配送 1预约配送
       appointment_delivery_time: formattedDate + ' ' +this.data.nowDate.slice(0,-9), //预约配送时间 自取时间
       data: JSON.stringify(this.data.cCafterList), //json数组 [{"shop_id":1,"user_coupon_id":1,data:[{"stock_keeping_unit_id":1,"quantity":1}]}]
       phone_contact:this.data.switch1Checked == true ? 1 : 0,
       note:this.data.note,
-      unable_contact:this.data.unable_contact
+      unable_contact:this.data.unable_contact,
+      balance:"0"
     }).then(res => {
       if (res.code != 200) {
         wx.showToast({
@@ -195,11 +322,14 @@ Page({
       } else {
         // this.wxPayTest(res.data[0].pay_order_number)
         var hd = wx.getStorageSync('hd')
+        console.log(hd,'hdddddddddddddddddddddddddddddd')
         wx.setStorageSync('hd', Number(hd) - this.data.allJianShu)
         wx.setTabBarBadge({
           index: 2,
           text: (Number(hd) - this.data.allJianShu).toString()
         });
+        var hd = wx.getStorageSync('hd')
+        console.log(hd,'2hdddddddddddddddddddddddddddddd')
         app.wxPay(res.data[0].pay_order_number)
       }
     })
@@ -239,17 +369,64 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    console.log('picker发送选择改变，携带值为', this.data.allData[e.detail.value[0]][e.detail.value[1]])
+    console.log('picker发送选择改变，携带值为', this.data.multiArray)
     this.setData({
       multiIndex: e.detail.value,
       // distributionTime: e.detail.value
-      nowDate : this.data.allData[e.detail.value[0]][e.detail.value[1]]
+      nowDate : this.data.multiArray[1][e.detail.value[1]]
     })
-
+    console.log(this.data.nowDate)
+    return
+    if(this.data.today==0){
+      console.log(1)
+      this.setData({
+        multiIndex: e.detail.value,
+        // distributionTime: e.detail.value
+        nowDate : this.data.multiArray[1][e.detail.value[1]]
+      })
+    }else{
+      console.log(2)
+      this.setData({
+        multiIndex: e.detail.value,
+        // distributionTime: e.detail.value
+        nowDate : this.data.multiArray[1][e.detail.value[1]]
+      })
+    }
+    
+    console.log(this.data.nowDate)
   },
   bindMultiPickerColumnChange(e) {
     console.log(e,'e')
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    console.log(this.data.multiArray,'multiArraymultiArray')
+    console.log(this.data.today,'todaytodaytoday')
+
+    if(this.data.today==0){
+      if(e.detail.column==0){
+        if(e.detail.value == 0){
+          console.log(0)
+          var data = []
+          data[0] = [this.data.jintian,this.data.mingtian]
+          data[1] = this.data.allData[0]
+          this.setData({
+            multiArray:data,
+            today:0
+          })
+        }else{
+          console.log(1)
+          var data = []
+          data[0] = [this.data.jintian,this.data.mingtian]
+          data[1] = this.data.allData[1]
+          this.setData({
+            multiArray:data,
+            today:1
+          })
+        }
+      }
+      
+    }
+    console.log(this.data.multiArray,'multiArray')
+    return
     if(e.detail.column==0){
       if(e.detail.value == 0){
         console.log(0)
@@ -271,6 +448,7 @@ Page({
         })
       }
     }
+    console.log(this.data.multiArray,'multiArray')
   },
   getAddressList() {
     addressList({
@@ -282,11 +460,6 @@ Page({
           return item
         }
       }).filter(Boolean).concat();
-      // if(newlist.length>=1){
-      //   newlist = res.data[2]
-      // }else{
-      //   newlist 
-      // }
       console.log(newlist, 'newlist')
       this.setData({
         adrDetails: newlist[0]

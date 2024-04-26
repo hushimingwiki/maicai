@@ -16,7 +16,7 @@
       <view class="biaoqian">{{item.description}}</view>
       <view class="vip-price">原价￥{{item.price}}</view>
       <view class="shop-price">
-        <view>钻卡价￥<text class="red">{{item.start_price}}</text>/份</view>
+        <view>钻卡价￥<text class="red">{{item.very_important_person_price}}</text>/份</view>
         <image catchtap="jrShopCart" data-details="{{item.standard_product_unit_id}}" src="https://tencent.file.caiduohui.com/assets/gwc-lv.png" mode="" />
       </view>
     </view>

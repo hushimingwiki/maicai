@@ -11,7 +11,14 @@ Page({
     headerHeight:'',
     allShopDetails:null,
     klqCoupon:[],
-    adrDetails: null,
+    adrDetails: {
+      province:'',
+      city:'',
+      district:'',
+      address:'',
+      longitude:'',
+      latitude:''
+    },
     station:null,
     fenLeiList:null,
     StorageDW:null,
@@ -27,6 +34,29 @@ Page({
     })
     this.getFenlei()
 
+  },
+  tiaozhuan(e){
+    var type = e.currentTarget.dataset.type
+    var content = e.currentTarget.dataset.content
+    console.log(type,'type')
+    if(type == '4'){
+      wx.navigateTo({
+        url: '../vip/vip'
+      })
+    }else if(type == '3'){
+      wx.setStorage({
+        key: 'param',
+        data: {
+          id : e.currentTarget.dataset.content,
+          index : e.currentTarget.dataset.index,
+        },
+        success: function() {
+          wx.switchTab({
+            url: '../classify/classify'
+          });
+        }
+      });
+    }
   },
   goVip(){
     wx.navigateTo({
@@ -55,6 +85,7 @@ Page({
     })
   },
   goFenlei(e){
+    console.log(e.currentTarget.dataset.id,'e.currentTarget.dataset.id')
     wx.setStorage({
       key: 'param',
       data: {
@@ -76,6 +107,7 @@ Page({
     this.getZuijinStation()
   },
   getZuijinStation(){
+    console.log(this.data.adrDetails,'this.data.adrDetails')
     var sdata = this.data.adrDetails
     var myPromise =  new Promise((resolve,reject)=>{
       if(this.data.StorageDW){
@@ -91,13 +123,14 @@ Page({
     
     myPromise.then(res=>{
       console.log(this.data.StorageDW,'成功获取经纬度并获取中转站')
-      
+      console.log(sdata,'sdata')
+      console.log(this.data.StorageDW,'this.data.StorageDW')
       zuijinStation({
-        province:sdata ? sdata.province : this.data.StorageDW.address_component.province,
-        city:sdata ? sdata.city : this.data.StorageDW.address_component.city,
-        district:sdata ? sdata.district : this.data.StorageDW.address_component.district,
-        longitude:sdata ? sdata.longitude : this.data.StorageDW.location.lng,
-        latitude:sdata ? sdata.latitude : this.data.StorageDW.location.lat
+        province:sdata.province ? sdata.province : this.data.StorageDW.address_component.province,
+        city:sdata.city ? sdata.city : this.data.StorageDW.address_component.city,
+        district:sdata.district ? sdata.district : this.data.StorageDW.address_component.district,
+        longitude:sdata.longitude ? sdata.longitude : this.data.StorageDW.location.lng,
+        latitude:sdata.latitude ? sdata.latitude : this.data.StorageDW.location.lat
       }).then(res=>{
         console.log(res,'res')
         this.setData({
@@ -106,13 +139,14 @@ Page({
         })
         app.globalData.zzId = res.data.transfer_station_id
         wx.setStorageSync('zzId', res.data.transfer_station_id)
+        wx.setStorageSync('zzInfo', res.data)
         this.getShopList(res.data.transfer_station_id)
       })
     })
   },
   goUse(){
     wx.navigateTo({
-      url: '../coupon/coupon'
+      url: '../receiveCoupon/receiveCoupon'
     })
   },
   getReceiveCouponList(){
@@ -125,7 +159,7 @@ Page({
       this.setData({
         klqCoupon:res.data
       })
-      this.getAddCoupon()
+      // this.getAddCoupon()
     })
   },
   getAddCoupon(){
@@ -255,6 +289,9 @@ Page({
       this.getBannerList()
       this.getZuijinStation()
       this.getReceiveCouponList()
+      this.setData({
+        'adrDetails.detail_address':app.globalData.location.address
+      })
       wx.hideLoading()
     }else{
       setTimeout(res=>{

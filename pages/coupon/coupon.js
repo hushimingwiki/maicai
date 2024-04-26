@@ -18,7 +18,7 @@ Page({
   onLoad(options) {
     console.log(options)
     this.setData({
-      totalPrice: options.price,
+      totalPrice: Number(options.price),
       shopId: options.shopId,
     })
     this.getCouponList()
@@ -50,9 +50,13 @@ Page({
       page_size: '100'
     }).then(res => {
       console.log(res, '优惠券列表')
+      res.data.forEach(element => {
+        Number(element.full_price)
+      });
       this.setData({
         couponList: res.data
       })
+      console.log(this.data.couponList, '处理过后')
     })
   },
   goFenlei(){

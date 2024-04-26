@@ -1,24 +1,28 @@
 <view class="p-box">
   <view class="user-info">
     <view class="left">
-      <image src="{{userInfo.picture?userInfo.picture:'https://tencent.file.caiduohui.com/assets/ca1.jpg'}}" mode="" />
+      <image src="{{userInfo.picture}}" mode="" />
       <view class="info">
         <view class="name">{{userInfo.nickname}}</view>
-        <view class="vip-type">普通会员</view>
+        <view class="vip-type" wx:if="{{vipLevel == 0}}">普通会员</view>
+        <view class="gouchat" wx:if="{{vipLevel == 0}}" bindtap="goVip">成为会员</view>
+        <view class="vip-type2" wx:if="{{vipLevel == 1}}">钻卡会员</view>
+        <view class="tip">tip:钻卡会员才可以享受推广获取的佣金</view>
+        
       </view>
     </view>
-    <view class="right">
+    <!-- <view class="right">
       <image src="https://tencent.file.caiduohui.com/assets/jiantou-r.png" mode="" />
-    </view>
+    </view> -->
   </view>
 
   <view class="user-income">
     <view class="info" bindtap="goJiesuan">
-      <view class="font-w">0.00</view>
+      <view class="font-w">{{vipInfo.commission}}</view>
       <view class="text">待结算金额</view>
     </view>
     <view class="info">
-      <view class="font-w">0.00</view>
+      <view class="font-w">{{vipInfo.total_commission}}</view>
       <view class="text">累计奖励</view>
     </view>
     <view class="info acc" bindtap="goCustomerList">
@@ -34,9 +38,13 @@
       <image src="https://tencent.file.caiduohui.com/assets/yaoqing.png" mode=""/>
       <view class="text">邀请推广</view>
     </view>
+    <!-- <view class="tool" bindtap="showPublicizeModel">
+      <image src="https://tencent.file.caiduohui.com/assets/yaoqing.png" mode=""/>
+      <view class="text">用户协议</view>
+    </view> -->
   </view>
 </view>
-<!-- <image src="{{url}}"  mode="" style="width: 450rpx; height: 623rpx;"/> -->
+<image src="https://tencent.file.caiduohui.com/assets/yongjinHB1.jpg"  mode="widthFix" style="width: 702rpx;margin: 24rpx;border-radius: 12rpx;"/>
 <view class="publicize-model" wx:if="{{publicizeModel}}">
   <view class="haibao">
     <canvas id="myCanvas" type="2d" style="width: 450rpx; height: 623rpx;" />

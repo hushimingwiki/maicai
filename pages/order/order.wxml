@@ -1,6 +1,10 @@
 <view class="box">
+  <view class="select-fs">
+    <view class="one {{psType == 1?'two':''}}" bindtap="selectPsType" data-index="1">配送</view>
+    <view class="one {{psType == 2?'two':''}}" bindtap="selectPsType" data-index="2">自提</view>
+  </view>
   <view class="address">
-    <view class="adr-info" bindtap="goCheckAdr">
+    <view class="adr-info" bindtap="goCheckAdr" wx:if="{{psType == 1}}">
       <image src="https://tencent.file.caiduohui.com/assets/dingwei.png" class="dingwei" mode=""/>
       <view class="fh-adr">
         <view class="dz">{{adrDetails.address}}</view>
@@ -8,8 +12,13 @@
       </view>
       <image src="https://tencent.file.caiduohui.com/assets/arrow-up-s-line-d.png" class="jiantou" mode=""/>
     </view>
+    <view wx:if="{{psType == 2}}" class="ziti">
+      <view><text>自提点: </text>{{zitiInfo.name}}</view>
+      <view><text>地址: </text>{{zitiInfo.detail_address}}</view>
+      <view><text>联系方式: </text>{{zitiInfo.phone_number}}</view>
+    </view>
     <view class="complete-time">
-      <view class="name">预计送达时间</view>
+      <view class="name">{{psType == 1?'预计送达时间':'自提时间'}}</view>
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" class="time">
         <view class="picker">
           当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
@@ -17,6 +26,7 @@
       </picker>
     </view>
   </view>
+
   <view class="shoplist">
     <view class="title">
       <view class="name">净菜同城配送</view>
@@ -27,13 +37,21 @@
         <image src="{{item.standardProductUnit.picture}}" class="item-image" mode="aspectFill"/>
         <view class="item-info">
           <view class="name"><text>{{item.standardProductUnit.name}}</text><text>￥{{item.standardProductUnit.price}}</text></view>
+          <view class="vip">钻卡价{{item.standardProductUnit.very_important_person_price}}</view>
           <!-- <view class="guige">规格：{{item.standardProductUnit.attribute}}</view> -->
           <view class="num">数量：{{item.quantity}}</view>
         </view>
       </view>
     </view>
   </view>
-  <view class="qita">
+  <view class="goVip" wx:if="{{vipInfo.vip_1 == '0'}}">
+    <view class="wenzi">
+      <view>开通钻开会员可以享受八折优惠</view>
+      <view>本单可以立减<text style="color: red;">{{lowPriceT}}</text></view>
+    </view>
+    <view class="go" bindtap="goVip">去开通</view>
+	</view>
+  <view class="price-details">
     <view class="yhq" bindtap="goCoupon">
       <text class="name">优惠券</text>
       <view class="quan">
@@ -42,16 +60,38 @@
 			<image catchtap="noUseCoupon" wx:if="{{couponDetails.price>0}}" src="https://tencent.file.caiduohui.com/assets/delete.png" mode=""/>
 			</view>
     </view>
-    <view class="paytype">
-      <text>支付方式</text><text>微信支付</text>
+    <view class="no-vip-price">
+      <text>商品金额</text>
+      <view wx:if="{{vipInfo.vip_1 == '0'}}">{{noVipPrice}}</view>
+      <view wx:if="{{vipInfo.vip_1 == '1'}}" class="is-vip"><text>{{noVipPrice}}</text>{{originPrice}}</view>
     </view>
+    <view class="psf psf1">
+      <text>代金券抵扣</text>
+      <text>{{Yunfei}}</text>
+    </view>
+    <view class="psf psf1">
+      <text>余额抵扣</text>
+      <text>{{Yunfei}}</text>
+    </view>
+    <view class="psf">
+      <text>配送费</text>
+      <text>{{Yunfei}}</text>
+    </view>
+  </view>
+  <view class="qita">
+    <!-- <view class="paytype">
+      <text>支付方式</text><text>微信支付</text>
+    </view> -->
+    <!-- <view class="jingtie">
+      <text>是否使用代金券抵扣</text><switch checked="{{isDK}}" bindchange="switchIsDK"/>
+    </view> -->
     <view class="goutong">
-      <text>缺货时与我电话沟通过</text><switch checked="{{switch1Checked}}" bindchange="switch1Change"/>
+      <text>缺货时与我电话沟通</text><switch checked="{{switch1Checked}}" bindchange="switch1Change"/>
     </view>
     <view class="beizhu">
       <text>备注</text><input type="text" value="{{note}}" bindinput="setNote" placeholder="选填，可以告诉我们您的特殊需求"/>
     </view>
-    <view class="goutong">
+    <view class="zhiding">
       <text>联系不上时放指定地点</text><switch checked="{{switch2Checked}}" bindchange="switch2Change"/>
     </view>
     <view class="didian" wx:if="{{switch2Checked}}">
@@ -75,12 +115,14 @@
       <view>收货后如商品有质量问题，可申请退换货</view>
     </view>
   </view>
+  <view style="height: 300rpx;"> 
+  </view>
   <view class="jiesuan" style="padding-bottom:{{bottomLift}}px">
     <view>共{{allJianShu}}件，</view>
     <view class="price">
       合计:<text>￥{{totalPrice}}</text>
+      <view wx:if="{{lowPrice>0}}">钻卡优惠{{lowPrice}}元</view>
       <view wx:if="{{couponPrice>0}}">优惠券:-{{couponPrice}}</view>
-      <view>配送费:{{Yunfei}}</view>
     </view>
     
     <view class="qjs" bindtap="createOrder">立即支付</view>

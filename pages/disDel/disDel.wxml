@@ -1,24 +1,33 @@
 <view class="box">
 	<view class="title">
 		<view class="name">菜多惠</view>
-		<view class="tixian">立即提现</view>
+		<view class="tixian" bindtap="goTixian">立即提现</view>
 	</view>
 	<view class="shuju">
 		<view class="fz">
-			<view class="je">0.03</view>
+			<view class="je">{{vipInfo.commission}}</view>
 			<view class="wz">待结算</view>
 		</view>
-		<view class="fz">
+    <view class="chakan" bindtap="getUserWalletRecord">查看结算明细</view>
+		<!-- <view class="fz">
 			<view class="je">0.03</view>
 			<view class="wz">结算中</view>
 		</view>
 		<view class="fz">
 			<view class="je">0.03</view>
 			<view class="wz">已结算</view>
-		</view>
+		</view> -->
 	</view>
 </view>
-
-<view class="xiangqing" style="padding-bottom:{{bottomLift}}px">
-	<view class="anniu" bindtap="xiangqing">查看结算明细</view>
+<view wx:for="{{dataList}}" wx:key="index" class="list">
+  <view class="one">
+    <view>{{item.note}}</view>
+    <view>{{item.change}}</view>
+  </view>
+  <view class="two">
+    {{item.create_time}}
+  </view>
 </view>
+<!-- <view class="xiangqing" style="padding-bottom:{{bottomLift}}px">
+	<view class="anniu" bindtap="getUserWalletRecord">查看结算明细</view>
+</view> -->

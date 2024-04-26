@@ -1,0 +1,96 @@
+/* pages/refund/refund.wxss */
+page{
+  background-color: #f6f6f6;
+}
+.tk-box{
+  margin: 24rpx;
+  border-radius: 12rpx;
+  .liyou{
+    background-color: #ffffff;
+    margin-top: 24rpx;
+    padding: 24rpx;
+    border-radius: 12rpx;
+    .title{
+      font-size: 26rpx;
+      font-weight: bold;
+    }
+    textarea{
+      margin-top: 24rpx;
+    }
+  }
+  .sh-zt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24rpx;
+    background-color: #ffffff;
+    padding: 24rpx;
+    border-radius: 12rpx;
+    .title{
+      font-size: 26rpx;
+      font-weight: bold;
+    }
+    .radio-group{
+      display: flex;
+      .r-label{
+        margin-left: 12rpx;
+        display: flex;
+        align-items: center;
+        font-size: 26rpx;
+        radio{
+          zoom: .9;
+        }
+      }
+    }
+  }
+  .chuli{
+    margin-top: 24rpx;
+    font-size: 26rpx;
+    background-color: #ffffff;
+    padding: 24rpx;
+    border-radius: 12rpx;
+    .title{
+      font-weight: bold;
+    }
+    .cl-radio{
+      .cl-label{
+        display: flex;
+        justify-content: space-between;
+        margin-top:24rpx;
+        radio{
+          zoom: .9;
+        }
+      }
+    }
+  }
+  .jine{
+    background-color: #ffffff;
+    padding: 24rpx;
+    border-radius: 12rpx;
+    margin-top: 24rpx;
+    .title{
+      font-weight: bold;
+    }
+    .jl{
+      margin-top: 24rpx;
+    }
+    .jl-d{
+      margin-top: 24rpx;
+      font-size: 42rpx;
+      font-weight: bold;
+    }
+    .tip{
+      margin-top: 24rpx;
+      color: #5f5e5e;
+      font-size: 24rpx;
+    }
+  }
+  .submit{
+    background-color: rgb(31, 170, 3);
+    color: #ffffff;
+    text-align: center;
+    padding: 18rpx 0;
+    margin-top: 24rpx;
+    border-radius: 12rpx;
+  }
+}

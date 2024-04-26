@@ -3,9 +3,9 @@
     <view class="two">
       <view class="user-info">
         <view class="info">
-          <image src="https://tencent.file.caiduohui.com/assets/dh-5.png" mode=""/>
+          <image src="{{item.user.picture}}" mode=""/>
           <view class="info-name">
-            <text>CHRIS**in</text>
+            <text>{{item.user.nickname}}</text>
             <view class="xx">
               <image src="{{item.star >= 1?'https://tencent.file.caiduohui.com/assets/xx-1.png':'https://tencent.file.caiduohui.com/assets/xx-2.png'}}" mode=""/>
               <image src="{{item.star >= 2?'https://tencent.file.caiduohui.com/assets/xx-1.png':'https://tencent.file.caiduohui.com/assets/xx-2.png'}}" mode=""/>

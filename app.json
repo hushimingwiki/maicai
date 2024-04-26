@@ -28,7 +28,10 @@
     "pages/distribution/distribution",
     "pages/disDel/disDel",
     "pages/customerList/customerList",
-    "pages/like/like"
+    "pages/like/like",
+    "pages/applyWithdrawal/applyWithdrawal",
+    "pages/refund/refund",
+    "pages/receiveCoupon/receiveCoupon"
   ],
   "window": {
     "navigationBarTextStyle": "black",

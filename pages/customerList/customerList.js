@@ -9,23 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    customerList:[
-      {
-        name:'张无忌',
-        time:'2024-03-31',
-        price:'99.9'
-      },
-      {
-        name:'赵敏',
-        time:'2024-03-31',
-        price:'99.9'
-      },
-      {
-        name:'周芷若',
-        time:'2024-03-31',
-        price:'99.9'
-      },
-		],
+    isEnd:true,
+    customerList:[],
 		page:0,
 		pageSize:10
   },
@@ -42,10 +27,25 @@ Page({
 			page:this.data.page,
 			page_size:this.data.pageSize
 		}).then(res=>{
-			console.log(res)
-			this.setData({
-				customerList:res.data
-			})
+      console.log(res)
+      // res.data = [
+      //   {name:'张无忌',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'},
+      //   {name:'周芷若',time:'2024-03-31',price:'99.9'},
+      //   {name:'周芷若',time:'2024-03-31',price:'99.9'},
+      //   {name:'周芷若',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'},
+      //   {name:'赵敏',time:'2024-03-31',price:'99.9'}
+      // ]
+	
+      this.setData({
+        page:this.data.page+1,
+        customerList: [...this.data.customerList,...res.data],
+        isEnd:res.data.length<10?false:true
+      })
 		})
 	},
 	
@@ -88,13 +88,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    if(this.data.isEnd){
+      this.getInviteList()
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    
   }
 })

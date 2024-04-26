@@ -18,7 +18,7 @@
     <view class="product" wx:if="{{list.length}}" wx:for="{{list}}" wx:key="index" catchtap="JumpOrderDetail" data-obj="{{item}}">
 
       <view class="product-title jus-b">
-        <view style="color:#777777">{{item.shipTime}}</view>
+        <view style="color:#777777;font-size: 24rpx;">{{item.create_time}}</view>
         <text class="red" wx:if="{{item.order_status==0}}">待支付</text>
         <text class="red" wx:if="{{item.order_status==1}}">待发货</text>
         <text class="red" wx:if="{{item.order_status==2}}">待签收</text>
@@ -28,17 +28,12 @@
       <view class="product-ordernumber">
         订单编号：{{item.order_number}}
       </view>
-      <view class="content flex">
-        <image mode="aspectFill" wx:for="{{item.orderItems}}" wx:key="index" wx:for-item="itemmm" wx:for-index='indexxx' src="{{itemmm.picture}}" class="product-img"></image>
+      <view class="content" wx:for="{{item.orderItems}}" wx:key="index" wx:for-item="itemmm" wx:for-index='indexxx'>
+        <image mode="aspectFill"  src="{{itemmm.picture}}" class="product-img"></image>
         <view class="flex1 right">
-          <!-- <view class="name line_two">{{item.name}}</view> -->
-          <!-- <view class="guide">规格:{{pro.goodsSpecificationsInfoName}}</view> -->
-          <view class="price jus-b">
-            <!-- <view>{{item.countDown}}</view> -->
-            <!-- <view class="num">
-              已支付{{item.pay_price}}
-            </view> -->
-          </view>
+          <view class="name line_two">{{itemmm.name}}</view>
+          <view class="price line_two">￥{{itemmm.price}}</view>
+          <view class="shuliang line_two">数量:{{itemmm.quantity}}</view>
         </view>
       </view>
 

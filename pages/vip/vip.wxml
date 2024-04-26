@@ -1,39 +1,45 @@
-<view class="title">
-  <!-- <view class="title-text">
+<!-- <view class="title">
+  <view class="title-text">
     <view class="vip-one {{isBig==0?'big':''}}" bindtap="checkVipType" data-index="0">金卡会员</view>
     <view class="vip-two {{isBig==1?'big':''}}" bindtap="checkVipType" data-index="1">钻卡会员</view>
-  </view> -->
-  
-</view>
+  </view>
+
+</view> -->
 <view class="con" wx:if="{{isBig==0}}">
   <view class="vip-title">金卡会员享受权益</view>
   <view class="RAndI">
-    <view class="qy">权益1:先赠送199元现金余额，可以直接购物，无任何限制；</view>
-    <view class="qy">权益2:再赠送499元代金券，可以在平台任意消费时每次抵扣10%，与现金余额同时使用；</view>
+    <view class="qy">权益1:先赠送199元余额，可以直接购物，无任何限制；</view>
+    <view class="qy">权益2:再赠送499元代金券，可以在平台任意消费时每次抵扣10%，与余额同时使用；</view>
     <view class="qy">权益3:所有订单平台赠送订单金额100%的积分(用于积分商城兑换商品)；</view>
     <view class="qy">权益4:平台购物全场享受8折优惠；</view>
     <view class="qy">权益5:享受推广绑定会员的消费金额3%+2%提成。</view>
     <view class="qy">权益6:推荐三人购买199元钻卡会员，可以获得199元现金奖励，可以提现，后续再推荐成为钻卡会员，享受付费会员金额30%；</view>
-		<view class="qy">后续更多权益待开发中</view>
+    <view class="qy">后续更多权益待开发中</view>
   </view>
 </view>
 <view class="con" wx:if="{{isBig==1}}">
   <view class="vip-title">钻卡会员享受权益</view>
   <view class="RAndI">
-    <view class="qy">权益1:先赠送199元现金余额，可以直接购物，无任何限制；</view>
-    <view class="qy">权益2:再赠送499元代金券，可以在平台任意消费时每次抵扣10%，与现金余额同时使用；</view>
-    <view class="qy">权益3:所有订单平台赠送订单金额100%的积分(用于积分商城兑换商品)；</view>
-    <view class="qy">权益4:平台购物全场享受8折优惠；</view>
-    <view class="qy">权益5:享受推广绑定会员的消费金额3%+2%提成。</view>
-    <view class="qy">权益6:推荐三人购买199元钻卡会员，可以获得199元现金奖励，可以提现，后续再推荐成为钻卡会员，享受付费会员金额30%；</view>
-		<view class="qy">后续更多权益待开发中</view>
+    <view class="qy">权益1:先赠送199元余额，可以直接购物，无任何限制;</view>
+    <view class="qy">权益2:再赠送299元代金券，可以在平台任意消费时每次抵扣10%，与余额同时使用;</view>
+    <view class="qy">权益3:所有订单平台赠送订单金额100%的积分(用于积分商城兑换商品);</view>
+    <view class="qy">权益4:平台购物全场享受8折优惠;</view>
+    <view class="qy">权益5:享受推广绑定会员的消费金额3%佣金。</view>
+    <view class="qy">权益6:推荐三人购买199元钻卡会员，可以获得199元奖励，后续再推荐成为钻卡会员，享受付费会员金额30%;</view>
+    <view class="qy">后续更多权益待开发中</view>
   </view>
 </view>
-<view class="price">
-  <view class="one" wx:if="{{isBig==0}}"><text>499</text>元购买平台金卡年会员</view>
-  <view class="one" wx:if="{{isBig==1}}"><text>199</text>元购买平台钻卡年会员</view>
-</view>
-
-<view class="zhifu" bindtap="goPay">
-    开通并支付
+<view style="height: 300rpx;width: 100%;">
+  </view>
+<view class="goumai" style="padding-bottom:{{bottomLift}}px">
+  <view class="price">
+    <view class="one" wx:if="{{isBig==0}}"><text>499</text>元购买平台金卡年会员</view>
+    <view class="one" wx:if="{{isBig==1}}"><text>199</text>元购买平台钻卡年会员</view>
+  </view>
+  
+  <view >
+    <view class="zhifu" bindtap="goPay">
+      开通并支付
+    </view>
+  </view>
 </view>

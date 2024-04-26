@@ -17,7 +17,7 @@
       <view>{{totalPrice >= item.full_price}}</view>
       <view>{{item.expire == 0}}</view> -->
       <!-- <view class="coupon {{totalPrice >= item.full_price && item.shop_id > 0 == shopId && item.expire == 0 && item.shop_id == 0?'':'mask'}}"> -->
-        <view class="coupon {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'mask'}}">
+      <view class="coupon {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'mask'}}">
         <view class="left">
           <view class="price">￥<text class="jg">{{item.price}}</text>
             <view class="man">满<text>{{item.full_price}}</text>元使用</view>
@@ -29,7 +29,7 @@
             <view class="two">有效期至 {{item.end_time}}</view>
             <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
           </view>
-          <view class="go-use {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'gray'}}" bindtap="goFenlei">去使用</view>
+          <!-- <view class="go-use {{(shopId == item.shop_id || item.shop_id == 0) && (totalPrice >= item.full_price) && (item.expire == 0)?'':'gray'}}" bindtap="goFenlei">去使用</view> -->
         </view>
       </view>
     </view>

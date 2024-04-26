@@ -15,7 +15,8 @@ export const WXPay = (params) => post('pay/wx_pay', params);
 
 //获取用户钱包user_wallet/get
 export const wallet = (params) => post('user_wallet/get',params);
-
+//提现 /user_wallet/withdrawal
+export const withdrawal = (params) => post('user_wallet/withdrawal',params);
 //获取vip信息 user_very_important_person/get
 export const vipInfo = (params) => post('user_very_important_person/get',params);
 //获取钱包明细user_wallet_record/list
@@ -34,6 +35,8 @@ export const bannerList = (params) => post('banner/list',params);
 export const zuijinStation = (params) => post('transfer_station/get_closest',params);
 ////transfer_station/list_nearby获取最近的中转站
 export const fujinStation = (params) => post('transfer_station/list_nearby',params);
+///transfer_station/getByTransferStationId
+export const stationById = (params) => post('transfer_station/getByTransferStationId',params);
 //首页商品列表
 export const shopList = (params) => post('standard_product_unit/recommend',params);
 

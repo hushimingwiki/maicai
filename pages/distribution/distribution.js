@@ -1,6 +1,6 @@
 var app = getApp()
 import {
-	inviteQrCode
+	inviteQrCode,wallet
 } from '../../request/api.js'
 import {
 	postFile
@@ -11,7 +11,8 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		userInfo: null,
+    userInfo: null,
+    vipInfo:null,
 		publicizeModel: false,
 		show: false, //控制显示海报的弹窗的变量
 		imageShow: false, //控制海报显示的变量
@@ -22,6 +23,11 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
+  goVip(){
+    wx.navigateTo({
+      url: '../vip/vip',
+    })
+  },
 	onLoad() {},
 
 	/**
@@ -32,12 +38,16 @@ Page({
 	},
 
 	/**
-	 * 生命周期函数--监听页面显示
+	 * 生命周期函数--监听页面显示 
 	 */
 	onShow() {
-		console.log('走入onShow')
+    console.log('走入onShow')
+    var vip = wx.getStorageSync('vip')
+    console.log(vip.vip_1,'vippppp')
 		this.setData({
-			userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      vipInfo:app.globalData.wallet,
+      vipLevel:vip.vip_1
 		})
 	},
 	goJiesuan(){
@@ -127,7 +137,8 @@ Page({
 									that.handleCanvasText(ctx, that.data.userInfo.nickname, 100, 580, 24, '#ffffff')
 									//绘制放置二维码的图片对象
 									const img_qrcode = canvas.createImage()
-									img_qrcode.src = that.data.base64url
+                  img_qrcode.src = that.data.base64url
+                  console.log(that.data.base64url,'that.data.base64url')
 									img_qrcode.onload = function () {
 										ctx.drawImage(img_qrcode, 100, 110, 250, 250)
 										img1=true
@@ -340,8 +351,8 @@ Page({
 		postFile({type:4},this.data.url).then(res => {
 			console.log(res,'进入wx.previewImage')
 			wx.previewImage({
-				current: 'https://api.caiduohui.com:8080/tmp_picture/' + res.data, // 当前显示图片的http链接
-				urls: ['https://api.caiduohui.com:8080/tmp_picture/' + res.data], // 需要预览的图片http链接列表
+				current: 'https://tencent.file.caiduohui.com//tmp_picture/' + res.data, // 当前显示图片的http链接
+				urls: ['https://tencent.file.caiduohui.com/tmp_picture/' + res.data], // 需要预览的图片http链接列表
 			})
 		})
 

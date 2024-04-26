@@ -48,7 +48,7 @@
   height: 1000rpx;
   background-color: #fff;
   position: relative;
-  top: -30rpx;
+  // top: -30rpx;
   z-index: 999;
   border-radius: 30rpx;
 }
@@ -77,11 +77,15 @@
     color: #6b4a03;
   }
 }
-.price{
+.goumai{
   position: fixed;
   left: 0;
+  bottom:0;
   z-index: 999;
-  bottom: 100rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+}
+.price{
   margin-left: 42rpx;
   font-size: 24rpx;
   color: #797875;
@@ -97,9 +101,6 @@
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 702rpx;
   z-index: 999;
   margin: 0 24rpx;

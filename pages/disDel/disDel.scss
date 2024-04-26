@@ -54,3 +54,21 @@ page{
 		border-radius: 10rpx;
 	}
 }
+.list{
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  .one{
+    display: flex;
+    justify-content: space-between;
+  }
+  .two{
+    font-size: 24rpx;
+    color: #a7a4a4;
+  }
+}
+.chakan{
+  color: rgb(57, 138, 10);
+  text-decoration: underline;
+}

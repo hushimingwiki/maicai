@@ -22,7 +22,7 @@ Page({
     twoCategoryList: [],
     threeCategoryList: [],
     headerHeight: '',
-    isCheck: '0',
+    isCheck: '-1',
     isCheckTwo: '0',
     isCheckThree: '0',
     shopList: [],
@@ -95,18 +95,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.setData({
+    //   isCheck:'-1'
+    // })
 
   },
   // 获取一级分类列表
   getCategoryList() {
-    wx.showLoading({
-      title:'加载中...'
-    })
+    // wx.showLoading({
+    //   title:'加载中...'
+    // })
     categoryList({
       parent_id: 0
     }).then(res => {
       console.log(res, '一级分类列表')
+      res.data.forEach((item,index) => {
+        if(item.category_id == this.data.flId){
+          // this.setData({
+          //   isCheck:index
+          // })
+          return
+        } 
+      });
       this.setData({
         shopList: [],
         page: 0,
@@ -139,8 +149,8 @@ Page({
         twoCategoryList: res.data,
         flId:null
       })
-      wx.setStorageSync('param', null)
-      this.getThreeCategoryList(res.data[0].category_id)
+      // wx.setStorageSync('param', null)
+      this.getThreeCategoryList(res.data[0].category_id,res.data[0].name)
     })
   },
   // 选择二级分类列表
@@ -148,26 +158,35 @@ Page({
     console.log(e)
     let index = e.currentTarget.dataset.index;
     let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
     this.setData({
       isCheckTwo: index,
       shopList: [],
       page: 0,
       isEnd: true
     })
-    this.getThreeCategoryList(id)
+    this.getThreeCategoryList(id,name)
   },
   //获取三级分类
-  getThreeCategoryList(e) {
+  getThreeCategoryList(e,n) {
+    console.log(n,'nnnnnnnn')
     categoryList({
       parent_id: e
     }).then(res => {
       console.log(res, '三级分类列表')
-      this.setData({
-        threeCategoryList: res.data,
-        now3flId: res.data[0].category_id
-      })
-      console.log(1)
-      this.getShopList(res.data[0].category_id)
+      if(n == "推荐"){
+        console.log("推荐")
+        this.setData({
+          threeCategoryList: res.data,
+          now3flId: ''
+        })
+      }else{
+        this.setData({
+          threeCategoryList: res.data,
+          now3flId: res.data[0].category_id
+        })
+      }
+      this.getShopList()
     })
   },
   // 切换三级分类
@@ -180,7 +199,8 @@ Page({
       flAllOpen: 1,
       now3flId: id,
       page: 0,
-      isEnd: true
+      isEnd: true,
+      shopList:[]
     })
     console.log(2)
     this.getShopList(id)
@@ -188,11 +208,12 @@ Page({
   getShopList(e) {
     categorySearch({
       transfer_station_id: this.data.zdId,
-      category_3_id: this.data.now3flId,
+      category_3_id: this.data.isCheck=='-1' ? '' : this.data.now3flId,
       page: this.data.page,
       page_size: this.data.pageSize
     }).then(res => {
       console.log(res, '商品列表')
+      console.log(this.data.isCheck)
       if(res.code=='200'){
         this.setData({
           page: this.data.page + 1,
@@ -241,6 +262,9 @@ Page({
       })
       that.getCategoryList()
     }else{
+      this.setData({
+        isCheck:'-1'
+      })
       console.log('mei 有缓存index')
       that.getCategoryList()
     }
@@ -285,14 +309,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log('onHide')
+    wx.setStorageSync('param', null)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**

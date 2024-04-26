@@ -5,12 +5,101 @@
   background-color: rgb(247, 247, 247);
   padding-top: 1rpx;
 }
+.select-fs{
+  background-color: #ffffff;
+  display: flex;
+  margin: 24rpx 24rpx 0 24rpx;
+  border-radius: 12rpx;
+  .one{
+    width: 50%;
+    text-align: center;
+    padding: 12rpx 0;
+    border-radius: 12rpx;
+  }
+  .two{
+    background-color: #40AE36;
+    color: #ffffff;
+  }
+}
+.ziti{
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.goVip{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #9feb9d;
+  padding: 24rpx;
+  margin:24rpx;
+  border-radius: 14rpx;
+  .wenzi{
+    color: #444343;
+    font-size: 24rpx;
+  }
+  .go{
+    color: #fff;
+    font-size: 24rpx;
+    background-color: #0b8007;
+    padding: 4rpx 15rpx;
+    border-radius: 20rpx;
+  }
+}
 @mixin adr() {
   width: 654rpx;
   background-color: #ffffff;
   margin: 24rpx 0 0 24rpx;
   padding: 24rpx;
   border-radius: 12rpx;
+}
+.price-details{
+  @include adr;
+  font-size: 24rpx;
+  .yhq{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding-bottom: 24rpx;
+    .quan{
+      display: flex;
+      align-items: center;
+      text{
+        color: #BBBBBB;
+      }
+      image{
+				margin-left: 12rpx;
+        width: 36rpx;
+        height: 36rpx;
+        transform: rotate(270deg);
+      }
+    }
+  }
+  .no-vip-price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24rpx 0;
+    border-bottom: 1rpx solid #e4e4e4;
+    .is-vip{
+      text{
+        color: #c9c5c5;
+        text-decoration: line-through;
+        margin-right: 12rpx;
+      }
+      
+    }
+  }
+  .psf{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24rpx 0 0 0;
+  }
+  .psf1{
+    border-bottom: 1rpx solid #e4e4e4;
+    padding-bottom: 24rpx;
+  }
 }
 .address {
   @include adr;
@@ -24,7 +113,8 @@
     }
     .fh-adr{
       width: 548rpx;
-     
+      font-size: 24rpx;
+      font-weight: bold;
       .name{
         color: #888888;
       }
@@ -75,6 +165,9 @@
         margin-left: 24rpx;
         width: 500rpx;
         line-height: 48rpx;
+        .vip{
+          font-size: 24rpx;
+        }
         .name {
           display: flex;
           justify-content: space-between;
@@ -94,24 +187,6 @@
 .qita {
   font-size: 24rpx;
   @include adr;
-  .yhq{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .quan{
-      display: flex;
-      align-items: center;
-      text{
-        color: #BBBBBB;
-      }
-      image{
-				margin-left: 12rpx;
-        width: 36rpx;
-        height: 36rpx;
-        transform: rotate(270deg);
-      }
-    }
-  }
   .paytype{
     margin-top: 24rpx;
     display: flex;
@@ -119,12 +194,33 @@
     border-top: 1rpx solid #e4e4e4;
     padding: 24rpx 0 0 0;
   }
-  .goutong{
-    margin-top: 24rpx;
+  .jingtie{
+    // margin-top: 24rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1rpx solid #e4e4e4;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding: 0 0 24rpx 0;
+    switch{
+      zoom: .6;
+    }
+  }
+  .goutong{
+    // margin-top: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding: 24rpx 0 24rpx 0;
+    switch{
+      zoom: .6;
+    }
+  }
+  .zhiding{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     padding: 24rpx 0 0 0;
     switch{
       zoom: .6;
@@ -150,12 +246,11 @@
     }
   }
   .beizhu{
-    margin-top: 24rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1rpx solid #e4e4e4;
-    padding: 24rpx 0 0 0;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding: 24rpx 0 24rpx 0;
     input{
       width: 70%;
       text-align: right;
@@ -190,6 +285,7 @@
   align-items: center;
   font-size: 24rpx;
   padding: 12rpx 0;
+  z-index: 999;
   .price {
     text{
       margin: 0 24rpx 0 0;

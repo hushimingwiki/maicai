@@ -39,10 +39,12 @@ page{
       align-items: center;
       .info {
         display: flex;
+        align-items: center;
         image{
           width: 64rpx;
           height: 64rpx;
           margin-right: 14rpx;
+          border-radius: 64rpx;
         }
         .info-name {
           text{

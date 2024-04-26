@@ -10,12 +10,12 @@
   <input class="search" placeholder="方便 快捷的净菜一站式配送 全在菜多惠" bindtap="goSearch"/>
 </view>
 <scroll-view class="scrollarea" scroll-y type="list" style="margin-top:{{headerHeight + 35}}px">
-  <!-- <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
-    <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.text}}" wx:for="{{bannerList}}" wx:key="index" bindtap="goVip">
+  <swiper class="swiper" autoplay='3000' indicator-dots="true" indicator-active-color="white" circular="true" easing-function="easing">
+    <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" data-content="{{item.content}}" wx:for="{{bannerList}}" wx:key="index" bindtap="tiaozhuan">
       <image src='{{item.picture}}'></image>
     </swiper-item>
-  </swiper> -->
-  <image class="swiper" src="{{bannerList[0].picture}}" bindtap="goVip" mode=""/>
+  </swiper>
+  <!-- <image class="swiper" src="{{bannerList[0].picture}}" bindtap="goVip" mode=""/> -->
 
   <view class="fenlei">
     <view class="flss" wx:for="{{fenLeiList}}" wx:key="index" bindtap="goFenlei" data-id="{{item.category_id}}" data-index="{{index}}">
@@ -24,7 +24,7 @@
     </view>
   </view>
   <view class="receive-coupon" wx:if="{{klqCoupon.length > 0}}">
-    <view class="title">388元券包 <text>新人专享</text></view>
+    <view class="title">优惠券专区</view>
     <view class="coupon-list">
       <scroll-view scroll-x="true">
       <view class="sc-v">
@@ -35,7 +35,7 @@
       </view>
       </scroll-view>
     </view>
-    <view class="go-use" bindtap="goUse">立即使用</view>
+    <view class="go-use" bindtap="goUse">前往领取</view>
   </view>
   <!-- <view class="sale">
     <view class="sale-title">

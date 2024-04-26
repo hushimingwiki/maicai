@@ -38,11 +38,15 @@
 				.zkVip{
 					background-color: #e0ba0e;
 					width: max-content;
-					font-size: 18rpx;
-					padding: 0 10rpx;
+					font-size: 26rpx;
+					padding: 4rpx 12rpx;
 					border-radius: 10rpx;
 					margin-top: 12rpx;
-				}
+        }
+        .viptime{
+          margin-left: 12rpx;
+          font-size: 18rpx;
+        }
 				.pyVip{
 					background-color: #d4d3d3;
 					width: max-content;
@@ -106,13 +110,15 @@
       }
     }
     .order-zt {
-      padding-bottom: 24rpx;
+      // padding-bottom: 24rpx;
       .zt{
         display: flex;
+        flex-wrap: wrap;
         .cs{
           width: 20%;
           text-align: center;
           font-size: 26rpx;
+          padding-bottom: 24rpx;
           image{
             width: 56rpx;
             height: 56rpx;

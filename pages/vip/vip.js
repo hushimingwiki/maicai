@@ -1,6 +1,6 @@
 // 
 import {
-	recharge
+	recharge,vipInfo
 } from '../../request/api.js'
 
 const app = getApp()
@@ -11,7 +11,8 @@ Page({
 	 */
 	data: {
 		headerHeight: '',
-		isBig: 1
+    isBig: 1,
+    bottomLift: app.globalData.bottomLift,
 	},
 
 	/**
@@ -19,21 +20,22 @@ Page({
 	 */
 	onLoad(options) {
 		this.setData({
-			headerHeight: app.globalData.titleHeight
+      headerHeight: app.globalData.titleHeight,
+      
 		})
 	},
 	goPay(e) {
 		// let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
 		// let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
-		// console.log(prevPage.route,'pages/shopDetails/shopDetails')
 		// wx.navigateBack({
-		// 	delta: 1,
-		// 	success: function (e) { // 成功的回调
-		// 		if (prevPage == undefined || prevPage == null) return;
-		// 		prevPage.getVip(); // 调用A页面的方法, 并将值传过去
-		// 	}
-		// })
-		// return
+    //   delta: 1,
+    //   success: function (e) { // 成功的回调
+    //     if (prevPage == undefined || prevPage == null) return;
+    //     prevPage.aa(); // 调用A页面的方法, 并将值传过去
+    //   }
+    // })
+    // return
+    var that = this
 		console.log(this.data.price)
 		recharge({
 			type: '1',
@@ -50,10 +52,13 @@ Page({
 					signType: res.data.signType,
 					paySign: res.data.paySign,
 					success: res => {
-						this.getWallet()
+						// that.getWallet()
 						// wx.redirectTo({
 						//   url: '/pages/success/success?type=1',
-						// })
+            // })
+            vipInfo().then(res=>{
+              wx.setStorageSync('vip', res.data)
+            })
 						let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
 						let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
 						if(prevPage.route == 'pages/shopDetails/shopDetails'){
@@ -67,8 +72,23 @@ Page({
 						}else if(prevPage.route == 'pages/my/my'){
 							wx.navigateBack({
 								delta: 1,
+								success: function (e) { // 成功的回调
+                  if (prevPage == undefined || prevPage == null) return;
+                  setTimeout(res=>{
+                    prevPage.getVip(); // 调用A页面的方法, 并将值传过去
+                  },1000)
+									
+								}
 							})
-						}
+						}else if(prevPage.route == 'pages/order/order'){
+              wx.navigateBack({
+								delta: 1,
+								success: function (e) { // 成功的回调
+									if (prevPage == undefined || prevPage == null) return;
+									prevPage.aa(); // 调用A页面的方法, 并将值传过去
+								}
+							})
+            }
 						
 					},
 					fail(err) {

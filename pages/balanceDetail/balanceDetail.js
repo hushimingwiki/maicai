@@ -20,7 +20,7 @@ Page({
   getUserWalletRecord(){
     userWalletRecord({
       type:0,
-      status:0
+      status:""
     }).then(res=>{
       console.log(res,'ressss')
       this.setData({

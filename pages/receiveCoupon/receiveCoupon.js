@@ -1,47 +1,54 @@
 import {
-  CommentList
+  receiveCouponList,addCoupon
 } from '../../request/api.js'
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dataList:null,
-    page:0,
-    Comment:[],
-    isEnd:true
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(option) {
-    console.log(option.obj,'option.obj')
-    this.setData({
-      dataList:JSON.parse(option.obj)
-    })
-    this.getCommentList()
+  onLoad() {
+    this.getReceiveCouponList()
   },
-  getCommentList(){
-    console.log(this.data.allShopDetails,'this.data.allShopDetails')
-    CommentList({
-      standard_product_unit_id:this.data.dataList.standard_product_unit_id,
-      self_comment:'0',
-      page:this.data.page,
-      page_size:10
+  getReceiveCouponList(){
+    receiveCouponList({
+      shop_id:0,
+      page:0,
+      page_size:100
     }).then(res=>{
-      console.log(res,'评论')
+      console.log(res.data,'可领优惠券')
       this.setData({
-        Comment:[...this.data.Comment,...res.data],
-        page:this.data.page+1,
-        isEnd:res.data.length<5?false:true
+        klqCoupon:res.data
       })
-      console.log(this.data.Comment)
     })
   },
-  nextPage(){
-    console.log('下一页')
+  getAddCoupon(e){
+    console.log(e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id
+    
+      addCoupon({
+      coupon_id:id
+      }).then(res=>{
+        if(res.code == '200'){
+          wx.showToast({
+            title: '领取成功',
+          })
+        }else{
+          wx.showToast({
+            title: res.msg,
+            icon:'none'
+          })
+        }
+        
+        this.getReceiveCouponList()
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -82,10 +89,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    console.log(123)
-    if(this.data.isEnd){
-      this.getCommentList()
-    }
+
   },
 
   /**

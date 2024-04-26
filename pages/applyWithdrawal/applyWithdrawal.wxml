@@ -1,0 +1,12 @@
+<view class="box">
+  <view class="title">提现金额(元)</view>
+  <input class="qsl" type="text" bindinput="setPrice" value="{{price}}" placeholder="请输入"/>
+</view>
+<view class="tishi">
+  <view>可提现金额:￥{{vipInfo.commission}}</view>
+  <view class="qbtx" bindtap="allTixian">全部提现</view>
+</view>
+
+<view class="xiangqing">
+	<view class="anniu" bindtap="tixian">申请提现</view>
+</view>

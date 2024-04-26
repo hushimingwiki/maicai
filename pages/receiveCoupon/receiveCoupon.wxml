@@ -1,0 +1,23 @@
+<view class="box">
+  <!-- 正常进入 -->
+  <block>
+    <view class="coulist" wx:for="{{klqCoupon}}" wx:key="index">
+      <view class="coupon">
+        <view class="left">
+          <view class="price">￥<text class="jg">{{item.price}}</text>
+            <!-- <view class="man">满<text>{{item.full_price}}</text>元使用</view> -->
+          </view>
+        </view>
+        <view class="right">
+          <view class="coupon-det">
+            <view class="one">{{item.name}}</view>
+            <view class="two">满 {{item.full_price}}元使用</view>
+            <view class="three">可用范围：{{item.shop_id==0?'全平台通用':'指定店铺可用'}}</view>
+          </view>
+          <view class="go-use" bindtap="getAddCoupon" data-id="{{item.coupon_id}}">领取</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

@@ -23,12 +23,18 @@ Page({
       headerHeight:app.globalData.titleHeight,
       userInfo:app.globalData.userInfo
     })
-		var vip = wx.getStorageSync('vip')
+    var vip = wx.getStorageSync('vip')
+    vip.vip_1_expire_time = vip.vip_1_expire_time.slice(0,-8)
 		console.log(vip,'vip')
 		this.setData({
 			vipDetails:vip
 		})
     this.getYhqNum()
+  },
+  goReceiveCoupon(){
+    wx.navigateTo({
+      url: '../receiveCoupon/receiveCoupon'
+    })
   },
   goEditData(){
     wx.navigateTo({
@@ -38,6 +44,7 @@ Page({
   getYhqNum(){
     queryCouponList({
       expire:"0",
+      use: "0",
       page:'0',
       page_size:'100'
     }).then(res=>{
@@ -59,6 +66,14 @@ Page({
       })
     })
   },
+  getVip(){
+		getApp().getCode()
+		var as =  wx.getStorageSync('vip')
+    console.log(as,'asss')
+    this.setData({
+      vipDetails:as
+    })
+	},
   goOrderList(e){
     wx.navigateTo({
       url: '../orderList/orderList?tab=' + e.currentTarget.dataset.tab

@@ -5,17 +5,17 @@
    <text> </text>
   </view>
   <view class="yue">
-    <view class="qian">
+    <!-- <view class="qian">
       <view class="ez">我的余额</view>
       <view class="">{{qianbao.balance}}</view>
-    </view>
-    <view class="qian">
-      <view class="ez">折扣余额</view>
+    </view> -->
+    <!-- <view class="qian">
+      <view class="ez">代金券</view>
       <view class="">{{qianbao.discount_balance}}</view>
-    </view>
+    </view> -->
     <view class="qian">
-      <view class="ez">津贴余额</view>
-      <view class="">{{qianbao.allowance_balance}}</view>
+      <view class="ez">余额</view>
+      <view class="">{{qianbao.balance}}</view>
     </view>
     <view class="mingxi" bindtap="viewBalanceDetail">查看明细</view>
   </view>

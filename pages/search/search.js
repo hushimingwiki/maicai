@@ -78,11 +78,16 @@ Page({
       addShopCart({
         user_id:'',
         standard_product_unit_id:this.data.allShopDetails.standard_product_unit_id,
-        stock_keeping_unit_id:this.data.allShopDetails.stockKeepingUnits[0].stock_keeping_unit_id,
-        current_price:this.data.allShopDetails.stockKeepingUnits[0].price,
+        current_price:this.data.allShopDetails.price,
         quantity:1
       }).then( res => {
         console.log(res,'加入购物车')
+        var hd = wx.getStorageSync('hd')
+        wx.setStorageSync('hd', Number(hd)+1)
+        wx.setTabBarBadge({
+          index: 2,
+          text: (Number(hd)+1).toString()
+        });
         wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
       })
     })  

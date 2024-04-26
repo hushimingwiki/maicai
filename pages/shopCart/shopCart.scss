@@ -90,6 +90,22 @@
     }
   }
 }
+.gwc-none{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 100rpx;
+  .none-image{
+    margin-top: 100rpx;
+    width: 100%;
+    text-align: center;
+    image{
+      width: 392rpx;
+      height: 392rpx;
+    }
+  }
+  
+}
 .jiesuan {
   position: fixed;
   left: 0;

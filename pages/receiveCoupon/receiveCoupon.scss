@@ -1,4 +1,4 @@
- page{
+page{
   background-color: #f6f6f6;
  }
  .box{
@@ -42,7 +42,7 @@
            font-size: 24rpx;
            color: #da1414;
            .jg{
-             font-size: 48rpx;
+             font-size: 36rpx;
              font-weight: bold;;
            }
          }
@@ -51,6 +51,8 @@
          width: 75%;
          height: 100%;
          display: flex;
+         justify-content: space-between;
+         padding: 0 24rpx;
          .coupon-det{
           width: 70%;
           padding-left: 14rpx;
@@ -61,7 +63,7 @@
             font-weight: bold;
           }
           .two{
-            font-size:18rpx;
+            font-size:24rpx;
           }
           .three{
             font-size: 18rpx;
@@ -70,7 +72,6 @@
 
          }
          .go-use{
-           
            height: 50rpx;
            line-height: 50rpx;
            background-color: #d65012;

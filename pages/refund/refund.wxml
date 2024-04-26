@@ -1,0 +1,48 @@
+<view class="tk-box">
+  
+  <view class="liyou">
+    <view class="title">该订单已完成,为帮助您处理，请详细描述您遇到的问题</view>
+    <textarea placeholder="必填,请填写您遇到的问题" placeholder-style="color:#b5b5b5;" bindinput="inputLiyou"/>
+  </view>
+
+  <view class="sh-zt">
+    <view class="title">收货状态</view>
+    <radio-group bindchange="radioChange" class="radio-group">
+      <label class="r-label">
+        <radio value="1" checked="true" />已收到货
+      </label>
+      <label class="r-label">
+        <radio value="2" />未收到货
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="chuli">
+    <view class="title">希望商家怎么处理</view>
+    <radio-group bindchange="radioChangeTwo" class="cl-radio">
+        <label class="cl-label" wx:for="{{clList}}" wx:key="index">
+          <view class="">{{item.name}}</view>
+          <view class="">
+            <radio value="{{item.value}}"/>
+          </view>
+        </label>
+      </radio-group>
+  </view>
+
+  <view class="jine" wx:if="{{isCl == 1}}">
+    <view class="title">申请金额</view>
+    <view class="jl">
+      ￥<input type="text" placeholder="请输入申请金额" bindinput="inputJine"/>
+    </view>
+  </view>
+
+  <view class="jine" wx:if="{{isCl == 2}}">
+    <view class="title">申请金额</view>
+    <view class="jl-d">
+      ￥{{orderPrice}}
+    </view>
+    <view class="tip">若退款成功，可能会扣除活动优惠，请以实际到账为准</view>
+  </view>
+
+  <view class="submit" bindtap="submit">提交</view>
+</view>

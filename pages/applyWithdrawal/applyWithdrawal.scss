@@ -1,0 +1,38 @@
+page{
+  background-color: #ffffff;
+}
+.box{
+  background-color: #ffffff;
+  padding: 24rpx;
+  .title{
+    font-size: 24rpx;
+    margin-bottom: 12rpx;
+  }
+}
+.tishi{
+  background-color: #ffffff;
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  .qbtx{
+    color: rgb(10, 49, 224);
+  }
+}
+.xiangqing{
+  background-color: #fff;
+  margin-top: 100rpx;
+	// position: absolute;
+	// left: 0;
+	// bottom: 0;
+	// padding: 12rpx 0 0 0;
+	.anniu{
+		background-color: #cea905;
+		color: #fff;
+		width: 702rpx;
+		margin: 0 24rpx;
+		text-align: center;
+		padding: 12rpx 0;
+		border-radius: 10rpx;
+	}
+}

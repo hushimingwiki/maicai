@@ -43,12 +43,14 @@ Page({
     console.log(xxxx,'xxxx')
     // let cd = xxxx.base_attribute.filter(item => item.name == '产地')
     // console.log(cd[0].value[0])
+    var vipIn = wx.getStorageSync('vip')
     console.log(xxxx,'xxxxxxxx')
     this.setData({
       shopId:xxxx.standard_product_unit_id,
       shopDetails: xxxx,
       // candi:cd[0].value[0],
       bottomLift: app.globalData.bottomLift,
+      vipInfo:vipIn
     })
     this.getShopDetails()
     
@@ -61,7 +63,10 @@ Page({
 	getVip(){
 		getApp().getCode()
 		var as =  wx.getStorageSync('vip')
-		console.log(as,'asss')
+    console.log(as,'asss')
+    this.setData({
+      vipInfo:as
+    })
 	},
   shoucang(){
     if(!this.data.isShoucang){

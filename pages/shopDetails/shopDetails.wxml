@@ -10,11 +10,11 @@
   </view>
   <view class="det-box">
     <view class="one">
-      <view class="price">钻卡价￥{{allShopDetails.very_important_person_price}}<text>/份</text></view>
+      <view class="price">钻卡价{{allShopDetails.very_important_person_price}}<text>/份</text></view>
       <view class="wz" wx:if="{{allShopDetails.base_attribute}}"><image src="https://tencent.file.caiduohui.com/assets/dingwei.png"></image>{{allShopDetails.base_attribute[0].value[0]}}</view>
     </view>
     <view class="">原价￥{{allShopDetails.price}}</view>
-		<view class="goVip">
+		<view class="goVip" wx:if="{{vipInfo.vip_1 == '0'}}">
 			<view class="wenzi">开通钻开会员可以享受八折优惠</view>
 			<view class="go" bindtap="goVip">去开通</view>
 		</view>
@@ -40,9 +40,9 @@
     <view class="two">
       <view class="user-info">
         <view class="info">
-          <image src="https://tencent.file.caiduohui.com/assets/dh-5.png" mode=""/>
+          <image src="{{Comment.user.picture}}" mode=""/>
           <view class="info-name">
-            <text>CHRIS**in</text>
+            <text>{{Comment.user.nickname}}</text>
             <view class="xx">
               <image src="{{Comment.star >= 1?'https://tencent.file.caiduohui.com/assets/xx-1.png':'https://tencent.file.caiduohui.com/assets/xx-2.png'}}" mode=""/>
               <image src="{{Comment.star >= 2?'https://tencent.file.caiduohui.com/assets/xx-1.png':'https://tencent.file.caiduohui.com/assets/xx-2.png'}}" mode=""/>
@@ -60,7 +60,7 @@
       {{Comment.content}}
     </view>
     <view class="four">
-      <image wx:for="{{Comment.pictures}}" src="{{item}}"  wx:key="index" bindtap="chakan" data-img="{{Comment.pictures}}" mode="center"/>
+      <image wx:for="{{Comment.pictures}}" src="{{item}}"  wx:key="index" bindtap="chakan" data-img="{{Comment.pictures}}" mode="aspectFill"/>
     </view>
     
   </view>
@@ -80,9 +80,9 @@
   </view>
   <view class="liukong"></view>
   <view class="shopcart" style="padding-bottom:{{bottomLift}}px">
-    <view class="caozuo" bindtap="shoucang">
+    <view class="caozuo">
       <view class="cz" bindtap="goShopCart"><image src="https://tencent.file.caiduohui.com/assets/gouwuche.png" mode=""/><text>购物车</text></view>
-      <view class="cz"><image src="{{isShoucang?'https://tencent.file.caiduohui.com/assets/shoucang.png':'https://tencent.file.caiduohui.com/assets/shoucang-h.png'}}" mode=""/><text>收藏</text></view>
+      <view class="cz" bindtap="shoucang"><image src="{{isShoucang?'https://tencent.file.caiduohui.com/assets/shoucang.png':'https://tencent.file.caiduohui.com/assets/shoucang-h.png'}}" mode=""/><text>收藏</text></view>
     </view>
     <view class="gwc" bindtap="jrShopCart">加入购物车</view>
   </view>

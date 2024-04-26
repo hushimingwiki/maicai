@@ -1,6 +1,6 @@
 // pages/orderDetail/orderDetail.js
 const app = getApp()
-import { GetOrderDetailInfo, orderCancel,addShopCart, orderConfirm } from '../../request/api.js'
+import { GetOrderDetailInfo, orderCancel,addShopCart, orderConfirm,stationById } from '../../request/api.js'
 Page({
 
   /**
@@ -11,7 +11,8 @@ Page({
     data:null,
     index:null,//上个页面的下标  改动数据时可以用到,
     flag:1,
-   
+    shopTolalPrice:0,
+    shopTolalNum:0
   },
   
   /**
@@ -21,8 +22,38 @@ Page({
     console.log(options)
     var optionData = JSON.parse(decodeURIComponent(options.obj))
     console.log(optionData)
+    console.log(optionData.delivery_type)
+    var lsPrice = 0
+    var tlNum = 0
+    optionData.orderItems.forEach( item => {
+      lsPrice += Number(item.price) * Number(item.quantity)
+      tlNum++
+    })
+    console.log(lsPrice ,'stp')
     this.setData({
-      data:optionData
+      data:optionData,
+      shopTolalPrice:lsPrice.toFixed(2),
+      shopTolalNum:tlNum
+    })
+    this.getzzzById()
+  },
+  getzzzById(){
+    console.log(this.data.data)
+    stationById({
+      transfer_station_id:this.data.data.transfer_station_id
+    }).then(res=>{
+      console.log(res,'ressssss')
+      if(res.code == 200){
+        this.setData({
+          zzz:res.data
+        })
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon:'error'
+        })
+      }
+      
     })
   },
   goGoodsComment(){
@@ -171,6 +202,9 @@ Page({
       }).then( res => {
         console.log(res,'加入购物车')
         wx.showToast({title:'加入购物车成功，我在购物车等你哦',icon: 'none',duration: 1500})
+        var hd = wx.getStorageSync('hd')
+        console.log(hd)
+        wx.setStorageSync('hd', Number(hd) + Number(item.quantity))
       })  
     })
     wx.switchTab({
@@ -180,7 +214,9 @@ Page({
 
   //售后
   afterSale(){
-    app.callServer()
+    wx.navigateTo({
+      url: '../refund/refund?orderId=' + this.data.data.order_id + '&price=' + this.data.data.total_price,
+    })
   },
 
   //改动上个页面的数据

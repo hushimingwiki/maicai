@@ -1,4 +1,7 @@
-// pages/disDel/disDel.ts
+// pages/disDel/disDel.ts /user_wallet_record/list
+import {
+  userWalletRecord,withdrawal,vipInfo
+} from '../../request/api.js'
 const app = getApp()
 Page({
 
@@ -6,7 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-		bottomLift:0
+    bottomLift:0,
+    dataList:[],
+    vipInfo:null
   },
 
   /**
@@ -14,10 +19,50 @@ Page({
    */
   onLoad() {
 		this.setData({
-			bottomLift: app.globalData.bottomLift,
+      bottomLift: app.globalData.bottomLift,
+      vipInfo:app.globalData.wallet,
+    })
+  },
+  getUserWalletRecord(){
+    userWalletRecord({
+      type:5,
+      status:0
+    }).then(res=>{
+      console.log(res,'ressss')
+      if(res.data.length<1){
+        wx.showToast({
+          title: '暂无结算信息',
+          icon:'none'
+        })
+        return
+      }
+      this.setData({
+        dataList:res.data
+      })
+    })
+  },
+  tixian(){
+    withdrawal({
+      price:'1'
+    }).then(res=>{
+      console.log(res,'ressss')
+    })
+  },
+  goTixian(){
+    wx.navigateTo({
+      url: '../applyWithdrawal/applyWithdrawal',
+    })
+  },
+  getQianBao(){
+    console.log(123)
+    vipInfo().then(res=>{
+			console.log(res.data)
+      wx.setStorageSync('vip', res.data)
+      this.setData({
+        vipInfo:res.data
+      })
 		})
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

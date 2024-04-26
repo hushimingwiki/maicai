@@ -12,3 +12,7 @@
   </view>
 
 </view>
+
+<view wx:if="{{customerList.length == 0}}" class="none">
+  暂无记录
+</view>

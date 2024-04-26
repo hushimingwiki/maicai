@@ -223,12 +223,10 @@ Page({
       console.log(item.image)
       postFile({type:3},item.image).then(ress => {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        console.log(ress, "reeeeeeeeee")
         that.setData({
-          imageName: (that.data.imageName + ','+ ress.data).substr(1)
+          imageName: that.data.imageName + ','+ ress.data
         })
         count++
-        console.log(that.data.imageName,'imageName')
         if(count === arr.length){
           that.submit();
         }
@@ -248,7 +246,7 @@ Page({
         "stock_keeping_unit_id":item.stock_keeping_unit_id,
         "star":this.data.Score,
         "content":this.data.Content,
-        "pictures":this.data.imageName
+        "pictures":this.data.imageName.substr(1)
       }
       plList.push(obj)
     })
