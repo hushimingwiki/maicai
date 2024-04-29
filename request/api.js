@@ -85,9 +85,10 @@ export const orderCancel = (params) => post('order/cancel',params);
 ////order/confirm_receipt确认收货
 
 export const orderConfirm = (params) => post('order/confirm_receipt',params);
-///order/get_freight_price获取运费
 
-export const orderGetFreightPrice = (params) => post('order/get_freight_price',params);
+///order/calc_price
+
+export const orderGetFreightPrice = (params) => post('order/calc_price ',params);
 
 ///分类获取商品standard_product_unit/category_search
 export const categorySearch = (params) => post('standard_product_unit/category_search',params);
@@ -117,3 +118,6 @@ export const likeDelete = (params) => post('like/delete',params);
 
 //获取收藏列表
 export const likeList = (params) => post('like/list',params);
+
+//我的团队/team/get
+export const teamGet = (params) => post('team/get',params);

@@ -4,7 +4,7 @@
     <view class="status">
       <span wx:if="{{data.order_status==0}}">待支付</span>
       <span wx:if="{{data.order_status==1}}">待发货</span>
-      <span wx:if="{{data.order_status==2}}">待签收</span>
+      <span wx:if="{{data.order_status==2}}">{{data.delivery_type == '1' ? '待签收':'待自提'}}</span>
       <span wx:if="{{data.order_status==3}}">已完成</span>
       <span wx:if="{{data.order_status==4}}">已取消</span>
     </view>
@@ -15,7 +15,7 @@
       <view>商家配货中</view>
     </view>
     <view class="details" wx:if="{{data.order_status == 2}}">
-      <view>货物配送中，请保持电话通畅</view>
+      <view>{{data.delivery_type == '1' ? '货物配送中，请保持电话通畅':'已备货完成，请尽快前往自提点'}}</view>
     </view>
     <view class="details" wx:if="{{data.order_status == 3}}">
       <view>订单已完成</view>

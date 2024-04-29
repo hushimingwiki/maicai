@@ -67,15 +67,15 @@
     </view>
     <view class="psf psf1">
       <text>代金券抵扣</text>
-      <text>{{Yunfei}}</text>
+      <text>{{Yunfei.discount_balance_price}}</text>
     </view>
     <view class="psf psf1">
       <text>余额抵扣</text>
-      <text>{{Yunfei}}</text>
+      <text>{{Yunfei.balance_price}}</text>
     </view>
     <view class="psf">
       <text>配送费</text>
-      <text>{{Yunfei}}</text>
+      <text>{{Yunfei.freight_price}}</text>
     </view>
   </view>
   <view class="qita">
@@ -120,7 +120,7 @@
   <view class="jiesuan" style="padding-bottom:{{bottomLift}}px">
     <view>共{{allJianShu}}件，</view>
     <view class="price">
-      合计:<text>￥{{totalPrice}}</text>
+      合计:<text>￥{{Yunfei.pay_price}}</text>
       <view wx:if="{{lowPrice>0}}">钻卡优惠{{lowPrice}}元</view>
       <view wx:if="{{couponPrice>0}}">优惠券:-{{couponPrice}}</view>
     </view>

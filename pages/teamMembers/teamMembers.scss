@@ -1,0 +1,56 @@
+page{
+  background-color: rgb(247, 247, 247);
+}
+.herd{
+  background: #ffffff;
+  margin-bottom: 24rpx;
+  padding: 24rpx 0;
+  
+  .one{
+    margin-left: 24rpx;
+    display: flex;
+    align-items: center;
+    width: 702rpx;
+    border-bottom: 1rpx solid #e4e4e4;
+    padding-bottom: 24rpx;
+    position: relative;
+    .team-p{
+      width: 125rpx;
+      height: 125rpx;
+      border-radius: 100%;
+    }
+    .team-f{
+      width: 35rpx;
+      height: 35rpx;
+      position: absolute;
+      right: 24rpx;
+    }
+    .info{
+      margin-left: 24rpx;
+      padding:12rpx 0 0 0;
+      .i-one{
+        font-weight: bold;
+      }
+      .i-two{
+        font-size: 24rpx;
+        margin-top: 6rpx;
+      }
+    }
+  }
+  .two{
+    margin: 24rpx 0 0 ;
+    display: flex;
+    .info{
+      width: 33.3%;
+      text-align: center;
+      .info-t{
+        color: #BBBBBB;
+        font-size: 24rpx;
+      }
+      .info-v{
+        color: #333333;
+        font-weight: bold;;
+      }
+    }
+  }
+}

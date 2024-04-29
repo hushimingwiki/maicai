@@ -285,7 +285,7 @@ Page({
       console.log(this.data.originPrice,'原籍')
       this.setData({
         Yunfei:res.data[0],
-        totalPrice:(Number(res.data[0]) + Number(this.data.originPrice) + Number(this.data.couponDetails.price)).toFixed(2),
+        totalPrice:(Number(res.data[0].freight_price) + Number(this.data.originPrice) + Number(this.data.couponDetails.price)).toFixed(2),
       })
     })
   },

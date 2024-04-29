@@ -38,15 +38,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-		console.log(options.details,'options')
-    var xxxx = JSON.parse(decodeURIComponent(options.details)) // 先decode再把字符串转数组
-    console.log(xxxx,'xxxx')
+    var sid = options.shopId
+    var xxxx = options.details?JSON.parse(decodeURIComponent(options.details)):'' // 先decode再把字符串转数组
     // let cd = xxxx.base_attribute.filter(item => item.name == '产地')
     // console.log(cd[0].value[0])
     var vipIn = wx.getStorageSync('vip')
-    console.log(xxxx,'xxxxxxxx')
     this.setData({
-      shopId:xxxx.standard_product_unit_id,
+      shopId:sid?sid:xxxx.standard_product_unit_id,
       shopDetails: xxxx,
       // candi:cd[0].value[0],
       bottomLift: app.globalData.bottomLift,
@@ -118,8 +116,9 @@ Page({
     })
   },
   getShopDetails(){
+    console.log(this.data.shopId,'this.data.shipIdthis.data.shipIdthis.data.shipId')
     shopDetails(
-      {standard_product_unit_id:this.data.shopDetails.standard_product_unit_id}
+      {standard_product_unit_id:this.data.shopId}
     ).then( res => {
       console.log(res,'获取商品详情')
       this.setData({
@@ -210,6 +209,10 @@ getCommentList(){
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+		return {
+			title: this.data.shopDetails.name,
+			path: '/pages/shopDetails/shopDetails?shopId=' + this.data.shopId,
+			imageUrl: this.data.shopDetails.pictures[0]
+		}
   }
 })

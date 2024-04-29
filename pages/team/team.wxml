@@ -1,3 +1,85 @@
 <view class="herd">
+  <view class="one">
+    <image class="team-p" src="{{userInfo.picture}}" mode="" />
+    <view class="info">
+      <view class="i-one">种菜小分队UP</view>
+      <view class="i-two">团长：诸葛亮</view>
+      <view class="i-two">手机号：133200001761</view>
+    </view>
+    <button class="yaoqing" open-type='share'>邀请入团</button>
+  </view>
+  <view class="two">
+    <view class="jc" bindtap="goTeamMem">
+      <view class="jc-name">团队成员</view>
+      <view class="jc-value">56人</view>
+    </view>
+    <view class="jc">
+      <view class="jc-name">团队订单</view>
+      <view class="jc-value">556</view>
+    </view>
+    <view class="jc">
+      <view class="jc-name">团队业绩</view>
+      <view class="jc-value">￥1234565</view>
+    </view>
+  </view>
+</view>
+<view class="geren">
+  <view class="g-one">
+    <view class="one-name">个人业绩</view>
+    <view class="one-value">123</view>
+  </view>
+  <view class="g-one">
+    <view class="one-name">团队排行</view>
+    <view class="one-value">1</view>
+  </view>
+  <view class="g-one">
+    <image class="g-three" src="{{isTuanzhang=='1'?'https://tencent.file.caiduohui.com/assets/tuanzhang.png':'https://tencent.file.caiduohui.com/assets/tuanyuan.png'}}" mode="" />
+  </view>
+</view>
+<view class="ranking">
+  <view class="title">团队排行榜</view>
+  <view class="qiansan">
+    <view class="dier dier-one">
+      <view class="price">￥{{rankingList[1].price}}</view>
+      <view class="name">{{rankingList[1].name}}</view>
+      <view class="tx">
+        <image class="tx-picture" src="{{rankingList[1].picture}}" mode="" />
+        <image class="tx-top" src="https://tencent.file.caiduohui.com/assets/top-two.png" mode="" />
+      </view>
 
+    </view>
+    <view class="dier">
+      <view class="price">￥{{rankingList[0].price}}</view>
+      <view class="name">{{rankingList[0].name}}</view>
+      <view class="tx txx">
+        <image class="tx-picture" src="{{rankingList[0].picture}}" mode="" />
+        <image class="tx-top" src="https://tencent.file.caiduohui.com/assets/top-one.png" mode="" />
+      </view>
+    </view>
+    <view class="dier dier-three">
+      <view class="price">￥{{rankingList[2].price}}</view>
+      <view class="name">{{rankingList[2].name}}</view>
+      <view class="tx">
+        <image class="tx-picture" src="{{rankingList[2].picture}}" mode="" />
+        <image class="tx-top" src="https://tencent.file.caiduohui.com/assets/top-three.png" mode="" />
+      </view>
+    </view>
+  </view>
+  <view class="houqi">
+    <view class="title">
+      <view class="title-name">名次</view>
+      <view class="title-name">昵称</view>
+      <view class="title-name">销售实收(元)</view>
+    </view>
+    <view class="paiming">
+      <view class="pm-list" wx:for="{{rankingList}}" wx:key="index" wx:if="{{index>2}}">
+        <view class="list-name">{{item.mc}}</view>
+        <view class="list-name yc">
+          <image class="tx" src="{{item.picture}}" />
+          <view class="nnmae">{{item.name}}</view>
+        </view>
+        <view class="list-name">{{item.price}}</view>
+      </view>
+    </view>
+  </view>
 </view>

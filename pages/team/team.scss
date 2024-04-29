@@ -1,4 +1,193 @@
+page{
+  background-color: rgb(247, 247, 247);
+}
 .herd{
-  background-color: burlywood;
-  height: 400rpx;
+  background: linear-gradient(175deg, rgb(252, 223, 192), rgb(255, 255, 255));
+  
+  padding: 24rpx 0;
+  .one{
+    margin-left: 24rpx;
+    display: flex;
+    align-items: center;
+    width: 702rpx;
+    position: relative;
+    .team-p{
+      width: 125rpx;
+      height: 125rpx;
+      border-radius: 100%;
+    }
+    .yaoqing{
+      width: max-content;
+      height: max-content;
+      position: absolute;
+      right: 24rpx;
+      background-color: #75da16;
+      padding: 6rpx 30rpx;
+      border-radius: 50rpx;
+      color: #ffffff;
+      font-size: 28rpx;
+    }
+    
+    .info{
+      margin-left: 24rpx;
+      padding:12rpx 0 0 0;
+      .i-one{
+        font-weight: bold;
+      }
+      .i-two{
+        font-size: 24rpx;
+        margin-top: 6rpx;
+      }
+    }
+  }
+  .two{
+    margin-top: 50rpx;
+    display: flex;
+    .jc{
+      width: 33%;
+      text-align: center;
+      .jc-name{
+        font-size: 24rpx;
+        color: #888888;
+      }
+      .jc-value{
+        font-weight: bold;
+        color: #333333;
+      }
+    }
+  }
+}
+.geren{
+    background-color: #ffffff;
+    border-radius: 12rpx;
+    width: 702rpx;
+    margin: 24rpx 24rpx 0 24rpx;
+    display: flex;
+    align-items: center;
+    .g-one{
+      width: 33.3%;
+      text-align: center;
+      padding: 24rpx 0;
+      .one-name{
+        color: #888888;
+        font-size: 24rpx;
+      }
+    }
+    .g-three{
+      width: 125rpx;
+      height: 75rpx;
+    }
+}
+.ranking{
+  background: #ffffff;
+  margin:24rpx;
+  width: 702rpx;
+  border-radius: 12rpx;
+  position: absolute;
+  .title{
+    font-weight: bold;
+    margin-top:30rpx;
+    text-align: center;
+  }
+  .qiansan{
+    margin-top: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    padding:0 24rpx 24rpx 24rpx;
+    border-bottom: 1rpx solid #E8E8E8;
+    .dier-one{
+      margin-left: 40rpx;
+    }
+    .dier-three{
+      margin-right: 40rpx;
+    }
+    .dier{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction:column-reverse;
+      .tx{
+        width: 122rpx;
+        height: 122rpx;
+        border-radius: 100%;
+        position: relative;
+        .tx-picture{
+          width: 122rpx;
+          height: 122rpx;
+          border-radius: 100%;
+        }
+        .tx-top{
+          width: 50rpx;
+          min-width: 50rpx;
+          height: 55rpx;
+          position: absolute;
+          right: 0rpx;
+          bottom: 0;
+        }
+          
+      }
+      .txx{
+        width: 156rpx !important;
+        height: 156rpx !important;
+        border-radius: 100%;
+        .tx-picture{
+          width: 156rpx !important;
+          height: 156rpx !important;
+          border-radius: 100%;
+        }
+      }
+      .name{
+        width: 100%;
+        text-align: center;
+        font-size: 28rpx;
+        margin-top: 12rpx;
+      }
+      .price{
+        width: 100%;
+        margin-top: 12rpx;
+        text-align: center;
+        font-weight: bold;
+        font-size: 28rpx;
+      }
+    }
+  }
+  .houqi{
+    padding-bottom: 24rpx;
+    .title{
+      display: flex;
+      font-size: 24rpx;
+      .title-name{
+        width: 33.3%;
+        color: #888888;
+        text-align: center;
+      }
+    }
+    .paiming{
+      .pm-list{
+        display: flex;
+        font-size: 24rpx;
+        margin-top: 22rpx;
+        .list-name{
+          width: 33.3%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #333333;
+          
+          text-align: center;
+          .nnmae{
+            width: auto;
+            white-space: nowrap;      
+            overflow: hidden;         
+            text-overflow: ellipsis
+          }
+          .tx{
+            width: 36rpx;
+            height: 36rpx;
+            min-width: 36rpx;
+            border-radius: 100%;
+          }
+        }
+      }
+    }
+  }
 }

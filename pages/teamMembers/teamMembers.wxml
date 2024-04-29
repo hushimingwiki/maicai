@@ -1,0 +1,26 @@
+<view class="herd" wx:for="{{rankingList}}" wx:key="index">
+  <view class="one">
+    <image class="team-p" src="{{item.picture}}" mode="" />
+    <view class="info">
+      <view class="i-one">{{item.name}}</view>
+      
+      <view class="i-two">手机号：{{item.phone}}</view>
+      <view class="i-two">{{item.time}}  加入</view>
+    </view>
+    <image class="team-f" src="https://tencent.file.caiduohui.com/assets/lajitong.png" mode="" />
+  </view>
+  <view class="two">
+    <view class="info">
+      <view class="info-t">邀请客户</view>
+      <view class="info-v">{{item.yqNum}}</view>
+    </view>
+    <view class="info">
+      <view class="info-t">个人业绩</view>
+      <view class="info-v">￥{{item.price}}</view>
+    </view>
+    <view class="info">
+      <view class="info-t">团队排行</view>
+      <view class="info-v">{{item.mc}}</view>
+    </view>
+  </view>
+</view>

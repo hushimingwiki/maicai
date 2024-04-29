@@ -31,7 +31,9 @@
     "pages/like/like",
     "pages/applyWithdrawal/applyWithdrawal",
     "pages/refund/refund",
-    "pages/receiveCoupon/receiveCoupon"
+    "pages/receiveCoupon/receiveCoupon",
+    "pages/teamMembers/teamMembers",
+    "pages/yaoQing/yaoQing"
   ],
   "window": {
     "navigationBarTextStyle": "black",
