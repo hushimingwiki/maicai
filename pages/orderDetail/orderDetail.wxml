@@ -1,13 +1,13 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <view class="">
   <view class="order">
-    <view class="status">
+    <!-- <view class="status">
       <span wx:if="{{data.order_status==0}}">待支付</span>
-      <span wx:if="{{data.order_status==1}}">待发货</span>
+      <span wx:if="{{data.order_status==1}}">{{data.delivery_type == '1' ? '待发货':'备货中'}}</span>
       <span wx:if="{{data.order_status==2}}">{{data.delivery_type == '1' ? '待签收':'待自提'}}</span>
       <span wx:if="{{data.order_status==3}}">已完成</span>
       <span wx:if="{{data.order_status==4}}">已取消</span>
-    </view>
+    </view> -->
     <view class="details" wx:if="{{data.order_status == 0}}">
       <view>订单未支付，10分钟自动取消</view>
     </view>
@@ -91,7 +91,7 @@
     </view>
 
     <view class="jus-b">
-      余额抵扣：<text class="red">￥{{data.allowance_balance_price}}</text>
+      余额抵扣：<text class="red">￥{{data.balance_price}}</text>
     </view>
 
     <view class="jus-b">

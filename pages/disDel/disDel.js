@@ -1,6 +1,6 @@
 // pages/disDel/disDel.ts /user_wallet_record/list
 import {
-  userWalletRecord,withdrawal,vipInfo
+  userWalletRecord,withdrawal,vipInfo,tiXian,wallet
 } from '../../request/api.js'
 const app = getApp()
 Page({
@@ -55,13 +55,12 @@ Page({
   },
   getQianBao(){
     console.log(123)
-    vipInfo().then(res=>{
-			console.log(res.data)
-      wx.setStorageSync('vip', res.data)
+    wallet().then(res=>{
+      app.globalData.wallet = res.data
       this.setData({
-        vipInfo:res.data
+        vipInfo:res.data,
       })
-		})
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

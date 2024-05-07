@@ -90,7 +90,9 @@ Page({
           province:that.data.formData.province,
           city:that.data.formData.city,
           district:that.data.formData.district,
-          user_delivery_address_id:that.data.formData.user_delivery_address_id
+          user_delivery_address_id:that.data.formData.user_delivery_address_id,
+          latitude:that.data.formData.latitude,
+          longitude:that.data.formData.longitude,
         }).then(res=>{
           if(res.code == 200){
             wx.showToast({

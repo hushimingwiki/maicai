@@ -23,7 +23,6 @@ export const vipInfo = (params) => post('user_very_important_person/get',params)
 export const userWalletRecord = (params) => post('user_wallet_record/list',params);
 //获取用户信息/user/get
 export const getUserInfo = (params) => post('user/get', params);
-
 //修改用户信息 /user/update
 export const updateUserInfo = (params) => post('user/update', params);
 //y余额充值pay/wx_recharge

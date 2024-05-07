@@ -45,21 +45,24 @@ Page({
         //     icon:'none'
         //   })
         // }
-        if(res.code == "201"){
+        if(res.code == "200"){
           wx.showToast({
             title: '提现成功',
           })
-          let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
-          let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
-          
-          // prevPage.couponAfterPrice()
-          wx.navigateBack({
-            delta: 1,
-            success: function (e) { // 成功的回调
-              if (prevPage == undefined || prevPage == null) return;
-              prevPage.getQianBao(); // 调用A页面的方法, 并将值传过去
-            }
-          }); //关闭当前页面，返回上一个页面
+          setTimeout(()=>{
+            let pages = getCurrentPages(); //获取上一个页面信息栈(a页面)
+            let prevPage = pages[pages.length - 2] //给上一页面的tel赋值
+            
+            // prevPage.couponAfterPrice()
+            wx.navigateBack({
+              delta: 1,
+              success: function (e) { // 成功的回调
+                if (prevPage == undefined || prevPage == null) return;
+                prevPage.getQianBao(); // 调用A页面的方法, 并将值传过去
+              }
+            }); //关闭当前页面，返回上一个页面
+          },1000)
+
         }
       })
     }else{

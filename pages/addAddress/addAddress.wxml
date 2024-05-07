@@ -9,8 +9,8 @@
         <input class="weui-input" name="phone_number" value="{{formData.phone_number}}" placeholder="请填写手机号" />
       </view>
       <view class="name">
-        <view class="label">收获地址</view>
-        <input class="weui-input" name="address" value="{{formData.address}}" placeholder="请选择收获地址" disabled="true" bindtap="goSelectAdr"/>
+        <view class="label">收货地址</view>
+        <input class="weui-input" name="address" value="{{formData.address}}" placeholder="请选择收货地址" disabled="true" bindtap="goSelectAdr"/>
       </view>
       <view class="name">
         <view class="label">详细地址</view>
